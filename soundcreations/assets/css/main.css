@@ -401,7 +401,7 @@ img { max-width: 100%; height: auto; display: block; }
 .sc-hero-pill__text strong { color: #fff; font-size: .95rem; }
 .sc-hero-pill__text span { color: #C9C9D2; font-size: .82rem; line-height: 1.4; }
 
-.sc-scard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.sc-scard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
 .sc-scard { display: flex; flex-direction: column; border: 1px solid var(--sc-border); border-radius: var(--sc-radius-lg); overflow: hidden; background: var(--sc-surface); transition: transform .25s var(--sc-ease), border-color .25s; }
 .sc-scard:hover { transform: translateY(-4px); border-color: var(--sc-red); }
 .sc-scard__media { position: relative; display: block; overflow: visible; }
@@ -1082,3 +1082,12 @@ img { max-width: 100%; height: auto; display: block; }
 @media (min-width:901px){.sc-carousel__track{grid-auto-columns:calc((100% - 3.75rem) / 3.5);}}
 @media (max-width:900px){.sc-carousel__track{grid-auto-columns:calc((100% - 1.25rem) / 2.2);}}
 @media (max-width:600px){.sc-carousel__track{grid-auto-columns:calc((100% - 0.6rem) / 1.15);}}
+
+
+/* ===== Solutions page: 3-up cards + minimal vertical spacing ===== */
+.post-type-archive-sc_solution .sc-section{padding-block:clamp(1.4rem, 1rem + 1.6vw, 2.4rem);}
+.post-type-archive-sc_solution .sc-hero--solutions{min-height:300px;padding-block:clamp(1.6rem, 1.2rem + 2vw, 2.75rem);}
+.post-type-archive-sc_solution .sc-hero--video .sc-hero__inner{padding-top:1.9rem;padding-bottom:clamp(1.6rem, 1.2rem + 2vw, 2.5rem);}
+.post-type-archive-sc_solution .sc-hero-pills{margin-top:1.4rem;gap:.9rem 2rem;}
+.post-type-archive-sc_solution .sc-scard__body{padding:1.7rem 1.25rem 1.2rem;}
+.post-type-archive-sc_solution .sc-footer{margin-top:0;}
