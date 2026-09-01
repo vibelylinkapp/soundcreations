@@ -1,0 +1,36 @@
+:root {
+  --sc-red: #E11D2A;      /* [VERIFY] extract exact value from logo source */
+  --sc-indigo: #5A4FCF;   /* [VERIFY] extract exact value from logo source */
+  --sc-radius: 10px;
+  --sc-radius-lg: 18px;
+  --sc-container: 1200px;
+  --sc-gutter: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+  --sc-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --sc-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --sc-ease: cubic-bezier(.2,.7,.2,1);
+}
+
+:root,
+[data-theme="dark"] {
+  --sc-bg: #0B0B0F;
+  --sc-surface: #131318;
+  --sc-surface-2: #1B1B22;
+  --sc-border: #26262F;
+  --sc-text: #F5F5F7;
+  --sc-muted: #A0A0AC;
+  --sc-eyebrow: #FF5D68;
+  --sc-header-bg: rgba(11,11,15,.72);
+  --sc-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+
+[data-theme="light"] {
+  --sc-bg: #FBFBFD;
+  --sc-surface: #FFFFFF;
+  --sc-surface-2: #F2F2F5;
+  --sc-border: #E4E4EA;
+  --sc-text: #14141A;
+  --sc-muted: #5A5A66;
+  --sc-eyebrow: #C21420;
+  --sc-header-bg: rgba(255,255,255,.8);
+  --sc-shadow: 0 20px 60px rgba(20,20,40,.12);
+}
