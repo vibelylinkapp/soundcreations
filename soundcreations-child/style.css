@@ -1,0 +1,17 @@
+/*
+Theme Name: Sound Creations Child
+Theme URI: https://soundcreationsltd.com/
+Template: soundcreations
+Author: Sound Creations Ltd
+Author URI: https://soundcreationsltd.com/
+Description: Child theme for Sound Creations. Put ALL site-specific customisations here so the parent theme stays clean and updatable.
+Version: 0.1.0
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: soundcreations-child
+*/
+
+/* Add custom overrides below. Example:
+.sc-hero__title { letter-spacing: -0.03em; }
+*/
