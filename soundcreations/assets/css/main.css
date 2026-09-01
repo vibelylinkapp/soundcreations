@@ -1070,3 +1070,15 @@ img { max-width: 100%; height: auto; display: block; }
 .sc-partner:hover .sc-partner__logo,.sc-partner:hover img{filter:none;opacity:1;}
 .sc-partner--text{font-family:var(--sc-font-display,inherit);font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:#141414;white-space:nowrap;}
 .sc-partner--text:hover{color:#000;}
+
+
+/* ===== Stats band: full-bleed, edge to edge ===== */
+.sc-stats--proof .sc-container{max-width:none;padding-inline:clamp(1.25rem,5vw,5rem);}
+.sc-stats--proof .sc-stats__grid{background:transparent;border:0;border-radius:0;padding:0;}
+.sc-stats--proof .sc-stat{padding:2.4rem 1.8rem;}
+.sc-stats--proof .sc-stat__head--num{font-size:2.6rem;}
+
+/* ===== Featured Projects: show 3.5 cards (4th halfway) ===== */
+@media (min-width:901px){.sc-carousel__track{grid-auto-columns:calc((100% - 3.75rem) / 3.5);}}
+@media (max-width:900px){.sc-carousel__track{grid-auto-columns:calc((100% - 1.25rem) / 2.2);}}
+@media (max-width:600px){.sc-carousel__track{grid-auto-columns:calc((100% - 0.6rem) / 1.15);}}
