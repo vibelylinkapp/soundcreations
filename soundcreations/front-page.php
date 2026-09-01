@@ -77,8 +77,8 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 				'acoustics'           => 'solutions/acoustics.jpg',
 				'conferencing'        => 'solutions/conferencing.jpg',
 				'system-integration'  => 'solutions/integration.jpg',
-				'consultation-design' => 'solutions/support.jpg',
-				'installation'        => 'solutions/led.jpg',
+				'consultation-design' => 'solutions/consultation.jpg',
+				'installation'        => 'solutions/installation.jpg',
 				'support-training'    => 'solutions/support.jpg',
 			);
 			$sc_solq = new WP_Query(

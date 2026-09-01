@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'SC_CORE_VERSION', '0.5.14' );
-define( 'SC_CORE_SEED_VERSION', '4' );
+define( 'SC_CORE_SEED_VERSION', '5' );
 define( 'SC_CORE_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once SC_CORE_DIR . 'includes/post-types.php';

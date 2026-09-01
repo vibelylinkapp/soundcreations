@@ -122,23 +122,31 @@ function sc_core_seed_catalog() {
 	// Projects shown on the /projects/ archive. Order via menu_order (editable in wp-admin).
 	// Tuple: slug, title, client, location, industry, category (filter), badge, solution, image, summary, menu_order.
 	$projects = array(
-		array( 'citam-buruburu', 'CITAM Buruburu', 'CITAM Buruburu', 'Nairobi, Kenya', 'Houses of Worship', 'Worship', 'Worship', 'Professional Audio', 'worship', 'Complete audio system upgrade including line array, stage monitors and digital mixing.', 10 ),
-		array( 'all-saints-cathedral', 'All Saints Cathedral', 'All Saints Cathedral', 'Nairobi, Kenya', 'Houses of Worship', 'Worship', 'Worship', 'Acoustics', 'cathedral', 'Acoustic treatment and audio enhancement for one of Africa’s largest cathedrals.', 20 ),
-		array( 'pcea-chuka', 'PCEA Chuka', 'PCEA Chuka', 'Chuka, Kenya', 'Conference & Events', 'Conference & Events', 'Conference', 'Conferencing', 'conference', 'Modern conference system with DSP, microphones and control integration.', 30 ),
-		array( 'kabarak-university', 'Kabarak University', 'Kabarak University', 'Nairobi, Kenya', 'Education', 'Education', 'Education', 'System Integration', 'campus', 'Campus-wide PA system, lecture capture and auditorium integration.', 40 ),
+		array( 'citam-buruburu', 'CITAM Buruburu', 'CITAM Buruburu', 'Nairobi, Kenya', 'Houses of Worship', 'Worship', 'Worship', 'Professional Audio', 'citam-buruburu', 'A full dB Technologies T-Series system - T12/T8 front-of-house, S30 subwoofers, IG1 under-balcony fills and FMX15 monitors - driven by an Allen & Heath Avantis console for clear, powerful worship sound.', 10 ),
+		array( 'all-saints-cathedral', 'All Saints Cathedral', 'All Saints Cathedral', 'Nairobi, Kenya', 'Houses of Worship', 'Worship', 'Worship', 'Acoustics', 'all-saints-cathedral', 'Acoustic treatment and audio enhancement for one of Africa’s largest cathedrals.', 20 ),
+		array( 'pcea-chuka', 'PCEA Chuka', 'PCEA Chuka', 'Chuka, Kenya', 'Houses of Worship', 'Worship', 'Acoustics', 'Acoustics', 'pcea-chuka', 'Acoustic treatment of a highly reverberant church sanctuary with 740 square metres of Rockfon stone-wool ceiling panels, cutting reverberation from 3.3s to 1.1s for clear, intelligible speech.', 30 ),
+		array( 'kabarak-university', 'Kabarak University', 'Kabarak University', 'Nairobi, Kenya', 'Education', 'Education', 'Education', 'System Integration', 'kabarak-university', 'Campus-wide PA system, lecture capture and auditorium integration.', 40 ),
 		array( 'nairobi-chapel', 'Nairobi Chapel', 'Nairobi Chapel', 'Nairobi, Kenya', 'Houses of Worship', 'Worship', 'Worship', 'Professional Audio', 'chapel', 'High-performance audio solution delivering clarity and impact for modern worship.', 50 ),
 		array( 'hotel-audio-solution', 'Hotel Audio Solution', 'Hotel Audio Solution', 'Dubai, UAE', 'Hospitality', 'Hospitality', 'Hospitality', 'Professional Audio', 'hotel', 'Distributed audio system for guest areas, restaurants and conference facilities.', 60 ),
 		array( 'corporate-boardroom', 'Corporate Boardroom', 'Corporate Boardroom', 'Kigali, Rwanda', 'Corporate & Offices', 'Corporate', 'Corporate', 'System Integration', 'boardroom', 'Integrated AV solution for executive meetings and hybrid collaboration.', 70 ),
 		array( 'live-event-production', 'Live Event Production', 'Live Event Production', 'DR Congo', 'Entertainment', 'Entertainment', 'Entertainment', 'Live Events', 'performance', 'Full sound reinforcement solution for large-scale live events and concerts.', 80 ),
 	);
+	$project_bodies = sc_core_project_bodies();
 	foreach ( $projects as $pr ) {
 		list( $slug, $title, $client, $loc, $industry, $cat, $badge, $sol, $img, $summary, $order ) = $pr;
+		$body     = isset( $project_bodies[ $slug ] ) ? $project_bodies[ $slug ] : '';
 		$existing = get_page_by_path( $slug, OBJECT, 'sc_project' );
 		if ( $existing ) {
-			$id = (int) $existing->ID;
-			wp_update_post( array( 'ID' => $id, 'menu_order' => $order ) );
+			$id  = (int) $existing->ID;
+			$upd = array( 'ID' => $id, 'menu_order' => $order );
+			// Refresh the body only while it is still the seeded [VERIFY] stub, so real
+			// case-study content reaches the live site without clobbering team edits.
+			if ( '' !== $body && false !== strpos( (string) $existing->post_content, '[VERIFY]' ) ) {
+				$upd['post_content'] = $body;
+			}
+			wp_update_post( $upd );
 		} else {
-			$content = 'Sound Creations delivered a professional audio installation for ' . $client . '. [VERIFY] Confirm the scope, equipment supplied and completion date before publishing.';
+			$content = ( '' !== $body ) ? $body : 'Sound Creations delivered a professional audio installation for ' . $client . '. [VERIFY] Confirm the scope, equipment supplied and completion date before publishing.';
 			$id      = wp_insert_post(
 				array(
 					'post_type'    => 'sc_project',
@@ -172,6 +180,43 @@ function sc_core_seed_catalog() {
 
 	return $report;
 
+}
+
+/**
+ * Full case-study bodies (HTML) for featured projects, sourced from Sound Creations'
+ * own project write-ups. Keyed by project slug. Used by the seeder for new projects and
+ * to replace the seeded [VERIFY] stub on existing projects (never overwrites team edits).
+ */
+function sc_core_project_bodies() {
+	$citam = <<<'HTML'
+<p>We were honoured to deliver a comprehensive audio solution at CITAM Buruburu, tailored to the demands of a dynamic worship environment with clarity, power and precision.</p>
+<h2>Front of house</h2>
+<p>A full-range dB Technologies T-Series system (T12 and T8) delivers powerful, consistent sound across the main auditorium.</p>
+<h2>Subwoofers</h2>
+<p>dB Technologies S30 dual 18-inch subwoofers handle the low end, delivering impactful bass for both speech and music.</p>
+<h2>Under-balcony fills</h2>
+<p>dB Technologies IG1 speakers maintain coverage and clarity in the under-balcony seating areas.</p>
+<h2>Stage monitors</h2>
+<p>dB Technologies FMX15 monitors provide clear, powerful foldback for the worship team.</p>
+<h2>Audio control</h2>
+<p>At the heart of the system, an Allen &amp; Heath Avantis digital mixing console offers flexible, intuitive control and reliable performance for both live and broadcast applications.</p>
+<p>This installation reflects our commitment to delivering scalable, high-quality audio-visual systems that elevate the worship experience.</p>
+HTML;
+
+	$pcea = <<<'HTML'
+<p>"We have good sound! I can't believe our church sound system could sound so good." Those were the words that met Sound Creations on the visit to certify the completed acoustic treatment at P.C.E.A. Chuka, in Meru.</p>
+<h2>The challenge</h2>
+<p>The Presbyterian Church of East Africa (PCEA) sanctuary in Chuka had suffered from poor acoustics for years. The single-level, T-shaped building was finished in hard materials - a terrazzo floor, natural-stone walls and the exposed underside of an iron-sheet roof on steel trusses - creating a highly reverberant space that destroyed speech clarity. Reverberation-time measurements recorded up to 3.77 seconds at 125 Hz and an average of 3.32 seconds at mid frequencies (500-1,000 Hz), far above the 1.22 seconds recommended for intelligibility in a space of that volume.</p>
+<h2>Design and installation</h2>
+<p>To bring the reverberation time down, Sound Creations installed 740 square metres of Rockfon Artic stone-wool acoustic ceiling panels, suspended a minimum of 200 mm below the existing ceiling and following its slope. Rockfon Artic combines high sound absorption with fire protection, thermal insulation, humidity and microorganism resistance, and excellent light reflection.</p>
+<h2>The results</h2>
+<p>Post-installation measurements confirmed the reverberation time at mid frequencies had dropped from 3.3 seconds to 1.1 seconds - exactly as predicted - transforming speech intelligibility. The church also gained improved aesthetics, better thermal comfort and a brighter, more light-filled sanctuary. The committee expressed great satisfaction with the results.</p>
+HTML;
+
+	return array(
+		'citam-buruburu' => $citam,
+		'pcea-chuka'     => $pcea,
+	);
 }
 
 // Auto re-run the (idempotent) seeder once after a plugin update so brand order,
