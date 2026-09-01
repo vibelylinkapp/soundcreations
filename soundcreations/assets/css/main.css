@@ -1037,3 +1037,36 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Surface section band (replaces repeated inline styles for cleaner markup). */
 .sc-section--surface { background: var(--sc-surface); border-block: 1px solid var(--sc-border); }
+
+
+/* ===== Homepage refresh: services, 3-up solutions, stats, colour partners ===== */
+.sc-svcs{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2.5rem;}
+.sc-svc{display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:1.85rem 1.6rem;border:1px solid var(--sc-border,#e6e6ea);border-radius:16px;background:var(--sc-surface,#fff);color:inherit;text-decoration:none;transition:transform .2s var(--sc-ease,ease),border-color .2s var(--sc-ease,ease),box-shadow .2s var(--sc-ease,ease);}
+.sc-svc:hover{transform:translateY(-4px);border-color:rgba(225,29,42,.45);box-shadow:0 14px 32px rgba(0,0,0,.18);}
+.sc-svc__icon{width:78px;height:78px;display:grid;place-items:center;border-radius:18px;background:rgba(225,29,42,.1);color:var(--sc-red,#e11d2a);margin-bottom:1.15rem;}
+.sc-svc__icon svg{width:42px;height:42px;}
+.sc-svc__title{font-size:1.18rem;margin:0 0 .5rem;letter-spacing:.01em;}
+.sc-svc__desc{color:var(--sc-muted,#6b6b74);font-size:.92rem;line-height:1.55;margin:0 0 1.1rem;}
+.sc-svc__more{margin-top:auto;color:var(--sc-red,#e11d2a);font-weight:600;font-size:.86rem;letter-spacing:.02em;}
+@media (max-width:920px){.sc-svcs{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:540px){.sc-svcs{grid-template-columns:1fr;}}
+
+/* Solutions 3-up */
+.sc-grid--3{grid-template-columns:repeat(3,1fr);}
+@media (max-width:920px){.sc-grid--3{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:620px){.sc-grid--3{grid-template-columns:1fr;}}
+
+/* Stats band: 3-up, larger icons */
+.sc-stats--proof .sc-stats__grid{grid-template-columns:repeat(3,1fr);}
+.sc-stats--proof .sc-stat__icon{width:64px;height:64px;}
+.sc-stats--proof .sc-stat__icon svg{width:32px;height:32px;}
+.sc-stats--proof .sc-stat__head--num{font-size:2.45rem;}
+@media (max-width:700px){.sc-stats--proof .sc-stats__grid{grid-template-columns:1fr;}}
+
+/* Partners: full-colour logos on light tiles */
+.sc-partners__set{gap:2rem;padding-right:2rem;}
+.sc-partner{flex:none;display:inline-flex;align-items:center;justify-content:center;height:62px;padding:12px 22px;background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.14);}
+.sc-partner__logo,.sc-partner img{height:34px;width:auto;max-width:150px;object-fit:contain;display:block;filter:none;opacity:1;}
+.sc-partner:hover .sc-partner__logo,.sc-partner:hover img{filter:none;opacity:1;}
+.sc-partner--text{font-family:var(--sc-font-display,inherit);font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:#141414;white-space:nowrap;}
+.sc-partner--text:hover{color:#000;}

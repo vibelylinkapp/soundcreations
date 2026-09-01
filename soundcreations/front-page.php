@@ -41,27 +41,49 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 	</div>
 </section>
 
-<section class="sc-section">
+<section class="sc-section" id="services">
 	<div class="sc-container">
 		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_whatwedo_eyebrow', 'What we do' ) ); ?></p>
 		<h2><?php echo esc_html( sc_setting( 'home_whatwedo_title', 'More than equipment. A complete solution.' ) ); ?></h2>
 		<p class="sc-lead" style="margin-bottom:2rem;"><?php echo esc_html( sc_setting( 'home_whatwedo_lead', 'We consult, design, supply, integrate and support professional audio, visual, lighting and acoustic systems-engineered for your space and built to perform.' ) ); ?></p>
-		<div class="sc-steps">
+		<div class="sc-svcs">
 			<?php
-			$sc_step_icons = array(
-				'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.6A8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z"/></svg>',
-				'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>',
-				'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>',
-				'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>',
-				'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>',
+			$sc_svc_icons = array(
+				'consultancy'             => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-4 4V6a2 2 0 0 1 2-2z"/><path d="M8 9h8"/><path d="M8 12h5"/></svg>',
+				'distribution-dealership' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h13v10H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>',
+				'integration'             => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>',
+				'after-sale-services'     => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M20 14a2 2 0 0 1-2 2h-2v-5h2a2 2 0 0 1 2 2z"/><path d="M4 14a2 2 0 0 0 2 2h2v-5H6a2 2 0 0 0-2 2z"/><path d="M18 16v1a3 3 0 0 1-3 3h-3"/></svg>',
 			);
-			$sc_steps = sc_split_lines( sc_setting( 'home_steps' ), 2 );
-			$sc_ic_n  = count( $sc_step_icons );
-			foreach ( $sc_steps as $i => $st ) :
-				$icon = ( $i < $sc_ic_n ) ? $sc_step_icons[ $i ] : $sc_step_icons[ $sc_ic_n - 1 ];
-				?>
-				<div class="sc-step"><span class="sc-step__icon"><?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span><h3 class="sc-step__title"><?php echo esc_html( $st[0] ); ?></h3><p class="sc-step__desc"><?php echo esc_html( isset( $st[1] ) ? $st[1] : '' ); ?></p></div>
-			<?php endforeach; ?>
+			$sc_svc_fallback = array(
+				array( 'consultancy', 'Consultancy', 'We listen, assess and design the right solution across audio, acoustics, lighting and visuals.' ),
+				array( 'distribution-dealership', 'Distribution & Dealership', 'Certified exclusive dealer for leading global brands, with reliable regional distribution.' ),
+				array( 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support.' ),
+				array( 'after-sale-services', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support.' ),
+			);
+			$sc_svcq = new WP_Query( array( 'post_type' => 'sc_service', 'post_status' => 'publish', 'posts_per_page' => 8, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'no_found_rows' => true ) );
+			if ( $sc_svcq->have_posts() ) :
+				while ( $sc_svcq->have_posts() ) :
+					$sc_svcq->the_post();
+					$sc_sslug = get_post_field( 'post_name', get_the_ID() );
+					$sc_sicon = isset( $sc_svc_icons[ $sc_sslug ] ) ? $sc_svc_icons[ $sc_sslug ] : $sc_svc_icons['integration'];
+					$sc_ssum  = sc_field( 'summary' );
+					if ( '' === $sc_ssum ) {
+						$sc_ssum = wp_strip_all_tags( get_the_excerpt() );
+					}
+					?>
+					<a class="sc-svc" href="<?php the_permalink(); ?>"><span class="sc-svc__icon"><?php echo $sc_sicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span><h3 class="sc-svc__title"><?php echo esc_html( get_the_title() ); ?></h3><p class="sc-svc__desc"><?php echo esc_html( $sc_ssum ); ?></p><span class="sc-svc__more"><?php esc_html_e( 'Learn more', 'soundcreations' ); ?> &rarr;</span></a>
+					<?php
+				endwhile;
+				wp_reset_postdata();
+			else :
+				foreach ( $sc_svc_fallback as $sc_sv ) :
+					$sc_sicon = isset( $sc_svc_icons[ $sc_sv[0] ] ) ? $sc_svc_icons[ $sc_sv[0] ] : $sc_svc_icons['integration'];
+					?>
+					<a class="sc-svc" href="<?php echo esc_url( home_url( '/service/' . $sc_sv[0] . '/' ) ); ?>"><span class="sc-svc__icon"><?php echo $sc_sicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span><h3 class="sc-svc__title"><?php echo esc_html( $sc_sv[1] ); ?></h3><p class="sc-svc__desc"><?php echo esc_html( $sc_sv[2] ); ?></p><span class="sc-svc__more"><?php esc_html_e( 'Learn more', 'soundcreations' ); ?> &rarr;</span></a>
+					<?php
+				endforeach;
+			endif;
+			?>
 		</div>
 	</div>
 </section>
@@ -70,54 +92,10 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 	<div class="sc-container">
 		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_solutions_eyebrow', 'Solutions' ) ); ?></p>
 		<h2 style="margin-bottom:2rem;"><?php echo esc_html( sc_setting( 'home_solutions_title', 'Built around your room, application and operating requirements.' ) ); ?></h2>
-		<div class="sc-grid">
-			<?php
-			$sc_sol_fallback = array(
-				'professional-audio'  => 'solutions/audio.jpg',
-				'acoustics'           => 'solutions/acoustics.jpg',
-				'conferencing'        => 'solutions/conferencing.jpg',
-				'system-integration'  => 'solutions/integration.jpg',
-				'consultation-design' => 'solutions/consultation.jpg',
-				'installation'        => 'solutions/installation.jpg',
-				'support-training'    => 'solutions/support.jpg',
-			);
-			$sc_solq = new WP_Query(
-				array(
-					'post_type'      => 'sc_solution',
-					'post_status'    => 'publish',
-					'posts_per_page' => 4,
-					'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
-					'no_found_rows'  => true,
-				)
-			);
-			if ( $sc_solq->have_posts() ) :
-				while ( $sc_solq->have_posts() ) :
-					$sc_solq->the_post();
-					$sid  = get_the_ID();
-					$slug = get_post_field( 'post_name', $sid );
-					$img  = has_post_thumbnail( $sid ) ? get_the_post_thumbnail_url( $sid, 'large' ) : '';
-					if ( '' === $img ) {
-						$rel = isset( $sc_sol_fallback[ $slug ] ) ? $sc_sol_fallback[ $slug ] : 'solutions/audio.jpg';
-						$img = SC_THEME_URI . '/assets/img/' . $rel;
-					}
-					$sum = sc_field( 'summary', $sid );
-					if ( '' === $sum ) {
-						$sum = wp_strip_all_tags( get_the_excerpt( $sid ) );
-					}
-					?>
-					<a class="sc-card sc-card--media" href="<?php the_permalink(); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3><?php echo esc_html( get_the_title() ); ?></h3><p><?php echo esc_html( $sum ); ?></p></div></a>
-					<?php
-				endwhile;
-				wp_reset_postdata();
-			else :
-				?>
-				<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/professional-audio/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/audio.jpg' ); ?>" alt="Professional Audio" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Professional Audio</h3><p>Loudspeakers, subs, amplification, DSP, mixing, microphones and wireless - designed, supplied and tuned.</p></div></a>
-				<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/acoustics/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/acoustics.jpg' ); ?>" alt="Acoustics" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Acoustics</h3><p>Measure -> Analyze -> Design -> Treat -> Verify. Acoustics treated as an engineering discipline.</p></div></a>
-				<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/conferencing/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/conferencing.jpg' ); ?>" alt="Conferencing" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Conferencing</h3><p>Boardrooms, hybrid meetings and collaboration spaces engineered for clarity and reliability.</p></div></a>
-				<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/system-integration/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/integration.jpg' ); ?>" alt="System Integration" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>System Integration</h3><p>Supply, installation, commissioning, calibration and project management under one technical team.</p></div></a>
-				<?php
-			endif;
-			?>
+		<div class="sc-grid sc-grid--3">
+			<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/service/consultancy/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/consultation.jpg' ); ?>" alt="Consultation" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Consultation</h3><p>Site assessment, system design and specification - we measure, model and plan the right solution before a single cable is run.</p></div></a>
+			<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/acoustics/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/acoustics.jpg' ); ?>" alt="Acoustics" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Acoustics</h3><p>Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.</p></div></a>
+			<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/installation/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/installation.jpg' ); ?>" alt="Live Sound and Installation" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Live Sound &amp; Installation</h3><p>Professional live-sound systems, installation, commissioning and calibration by our technical team.</p></div></a>
 		</div>
 	</div>
 </section>
@@ -203,29 +181,22 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 			<div class="sc-stat">
 				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg></span>
 				<div class="sc-stat__body">
-					<div class="sc-stat__head sc-stat__head--num"><?php echo esc_html( sc_setting( 'home_stat1_num', '20+' ) ); ?></div>
-					<div class="sc-stat__sub"><?php echo esc_html( sc_setting( 'home_stat1_label', 'Years Experience' ) ); ?></div>
+					<div class="sc-stat__head sc-stat__head--num">22+</div>
+					<div class="sc-stat__sub">Years Experience</div>
 				</div>
 			</div>
 			<div class="sc-stat">
-				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21"/><line x1="8" y1="3" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="21"/></svg></span>
 				<div class="sc-stat__body">
-					<div class="sc-stat__head sc-stat__head--num"><?php echo esc_html( sc_setting( 'home_stat2_num', '4' ) ); ?></div>
-					<div class="sc-stat__sub"><?php echo esc_html( sc_setting( 'home_stat2_label', 'Regional Locations' ) ); ?><span class="sc-stat__note"><?php echo esc_html( sc_setting( 'home_stat2_note', 'Kenya | Rwanda | DR Congo | UAE' ) ); ?></span></div>
-				</div>
-			</div>
-			<div class="sc-stat">
-				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-				<div class="sc-stat__body">
-					<div class="sc-stat__head sc-stat__head--num"><?php echo esc_html( sc_setting( 'home_stat3_num', '50+' ) ); ?></div>
-					<div class="sc-stat__sub"><?php echo esc_html( sc_setting( 'home_stat3_label', 'Brands' ) ); ?></div>
+					<div class="sc-stat__head sc-stat__head--num">4</div>
+					<div class="sc-stat__sub">Regional Locations<span class="sc-stat__note">Kenya | Rwanda | DR Congo | UAE</span></div>
 				</div>
 			</div>
 			<div class="sc-stat">
 				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
 				<div class="sc-stat__body">
-					<div class="sc-stat__head sc-stat__head--num"><?php echo esc_html( sc_setting( 'home_stat4_num', '850+' ) ); ?></div>
-					<div class="sc-stat__sub"><?php echo esc_html( sc_setting( 'home_stat4_label', 'Projects Completed' ) ); ?></div>
+					<div class="sc-stat__head sc-stat__head--num">850+</div>
+					<div class="sc-stat__sub">Projects Completed</div>
 				</div>
 			</div>
 		</div>

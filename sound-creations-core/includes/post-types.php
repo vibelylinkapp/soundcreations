@@ -42,6 +42,27 @@ function sc_core_register_post_types() {
 		);
 	}
 
+	// Services: content pages for the homepage "What we do" section. Single URLs at
+	// /service/{slug}/ (Consultancy, Distribution & Dealership, Integration, After-Sale Services).
+	register_post_type(
+		'sc_service',
+		array(
+			'labels'       => array(
+				'name'          => 'Services',
+				'singular_name' => 'Service',
+				'add_new_item'  => 'Add New Service',
+				'edit_item'     => 'Edit Service',
+				'menu_name'     => 'Services',
+			),
+			'public'       => true,
+			'has_archive'  => false,
+			'menu_icon'    => 'dashicons-superhero',
+			'rewrite'      => array( 'slug' => 'service', 'with_front' => false ),
+			'show_in_rest' => true,
+			'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes' ),
+		)
+	);
+
 	// Enquiries: private storage so no lead is ever lost.
 	register_post_type(
 		'sc_enquiry',

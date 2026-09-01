@@ -178,6 +178,48 @@ function sc_core_seed_catalog() {
 		}
 	}
 
+	// Services shown in the homepage "What we do" section, with single pages at
+	// /service/{slug}/. Tuple: slug, title, image (relative to assets/img/), summary, order.
+	$services = array(
+		array( 'consultancy', 'Consultancy', 'solutions/consultation.jpg', 'Design and consultation across audio, acoustics, lighting and visuals - at every phase of your project.', 10 ),
+		array( 'distribution-dealership', 'Distribution & Dealership', 'brands/partner.jpg', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.', 20 ),
+		array( 'integration', 'Integration', 'solutions/integration.jpg', 'Site mapping, system design, installation, commissioning, training and support for every audio and acoustic need.', 30 ),
+		array( 'after-sale-services', 'After-Sale Services', 'support-hero.jpg', 'Warranty management, genuine spare parts, servicing and technical support that keep your systems performing.', 40 ),
+	);
+	if ( post_type_exists( 'sc_service' ) ) {
+		$service_bodies = sc_core_service_bodies();
+		foreach ( $services as $sv ) {
+			list( $slug, $title, $img, $summary, $order ) = $sv;
+			$body     = isset( $service_bodies[ $slug ] ) ? $service_bodies[ $slug ] : '';
+			$existing = get_page_by_path( $slug, OBJECT, 'sc_service' );
+			if ( $existing ) {
+				$id  = (int) $existing->ID;
+				$upd = array( 'ID' => $id, 'menu_order' => $order );
+				// Refresh the body only while it is still the seeded [VERIFY] stub.
+				if ( '' !== $body && false !== strpos( (string) $existing->post_content, '[VERIFY]' ) ) {
+					$upd['post_content'] = $body;
+				}
+				wp_update_post( $upd );
+			} else {
+				$content = ( '' !== $body ) ? $body : ( $title . ' service. [VERIFY] Confirm the description before publishing.' );
+				$id      = wp_insert_post(
+					array(
+						'post_type'    => 'sc_service',
+						'post_status'  => 'publish',
+						'post_title'   => $title,
+						'post_name'    => $slug,
+						'post_content' => $content,
+						'menu_order'   => $order,
+					)
+				);
+			}
+			if ( $id && is_wp_error( $id ) === false ) {
+				update_post_meta( $id, '_sc_summary', $summary );
+				update_post_meta( $id, '_sc_image', $img );
+			}
+		}
+	}
+
 	return $report;
 
 }
@@ -216,6 +258,50 @@ HTML;
 	return array(
 		'citam-buruburu' => $citam,
 		'pcea-chuka'     => $pcea,
+	);
+}
+
+/**
+ * Full body content (HTML) for the service pages, sourced from Sound Creations'
+ * existing service pages. Keyed by service slug. Used to fill the [VERIFY] stub.
+ */
+function sc_core_service_bodies() {
+	$consultancy = <<<'HTML'
+<p>Consultation is a vital process to all of our solutions - not only for our project clientele but also for our everyday customers. Understanding the purpose of an application, the environment it will be used in and the capabilities of what we sell and install helps every client get the best from our solutions.</p>
+<p>We provide a wide portfolio of design and consultation services across audio, lighting, visual and acoustic projects, at every phase of a project. Through experience we have learned that the consultation process is cheaper and easier on the client when it is carried out during the construction phase.</p>
+<p>Our highly qualified team has extensive experience and meets expectations regardless of the scope of the project. Using high-end tools and software - including EASE and Rational Acoustics SMAART v8 - we measure, calculate and model the optimum solution for your space. Where needed we are backed by the design teams and engineers of the manufacturers we represent: an international network of consultants, designers and engineers ready to assist on complex projects.</p>
+HTML;
+
+	$distribution = <<<'HTML'
+<p>With over 13 years of experience in the local and regional market, we have built deep product specialisation. Over this time we have been certified as the exclusive authorised dealer for a number of leading global brands.</p>
+<p>Our distribution model sets us apart: we offer direct customer sales, retailer sales at friendly resale prices, and manufacturer-to-client sales. Reliable, expert shipping partners ensure goods reach the client in the best possible time and condition.</p>
+<p>Our customer orientation, transparency and efficiency have made us the preferred choice for clients and manufacturers across Kenya, Rwanda, Tanzania, DR Congo and the UAE.</p>
+HTML;
+
+	$integration = <<<'HTML'
+<p>With a pool of experienced technical sound specialists, we offer professional site mapping, consultation, system design, installation, commissioning, training and support for all audio and acoustic needs - from conferencing systems to road trucks and home-theatre installations.</p>
+<h2>Internal room acoustics and surface treatments</h2>
+<p>Critical listening spaces - auditoria, churches, studios, theatres, conference rooms and home theatres, and any speech-intelligibility-sensitive space - benefit from accurate acoustic design. We provide the appropriate surface treatments to enhance the audio experience in these spaces.</p>
+<h2>Sound isolation</h2>
+<p>We provide acoustical measurement, analysis and design services to assure optimal acoustical isolation for existing or new construction.</p>
+HTML;
+
+	$aftersale = <<<'HTML'
+<p>Our after-sale service keeps your systems performing long after handover. Warranty cover on the products we supply follows the manufacturer terms, which vary by product category.</p>
+<h2>Warranty periods</h2>
+<p>Power amplifiers, decoders, timing power supplies, mixers, active and passive speakers, electronic drums, electronic pianos and microphones are covered free of charge for one year from the date of purchase.</p>
+<p>Accessory parts - speaker voice coils, diaphragms and high-frequency drivers, and microphone voice coils and diaphragms - are covered free of charge for three months from the date of purchase. Under contracts with a warranty period of three years or more, these accessories are covered free for one year from the date of purchase.</p>
+<p>Brackets, welding wires, plugs, cables and cabinets are chargeable at the cost of materials and basic labour only. For theatres, government projects and other large projects, the warranty period is governed mainly by the signed contract.</p>
+<h2>What is not covered</h2>
+<p>Warranty service does not apply to damage caused by collision or burning arising from non-product-quality issues; unauthorised modification, disassembly or opening; improper installation, use or operation outside the instructions; self-assembly without official guidance; circuit modification or improper use of battery packs and chargers; or any damage from use not carried out according to the product instructions.</p>
+<p>To make a claim, contact us at info@soundcreationsltd.com or +254 715 754 758 with your invoice number and a description of the fault.</p>
+HTML;
+
+	return array(
+		'consultancy'             => $consultancy,
+		'distribution-dealership' => $distribution,
+		'integration'             => $integration,
+		'after-sale-services'     => $aftersale,
 	);
 }
 
