@@ -157,7 +157,7 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 <section class="sc-section">
 	<div class="sc-container sc-brands-why">
 		<div class="sc-brands-why__intro">
-			<p class="sc-eyebrow"><?php esc_html_e( 'Why professionals trust our brands', 'soundcreations' ); ?></p>
+			<p class="sc-eyebrow"><?php esc_html_e( 'Why professionals trust our products', 'soundcreations' ); ?></p>
 			<h2><?php echo esc_html( sc_setting( 'brands_why_title', 'Global technology. Local expertise.' ) ); ?></h2>
 			<p><?php echo esc_html( sc_setting( 'brands_why_body', 'We partner with leading global manufacturers to bring you reliable, innovative and performance-driven solutions for every project.' ) ); ?></p>
 		</div>
@@ -177,7 +177,7 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 	<div class="sc-container">
 		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( $sc_brd . '/partner.jpg' ); ?>');">
 			<div class="sc-cta-band__inner">
-				<h2><?php echo esc_html( sc_setting( 'brands_cta_title', 'Become a brand partner' ) ); ?></h2>
+				<h2><?php echo esc_html( sc_setting( 'brands_cta_title', 'Become a partner' ) ); ?></h2>
 				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'brands_cta_text', 'Work with Sound Creations to bring your innovative products to the East Africa and Middle East markets.' ) ); ?></p>
 				<a class="sc-btn sc-btn--primary sc-brands-partner__btn" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Partner With Us', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 			</div>

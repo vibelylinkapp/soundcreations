@@ -94,3 +94,15 @@ function sc_core_redirect_product_archive() {
 	}
 }
 add_action( 'template_redirect', 'sc_core_redirect_product_archive' );
+
+/**
+ * The Brands archive is presented as the "Products" page, so its document <title>
+ * should read "Products" rather than the "Brands" post-type label.
+ */
+function sc_core_products_archive_title( $parts ) {
+	if ( is_post_type_archive( 'sc_brand' ) ) {
+		$parts['title'] = 'Products';
+	}
+	return $parts;
+}
+add_filter( 'document_title_parts', 'sc_core_products_archive_title' );

@@ -57,19 +57,34 @@ if ( $sc_q->have_posts() ) {
 		if ( '' !== $loc && ! in_array( $loc, $sc_locs, true ) ) {
 			$sc_locs[] = $loc;
 		}
-		$hay      = strtolower( $sol . ' ' . $cat );
-		if ( is_int( strpos( $hay, 'acoustic' ) ) ) {
-			$division = 'Acoustic';
-		} elseif ( is_int( strpos( $hay, 'visual' ) ) || is_int( strpos( $hay, 'video' ) ) || is_int( strpos( $hay, 'led' ) ) || is_int( strpos( $hay, 'integration' ) ) || is_int( strpos( $hay, 'conferenc' ) ) ) {
-			$division = 'Visual';
+		$division_meta = (string) get_post_meta( $pid, '_sc_division', true );
+		if ( strlen( $division_meta ) > 0 ) {
+			$divs = array_values( array_filter( array_map( 'trim', explode( ',', $division_meta ) ) ) );
 		} else {
-			$division = 'Audio';
+			$hay  = strtolower( $sol . ' ' . $cat . ' ' . $sum . ' ' . get_the_title() );
+			$divs = array();
+			if ( is_int( strpos( $hay, 'acoustic' ) ) || is_int( strpos( $hay, 'reverb' ) ) || is_int( strpos( $hay, 'stone-wool' ) ) || is_int( strpos( $hay, 'ceiling' ) ) || is_int( strpos( $hay, 'treatment' ) ) ) {
+				$divs[] = 'Acoustic';
+			}
+			if ( is_int( strpos( $hay, 'audio' ) ) || is_int( strpos( $hay, 'sound' ) ) || is_int( strpos( $hay, 'pa system' ) ) || is_int( strpos( $hay, 'loudspeaker' ) ) || is_int( strpos( $hay, 'amplif' ) ) || is_int( strpos( $hay, 'monitor' ) ) || is_int( strpos( $hay, 'front-of-house' ) ) || is_int( strpos( $hay, 'subwoofer' ) ) || is_int( strpos( $hay, 'console' ) ) || is_int( strpos( $hay, 'reinforcement' ) ) || is_int( strpos( $hay, ' av ' ) ) ) {
+				$divs[] = 'Audio';
+			}
+			if ( is_int( strpos( $hay, 'visual' ) ) || is_int( strpos( $hay, 'video' ) ) || is_int( strpos( $hay, 'lecture' ) ) || is_int( strpos( $hay, 'projection' ) ) || is_int( strpos( $hay, 'display' ) ) || is_int( strpos( $hay, 'screen' ) ) || is_int( strpos( $hay, ' av ' ) ) || is_int( strpos( $hay, 'integrat' ) ) ) {
+				$divs[] = 'Visual';
+			}
+			if ( count( $divs ) === 0 ) {
+				$divs[] = 'Audio';
+			}
+		}
+		$division_slugs = array();
+		foreach ( $divs as $d ) {
+			$division_slugs[] = sanitize_title( $d );
 		}
 		$sc_items[] = array(
 			'title' => get_the_title(),
 			'href'  => get_permalink( $pid ),
-			'cat'   => $division,
-			'badge' => $division,
+			'cat'   => implode( ' ', $division_slugs ),
+			'badge' => implode( ' / ', $divs ),
 			'loc'   => $loc,
 			'sol'   => $sol,
 			'sum'   => $sum,
@@ -108,15 +123,6 @@ if ( $sc_q->have_posts() ) {
 				</div>
 			</div>
 			<div class="sc-projfilters__row sc-projfilters__row--controls">
-				<label class="sc-projctrl">
-					<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <?php esc_html_e( 'Filter by Location', 'soundcreations' ); ?></span>
-					<select data-proj-loc>
-						<option value="all"><?php esc_html_e( 'All Locations', 'soundcreations' ); ?></option>
-						<?php foreach ( $sc_locs as $l ) : ?>
-							<option value="<?php echo esc_attr( sanitize_title( $l ) ); ?>"><?php echo esc_html( $l ); ?></option>
-						<?php endforeach; ?>
-					</select>
-				</label>
 				<label class="sc-projctrl sc-projctrl--search">
 					<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> <?php esc_html_e( 'Search Projects', 'soundcreations' ); ?></span>
 					<input type="search" data-proj-search placeholder="<?php esc_attr_e( 'Search project, venue or solution...', 'soundcreations' ); ?>">
@@ -135,7 +141,7 @@ if ( $sc_q->have_posts() ) {
 				foreach ( $sc_items as $it ) :
 					$text = strtolower( $it['title'] . ' ' . $it['loc'] . ' ' . $it['cat'] . ' ' . $it['sol'] . ' ' . $it['sum'] );
 					?>
-					<article class="sc-projcard" data-card data-category="<?php echo esc_attr( sanitize_title( $it['cat'] ) ); ?>" data-location="<?php echo esc_attr( sanitize_title( $it['loc'] ) ); ?>" data-solution="<?php echo esc_attr( sanitize_title( $it['sol'] ) ); ?>" data-text="<?php echo esc_attr( $text ); ?>">
+					<article class="sc-projcard" data-card data-category="<?php echo esc_attr( $it['cat'] ); ?>" data-location="<?php echo esc_attr( sanitize_title( $it['loc'] ) ); ?>" data-solution="<?php echo esc_attr( sanitize_title( $it['sol'] ) ); ?>" data-text="<?php echo esc_attr( $text ); ?>">
 						<a class="sc-projcard__media" href="<?php echo esc_url( $it['href'] ); ?>" style="background-image:url('<?php echo esc_url( $it['img'] ); ?>');">
 							<?php if ( '' !== $it['badge'] ) : ?>
 								<span class="sc-projcard__badge"><?php echo esc_html( $it['badge'] ); ?></span>

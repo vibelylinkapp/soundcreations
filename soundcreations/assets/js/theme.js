@@ -146,7 +146,7 @@
 			var shown = 0;
 			for (var i = 0; i < cards.length; i++) {
 				var c = cards[i];
-				var okCat = state.cat === 'all' || c.getAttribute('data-category') === state.cat;
+				var okCat = state.cat === 'all' || (' ' + (c.getAttribute('data-category') || '') + ' ').indexOf(' ' + state.cat + ' ') > -1;
 				var okSol = state.sol === 'all' || c.getAttribute('data-solution') === state.sol;
 				var okLoc = state.loc === 'all' || c.getAttribute('data-location') === state.loc;
 				var okQ = state.q === '' || (c.getAttribute('data-text') || '').indexOf(state.q) > -1;
