@@ -24,7 +24,7 @@ $sc_arrow    = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 $sc_pinicon  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
 
 // Category pills (fixed set matching the design). Slug must match sanitize_title of each card's category.
-$sc_cat_pills = array( 'Worship', 'Conference & Events', 'Corporate', 'Hospitality', 'Education', 'Entertainment', 'Government' );
+$sc_cat_pills = array( 'Acoustic', 'Audio', 'Visual' );
 
 // Collect projects (data-driven, ordered by menu_order).
 $sc_q = new WP_Query(
@@ -57,11 +57,19 @@ if ( $sc_q->have_posts() ) {
 		if ( '' !== $loc && ! in_array( $loc, $sc_locs, true ) ) {
 			$sc_locs[] = $loc;
 		}
+		$hay      = strtolower( $sol . ' ' . $cat );
+		if ( is_int( strpos( $hay, 'acoustic' ) ) ) {
+			$division = 'Acoustic';
+		} elseif ( is_int( strpos( $hay, 'visual' ) ) || is_int( strpos( $hay, 'video' ) ) || is_int( strpos( $hay, 'led' ) ) || is_int( strpos( $hay, 'integration' ) ) || is_int( strpos( $hay, 'conferenc' ) ) ) {
+			$division = 'Visual';
+		} else {
+			$division = 'Audio';
+		}
 		$sc_items[] = array(
 			'title' => get_the_title(),
 			'href'  => get_permalink( $pid ),
-			'cat'   => $cat,
-			'badge' => ( '' !== $badge ) ? $badge : $cat,
+			'cat'   => $division,
+			'badge' => $division,
 			'loc'   => $loc,
 			'sol'   => $sol,
 			'sum'   => $sum,
@@ -100,15 +108,6 @@ if ( $sc_q->have_posts() ) {
 				</div>
 			</div>
 			<div class="sc-projfilters__row sc-projfilters__row--controls">
-				<label class="sc-projctrl">
-					<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg> <?php esc_html_e( 'Filter by Solution', 'soundcreations' ); ?></span>
-					<select data-proj-sol>
-						<option value="all"><?php esc_html_e( 'All Solutions', 'soundcreations' ); ?></option>
-						<?php foreach ( $sc_sols as $s ) : ?>
-							<option value="<?php echo esc_attr( sanitize_title( $s ) ); ?>"><?php echo esc_html( $s ); ?></option>
-						<?php endforeach; ?>
-					</select>
-				</label>
 				<label class="sc-projctrl">
 					<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <?php esc_html_e( 'Filter by Location', 'soundcreations' ); ?></span>
 					<select data-proj-loc>
@@ -162,29 +161,30 @@ if ( $sc_q->have_posts() ) {
 	</div>
 </section>
 
-<?php
-$sc_stat_icons = array(
-	'<path d="M3 21h18"/><path d="M6 21V7l6-4 6 4v14"/><path d="M9 9h.01"/><path d="M15 9h.01"/><path d="M9 13h.01"/><path d="M15 13h.01"/><path d="M9 17h.01"/><path d="M15 17h.01"/>',
-	'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-	'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
-	'<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="16" r="2.4"/>',
-);
-$sc_stats  = sc_split_lines( sc_setting( 'proj_stats' ), 3 );
-$sc_stat_n = count( $sc_stat_icons );
-?>
-<section class="sc-section">
+<section class="sc-stats sc-stats--proof">
 	<div class="sc-container">
-		<div class="sc-projstats">
-			<?php foreach ( $sc_stats as $si => $st ) : $sc_ic = ( $si < $sc_stat_n ) ? $sc_stat_icons[ $si ] : $sc_stat_icons[ $sc_stat_n - 1 ]; ?>
-				<div class="sc-projstat">
-					<span class="sc-projstat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_ic; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></svg></span>
-					<div class="sc-projstat__text">
-						<strong><?php echo esc_html( $st[0] ); ?></strong>
-						<span class="sc-projstat__label"><?php echo esc_html( $st[1] ); ?></span>
-						<span class="sc-projstat__sub"><?php echo esc_html( $st[2] ); ?></span>
-					</div>
+		<div class="sc-stats__grid">
+			<div class="sc-stat">
+				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m12 6.4 1.13 2.29 2.53.37-1.83 1.78.43 2.52L12 12.06l-2.26 1.19.43-2.52-1.83-1.78 2.53-.37z"/><path d="M9 14.4 7.5 21l4.5-2.6L16.5 21 15 14.4"/></svg></span>
+				<div class="sc-stat__body">
+					<div class="sc-stat__head sc-stat__head--num">22+</div>
+					<div class="sc-stat__sub">Years Experience</div>
 				</div>
-			<?php endforeach; ?>
+			</div>
+			<div class="sc-stat">
+				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.5 4 5.6 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.6-4-9s1.4-6.5 4-9z"/></svg></span>
+				<div class="sc-stat__body">
+					<div class="sc-stat__head sc-stat__head--num">4</div>
+					<div class="sc-stat__sub">Regional Locations<span class="sc-stat__note">Kenya | Rwanda | DR Congo | UAE</span></div>
+				</div>
+			</div>
+			<div class="sc-stat">
+				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4.5h6a1 1 0 0 1 1 1V6a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-.5a1 1 0 0 1 1-1z"/><path d="M8 5.5H6a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5a2 2 0 0 0-2-2h-2"/><path d="m8.5 13.5 2.2 2.2 4.3-4.3"/></svg></span>
+				<div class="sc-stat__body">
+					<div class="sc-stat__head sc-stat__head--num">850+</div>
+					<div class="sc-stat__sub">Projects Completed</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

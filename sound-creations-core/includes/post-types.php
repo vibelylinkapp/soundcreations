@@ -77,3 +77,20 @@ function sc_core_register_post_types() {
 	);
 }
 add_action( 'init', 'sc_core_register_post_types' );
+
+/**
+ * The standalone Products archive was retired. The represented-products list now
+ * lives on the Brands archive (relabeled "Products"). Redirect the old /products/
+ * archive to /brands/ so existing menu links and bookmarks keep working.
+ */
+function sc_core_redirect_product_archive() {
+	if ( is_post_type_archive( 'sc_product' ) ) {
+		$dest = get_post_type_archive_link( 'sc_brand' );
+		if ( empty( $dest ) ) {
+			$dest = home_url( '/brands/' );
+		}
+		wp_safe_redirect( $dest, 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'sc_core_redirect_product_archive' );

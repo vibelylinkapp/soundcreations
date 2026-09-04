@@ -34,20 +34,20 @@ function sc_core_seed_catalog() {
 	// logo yet and falls back to a styled wordmark. Tuple: slug, title, origin, category,
 	// tagline, menu_order, logo.
 	$brands = array(
-		array( 'db-technologies', 'dB Technologies', 'Italy', 'Loudspeakers & Amplification', 'Active loudspeakers and amplification engineered in Italy.', 10, 'db-technologies' ),
-		array( 'nexo', 'NEXO', 'France', 'Loudspeaker Systems', 'Innovative loudspeaker systems designed and built in France.', 20, 'nexo' ),
-		array( 'fane', 'FANE', 'United Kingdom', 'Loudspeaker Components', 'Precision-engineered drivers and components, built in the UK since 1954.', 30, 'fane' ),
-		array( 'shure', 'Shure', 'United States', 'Microphones & Wireless', 'Industry-leading microphones and wireless audio systems.', 40, 'shure' ),
-		array( 'midas', 'Midas', 'United Kingdom', 'Mixing Consoles', 'Legendary digital and analogue mixing consoles trusted worldwide.', 50, 'midas' ),
-		array( 'biamp', 'Biamp', 'United States', 'DSP & Conferencing', 'Audio DSP, conferencing and collaboration solutions.', 60, 'biamp' ),
-		array( 'behringer', 'Behringer', 'Germany', 'Mixing & Amplification', 'Accessible professional audio, mixing and amplification.', 70, 'behringer' ),
-		array( 'rockfon', 'Rockfon', 'Denmark', 'Acoustic Ceilings', 'High-performance acoustic ceiling and wall solutions.', 80, 'rockfon' ),
-		array( 'barrisol', 'Barrisol', 'France', 'Acoustic & Stretch Ceilings', 'Acoustic and stretch-ceiling systems for modern spaces.', 90, 'barrisol' ),
-		array( 'sommer-cable', 'Sommer Cable', 'Germany', 'Cables & Infrastructure', 'Professional audio, video and signal cabling solutions.', 100, 'somer-cable' ),
-		array( 'chamsys', 'ChamSys', 'United Kingdom', 'Lighting Control', 'Professional lighting control consoles and software.', 110, 'chamsys' ),
+		array( 'db-technologies', 'dB Technologies', 'Italy', 'Loudspeakers & Amplification', 'Active loudspeakers and amplification engineered in Italy.', 10, 'db-technologies', 'https://www.dbtechnologies.com/' ),
+		array( 'nexo', 'NEXO', 'France', 'Loudspeaker Systems', 'Innovative loudspeaker systems designed and built in France.', 20, 'nexo', 'https://www.nexo-sa.com/' ),
+		array( 'fane', 'FANE', 'United Kingdom', 'Loudspeaker Components', 'Precision-engineered drivers and components, built in the UK since 1954.', 30, 'fane', 'https://www.fane-international.com/' ),
+		array( 'shure', 'Shure', 'United States', 'Microphones & Wireless', 'Industry-leading microphones and wireless audio systems.', 40, 'shure', 'https://www.shure.com/' ),
+		array( 'midas', 'Midas', 'United Kingdom', 'Mixing Consoles', 'Legendary digital and analogue mixing consoles trusted worldwide.', 50, 'midas', 'https://www.midasconsoles.com/' ),
+		array( 'biamp', 'Biamp', 'United States', 'DSP & Conferencing', 'Audio DSP, conferencing and collaboration solutions.', 60, 'biamp', 'https://www.biamp.com/' ),
+		array( 'behringer', 'Behringer', 'Germany', 'Mixing & Amplification', 'Accessible professional audio, mixing and amplification.', 70, 'behringer', 'https://www.behringer.com/' ),
+		array( 'rockfon', 'Rockfon', 'Denmark', 'Acoustic Ceilings', 'High-performance acoustic ceiling and wall solutions.', 80, 'rockfon', 'https://www.rockfon.com/' ),
+		array( 'barrisol', 'Barrisol', 'France', 'Acoustic & Stretch Ceilings', 'Acoustic and stretch-ceiling systems for modern spaces.', 90, 'barrisol', 'https://www.barrisol.com/' ),
+		array( 'sommer-cable', 'Sommer Cable', 'Germany', 'Cables & Infrastructure', 'Professional audio, video and signal cabling solutions.', 100, 'somer-cable', 'https://www.sommercable.com/' ),
+		array( 'chamsys', 'ChamSys', 'United Kingdom', 'Lighting Control', 'Professional lighting control consoles and software.', 110, 'chamsys', 'https://chamsyslighting.com/' ),
 	);
 	foreach ( $brands as $b ) {
-		list( $slug, $title, $origin, $cat, $tag, $order, $logo ) = $b;
+		list( $slug, $title, $origin, $cat, $tag, $order, $logo, $website ) = $b;
 		$existing = get_page_by_path( $slug, OBJECT, 'sc_brand' );
 		if ( $existing ) {
 			// Upsert: keep any team-edited body, but sync order + meta.
@@ -76,6 +76,9 @@ function sc_core_seed_catalog() {
 			update_post_meta( $id, '_sc_category', $cat );
 			update_post_meta( $id, '_sc_tagline', $tag );
 			update_post_meta( $id, '_sc_logo', $logo );
+			if ( '' === (string) get_post_meta( $id, '_sc_website', true ) ) {
+				update_post_meta( $id, '_sc_website', $website );
+			}
 			$report['brands']++;
 		}
 	}

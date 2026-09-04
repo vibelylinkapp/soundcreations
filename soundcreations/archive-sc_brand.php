@@ -59,10 +59,10 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 <section class="sc-support-hero sc-brands-hero" style="background-image:url('<?php echo esc_url( $sc_hero_img ); ?>');">
 	<span class="sc-support-hero__scrim" aria-hidden="true"></span>
 	<div class="sc-container sc-support-hero__inner">
-		<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Brands', 'soundcreations' ); ?></span></nav>
-		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'brands_eyebrow', 'Our Brands' ) ); ?></p>
-		<h1 class="sc-support-hero__title"><?php echo esc_html( sc_setting( 'brands_title', 'The brands we represent.' ) ); ?></h1>
-		<p class="sc-lead sc-support-hero__lead"><?php echo esc_html( sc_setting( 'brands_lead', 'World-class professional audio, electronics and acoustics brands selected for performance, reliability and innovation.' ) ); ?></p>
+		<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Products', 'soundcreations' ); ?></span></nav>
+		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'products_eyebrow', 'What we offer' ) ); ?></p>
+		<h1 class="sc-support-hero__title"><?php echo esc_html( sc_setting( 'products_title', 'Products' ) ); ?></h1>
+		<p class="sc-lead sc-support-hero__lead"><?php echo esc_html( sc_setting( 'products_lead', 'Professional audio and integration.' ) ); ?></p>
 		<div class="sc-support-pills">
 			<?php foreach ( $sc_pills as $p ) : ?>
 				<div class="sc-contact-pill">
@@ -74,32 +74,13 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 	</div>
 </section>
 
-<section class="sc-section">
-	<div class="sc-container">
-		<p class="sc-eyebrow"><?php esc_html_e( 'Browse brands by category', 'soundcreations' ); ?></p>
-		<div class="sc-cat-carousel sc-prod-carousel">
-			<button type="button" class="sc-prod-nav sc-prod-nav--prev" data-sc-scroll="prev" aria-label="Scroll left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-			<div class="sc-cat-row" data-sc-scroller>
-				<?php foreach ( $sc_cats as $i => $c ) : ?>
-					<button type="button" class="sc-cat-card<?php echo 0 === $i ? ' is-active' : ''; ?>">
-						<span class="sc-cat-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $c[1]; ?></svg></span>
-						<span class="sc-cat-card__label"><?php echo esc_html( $c[0] ); ?></span>
-					</button>
-				<?php endforeach; ?>
-			</div>
-			<button type="button" class="sc-prod-nav sc-prod-nav--next" data-sc-scroll="next" aria-label="Scroll right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-		</div>
-	</div>
-</section>
-
 <section class="sc-section sc-fane-alt">
 	<div class="sc-container">
 		<div class="sc-res-head">
 			<div>
-				<p class="sc-eyebrow"><?php esc_html_e( 'Our represented brands', 'soundcreations' ); ?></p>
+				<p class="sc-eyebrow"><?php esc_html_e( 'Our represented products brands', 'soundcreations' ); ?></p>
 				<h2 style="margin:.15rem 0 0;"><?php echo esc_html( sc_setting( 'brands_grid_title', 'Partnering with the world’s best.' ) ); ?></h2>
 			</div>
-			<a class="sc-linkbtn" href="<?php echo esc_url( $sc_products_url ); ?>"><?php esc_html_e( 'Browse All Products', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
 		</div>
 		<?php
 		$sc_q = new WP_Query(
@@ -154,7 +135,12 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 							<?php if ( '' !== $sc_desc ) : ?>
 								<p class="sc-brand-card__desc"><?php echo esc_html( $sc_desc ); ?></p>
 							<?php endif; ?>
-							<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_href ); ?>"><?php esc_html_e( 'View Brand', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+							<?php $sc_web = (string) get_post_meta( $sc_id, '_sc_website', true ); ?>
+							<?php if ( strlen( $sc_web ) > 0 ) : ?>
+								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_web ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Visit Website', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+							<?php else : ?>
+								<a class="sc-brand-card__link" href="<?php echo esc_url( $sc_href ); ?>"><?php esc_html_e( 'View Brand', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+							<?php endif; ?>
 						</div>
 					</div>
 					<?php

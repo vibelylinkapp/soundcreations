@@ -100,34 +100,32 @@ function sc_primary_menu_fallback() {
 			array( 'Conferencing', '/solutions/conferencing/' ),
 			array( 'System Integration', '/solutions/system-integration/' ),
 		) ),
-		array( 'Products', '/products/', array(
-			array( 'All Products', '/products/' ),
-			array( 'Brands', '/brands/' ),
-			array( 'FANE Loudspeakers', '/fane/' ),
+		array( 'Products', '/brands/', array(
+			array( 'All Products', '/brands/' ),
+			array( 'Fane Africa', '/fane/' ),
 		) ),
 		array( 'Projects', '/projects/', array() ),
-		array( 'Brands', '/brands/', array(
-			array( 'All Brands', '/brands/' ),
-			array( 'FANE', '/fane/' ),
-		) ),
-		array( 'FANE', '/fane/', array() ),
+		array( 'Fane Africa', '/fane/', array() ),
+		array( 'Resources', '/resources/', array() ),
 		array( 'About Us', '/about/', array(
 			array( 'About Sound Creations', '/about/' ),
-			array( 'Resources', '/resources/' ),
 			array( 'Training', '/training/' ),
-			array( 'After-Sales Support', '/support/' ),
 			array( 'Request a Consultation', '/request-a-consultation/' ),
 		) ),
+		array( 'Rwanda', 'https://rwanda.soundcreationsltd.com/', array() ),
 	);
 	echo '<ul class="sc-nav__list">';
 	foreach ( $menu as $item ) {
 		$has = count( $item[2] ) > 0;
 		echo '<li class="' . ( $has ? 'menu-item-has-children' : '' ) . '">';
-		echo '<a href="' . esc_url( home_url( $item[1] ) ) . '">' . esc_html( $item[0] ) . '</a>';
+		$sc_ext  = ( 0 === strpos( $item[1], 'http' ) );
+		$sc_href = $sc_ext ? $item[1] : home_url( $item[1] );
+		echo '<a href="' . esc_url( $sc_href ) . '"' . ( $sc_ext ? ' target="_blank" rel="noopener"' : '' ) . '>' . esc_html( $item[0] ) . '</a>';
 		if ( $has ) {
 			echo '<ul class="sub-menu">';
 			foreach ( $item[2] as $sub ) {
-				echo '<li><a href="' . esc_url( home_url( $sub[1] ) ) . '">' . esc_html( $sub[0] ) . '</a></li>';
+				$sc_sub_href = ( 0 === strpos( $sub[1], 'http' ) ) ? $sub[1] : home_url( $sub[1] );
+				echo '<li><a href="' . esc_url( $sc_sub_href ) . '">' . esc_html( $sub[0] ) . '</a></li>';
 			}
 			echo '</ul>';
 		}

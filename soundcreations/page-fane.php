@@ -83,7 +83,7 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 <section class="sc-fane-hero">
 	<div class="sc-container sc-fane-hero__grid">
 		<div class="sc-fane-hero__left">
-			<div class="sc-fane-mark"><span class="sc-fane-mark__bar" aria-hidden="true"></span>FANE</div>
+			<div class="sc-fane-mark"><span class="sc-fane-mark__bar" aria-hidden="true"></span>Fane Africa</div>
 			<p class="sc-eyebrow sc-fane-hero__eyebrow"><?php echo esc_html( sc_setting( 'fane_eyebrow', 'Engineered in the UK. Trusted worldwide.' ) ); ?></p>
 			<h1 class="sc-fane-hero__title"><?php echo esc_html( sc_setting( 'fane_title', 'Engineering sound since 1954.' ) ); ?></h1>
 			<p class="sc-lead sc-fane-hero__lead"><?php echo esc_html( sc_setting( 'fane_lead', 'Precision-engineered loudspeaker components built for demanding professional applications, trusted by sound professionals around the world.' ) ); ?></p>
