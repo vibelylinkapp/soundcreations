@@ -89,7 +89,6 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 			<p class="sc-lead sc-fane-hero__lead"><?php echo esc_html( sc_setting( 'fane_lead', 'Precision-engineered loudspeaker components built for demanding professional applications, trusted by sound professionals around the world.' ) ); ?></p>
 			<div class="sc-fane-hero__cta">
 				<a class="sc-btn sc-btn--primary" href="#fane-products"><?php esc_html_e( 'Explore FANE Products', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
-				<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( $sc_consult ); ?>"><?php esc_html_e( 'Talk to a FANE Specialist', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 			</div>
 		</div>
 		<div class="sc-fane-hero__media">
@@ -148,41 +147,14 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 	</div>
 </section>
 
-<section class="sc-section">
-	<div class="sc-container">
-		<div class="sc-res-head">
-			<div>
-				<p class="sc-eyebrow"><?php esc_html_e( 'Made for the application', 'soundcreations' ); ?></p>
-				<h2 style="margin:.15rem 0 0;"><?php echo esc_html( sc_setting( 'fane_apps_title', 'One technology. Many possibilities.' ) ); ?></h2>
-			</div>
-			<a class="sc-linkbtn" href="<?php echo esc_url( $sc_apps_url ); ?>"><?php esc_html_e( 'View All Applications', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
-		</div>
-		<div class="sc-fane-apps">
-			<?php foreach ( $sc_apps as $a ) : ?>
-				<a class="sc-fane-app" href="<?php echo esc_url( $sc_apps_url ); ?>" style="background-image:url('<?php echo esc_url( $a[1] ); ?>');">
-					<span class="sc-fane-app__scrim" aria-hidden="true"></span>
-					<span class="sc-fane-app__label"><?php echo esc_html( $a[0] ); ?></span>
-				</a>
-			<?php endforeach; ?>
-		</div>
-	</div>
-</section>
-
 <section class="sc-section sc-fane-alt" id="fane-products">
 	<div class="sc-container">
 		<div class="sc-res-head">
 			<div>
 				<p class="sc-eyebrow"><?php esc_html_e( 'Product explorer', 'soundcreations' ); ?></p>
-				<h2 style="margin:.15rem 0 0;"><?php echo esc_html( sc_setting( 'fane_products_title', 'Find the right FANE component.' ) ); ?></h2>
+				<h2 style="margin:.15rem 0 0;"><?php echo esc_html( sc_setting( 'fane_products_title', 'The FANE component range.' ) ); ?></h2>
 			</div>
-			<a class="sc-linkbtn" href="<?php echo esc_url( $sc_products_url ); ?>"><?php esc_html_e( 'View All Products', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
-		</div>
-		<div class="sc-prod-filters" data-sc-prodfilter>
-			<label class="sc-prod-filter"><span>Application</span><select data-f="app"><option value="all">All Applications</option><option value="live-sound">Live Sound</option><option value="installed-audio">Installed Audio</option><option value="worship">Worship</option><option value="touring">Touring</option><option value="studio">Studio &amp; Recording</option></select></label>
-			<label class="sc-prod-filter"><span>Driver Type</span><select data-f="type"><option value="all">All Types</option><option value="bass">Bass Driver</option><option value="mid-bass">Mid Bass</option><option value="midrange">Midrange</option><option value="compression">Compression Driver</option></select></label>
-			<label class="sc-prod-filter"><span>Power Handling</span><select data-f="power"><option value="all">All Power</option><option value="0-250">Up to 250W</option><option value="250-600">250 - 600W</option><option value="600-99999">600W and above</option></select></label>
-			<label class="sc-prod-filter"><span>Size</span><select data-f="size"><option value="all">All Sizes</option><option value="1.4">1.4"</option><option value="12">12"</option><option value="15">15"</option><option value="18">18"</option></select></label>
-			<label class="sc-prod-filter"><span>Sort By</span><select data-f="sort"><option value="featured">Featured</option><option value="power">Power</option><option value="size">Size</option><option value="name">Name</option></select></label>
+			<a class="sc-linkbtn" href="https://www.fane-international.com/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Visit FANE Website', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
 		</div>
 		<div class="sc-prod-carousel">
 			<button type="button" class="sc-prod-nav sc-prod-nav--prev" data-sc-scroll="prev" aria-label="Scroll left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
@@ -194,14 +166,13 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 							<h3 class="sc-prod-card__name"><?php echo esc_html( $pr[0] ); ?></h3>
 							<p class="sc-prod-card__spec"><?php echo esc_html( $pr[1] ); ?></p>
 							<p class="sc-prod-card__power"><?php echo esc_html( $pr[2] ); ?></p>
-							<a class="sc-prod-card__link" href="<?php echo esc_url( $sc_products_url ); ?>"><?php esc_html_e( 'View Product', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
 						</div>
 					</div>
 				<?php endforeach; ?>
-				<div class="sc-prod-empty" data-sc-noresults hidden><?php esc_html_e( 'No products match the selected filters.', 'soundcreations' ); ?></div>
 			</div>
 			<button type="button" class="sc-prod-nav sc-prod-nav--next" data-sc-scroll="next" aria-label="Scroll right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
 		</div>
+		<p class="sc-prod-note">A selection of the FANE range. For the complete lineup and full specifications, <a href="https://www.fane-international.com/" target="_blank" rel="noopener noreferrer">visit the FANE website</a> or <a href="#fane-catalogue">download the catalogue below</a>.</p>
 	</div>
 </section>
 
@@ -220,22 +191,7 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 	</div>
 </section>
 
-<section class="sc-fane-dist">
-	<div class="sc-fane-dist__media" style="background-image:url('<?php echo esc_url( $sc_spec ); ?>');"><span class="sc-fane-dist__scrim" aria-hidden="true"></span></div>
-	<div class="sc-fane-dist__panel">
-		<p class="sc-eyebrow"><?php esc_html_e( 'FANE in East Africa', 'soundcreations' ); ?></p>
-		<h2><?php echo esc_html( sc_setting( 'fane_dist_title', 'FANE. Delivered by Sound Creations.' ) ); ?></h2>
-		<p class="sc-support-sub"><?php echo esc_html( sc_setting( 'fane_dist_body', 'As the exclusive FANE distributor across East Africa, we provide more than just components - we deliver technical expertise, system design, integration and long-term support.' ) ); ?></p>
-		<div class="sc-fane-dist__feats">
-			<?php foreach ( $sc_dist as $d ) : ?>
-				<div class="sc-fane-dist__feat"><span class="sc-fane-dist__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $d[1]; ?></svg></span><span><?php echo esc_html( $d[0] ); ?></span></div>
-			<?php endforeach; ?>
-		</div>
-		<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $sc_consult ); ?>"><?php esc_html_e( 'Talk to a FANE Specialist', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
-	</div>
-</section>
-
-<section class="sc-section">
+<section class="sc-section" id="fane-catalogue">
 	<div class="sc-container">
 		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( $sc_img . '/fane-hero.jpg' ); ?>');">
 			<div class="sc-cta-band__inner">

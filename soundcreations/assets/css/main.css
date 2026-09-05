@@ -1112,3 +1112,19 @@ img { max-width: 100%; height: auto; display: block; }
 .sc-consult-form .sc-field input:focus, .sc-consult-form .sc-field select:focus, .sc-consult-form .sc-field textarea:focus { box-shadow: 0 0 0 3px rgba(225,29,42,.15); }
 .sc-consult-form .sc-form__submit { background: linear-gradient(135deg, #e11d2a, #b3141f); border: 0; box-shadow: 0 14px 30px rgba(225,29,42,.28); transition: transform .2s var(--sc-ease, ease), box-shadow .2s var(--sc-ease, ease), filter .2s var(--sc-ease, ease); }
 .sc-consult-form .sc-form__submit:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(225,29,42,.38); filter: brightness(1.06); }
+
+/* ============================================================
+   FANE brand hub — clean corporate polish
+   ============================================================ */
+.sc-fane-hero__media img { box-shadow: 0 30px 70px rgba(0,0,0,.55); border: 1px solid var(--sc-border); }
+.sc-fane-stats { box-shadow: 0 18px 44px rgba(0,0,0,.28); }
+.sc-fane-stat { transition: background .2s var(--sc-ease, ease); }
+.sc-fane-stat:hover { background: rgba(225,29,42,.06); }
+.sc-prod-card { position: relative; }
+.sc-prod-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--sc-red); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--sc-ease, ease); }
+.sc-prod-card:hover::after { transform: scaleX(1); }
+.sc-prod-note { margin: 1.15rem 0 0; font-size: .9rem; color: var(--sc-muted, #9aa0a6); line-height: 1.6; max-width: 62ch; }
+.sc-prod-note a { color: var(--sc-text); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(225,29,42,.55); padding-bottom: 1px; transition: color .2s; }
+.sc-prod-note a:hover { color: var(--sc-red); }
+.sc-fane-why__item { background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012)); border: 1px solid var(--sc-border); border-radius: var(--sc-radius-lg); padding: 1.5rem 1.35rem; transition: transform .25s var(--sc-ease, ease), border-color .25s var(--sc-ease, ease), box-shadow .25s var(--sc-ease, ease); }
+.sc-fane-why__item:hover { transform: translateY(-4px); border-color: rgba(225,29,42,.45); box-shadow: 0 18px 40px rgba(0,0,0,.32); }
