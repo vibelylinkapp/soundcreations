@@ -47,6 +47,7 @@ function sc_core_field_groups() {
 				array( 'summary', 'One-line summary', 'text', '' ),
 				array( 'scope', 'Scope of work', 'textarea', 'One item per line' ),
 				array( 'brands_used', 'Brands used', 'text', 'Comma separated (optional if using the Brand taxonomy)' ),
+				array( 'gallery', 'Photos (gallery)', 'gallery', 'Click Add / edit photos to pick from the Media Library. Selection order is the display order.' ),
 			),
 		),
 	);
@@ -77,6 +78,20 @@ function sc_core_render_meta_box( $post ) {
 		echo '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label>';
 		if ( 'textarea' === $type ) {
 			echo '<textarea id="' . esc_attr( $id ) . '" name="sc_fields[' . esc_attr( $key ) . ']" rows="5">' . esc_textarea( $val ) . '</textarea>';
+		} elseif ( 'gallery' === $type ) {
+			$gids = array_filter( array_map( 'absint', explode( ',', (string) $val ) ) );
+			echo '<div class="sc-gal" data-sc-gal>';
+			echo '<input type="hidden" class="sc-gal-input" name="sc_fields[' . esc_attr( $key ) . ']" value="' . esc_attr( implode( ',', $gids ) ) . '">';
+			echo '<div class="sc-gal-prev" style="display:flex;flex-wrap:wrap;gap:6px;margin:.25rem 0 .5rem;">';
+			foreach ( $gids as $gid ) {
+				$thumb = wp_get_attachment_image( $gid, array( 84, 84 ), false, array( 'style' => 'width:84px;height:84px;object-fit:cover;border-radius:6px;' ) );
+				if ( $thumb ) {
+					echo '<span class="sc-gal-item">' . $thumb . '</span>';
+				}
+			}
+			echo '</div>';
+			echo '<p><button type="button" class="button button-primary sc-gal-add">Add / edit photos</button> <button type="button" class="button sc-gal-clear">Clear</button></p>';
+			echo '</div>';
 		} else {
 			$it = ( 'url' === $type ) ? 'url' : 'text';
 			echo '<input type="' . esc_attr( $it ) . '" id="' . esc_attr( $id ) . '" name="sc_fields[' . esc_attr( $key ) . ']" value="' . esc_attr( $val ) . '">';
@@ -112,6 +127,9 @@ add_action(
 			$raw = isset( $in[ $key ] ) ? $in[ $key ] : '';
 			if ( 'textarea' === $type ) {
 				$clean = sanitize_textarea_field( $raw );
+			} elseif ( 'gallery' === $type ) {
+				$gids  = array_filter( array_map( 'absint', explode( ',', (string) $raw ) ) );
+				$clean = implode( ',', $gids );
 			} elseif ( 'url' === $type ) {
 				$clean = esc_url_raw( trim( $raw ) );
 			} else {
@@ -119,5 +137,37 @@ add_action(
 			}
 			update_post_meta( $post_id, '_sc_' . $key, $clean );
 		}
+	}
+);
+
+
+add_action(
+	'admin_enqueue_scripts',
+	function ( $hook ) {
+		if ( in_array( $hook, array( 'post.php', 'post-new.php' ), true ) === false ) {
+			return;
+		}
+		$groups = sc_core_field_groups();
+		$pt     = get_post_type();
+		if ( isset( $groups[ $pt ] ) === false ) {
+			return;
+		}
+		$has_gallery = false;
+		foreach ( $groups[ $pt ]['fields'] as $f ) {
+			if ( 'gallery' === $f[2] ) {
+				$has_gallery = true;
+			}
+		}
+		if ( $has_gallery === false ) {
+			return;
+		}
+		wp_enqueue_media();
+		wp_enqueue_script(
+			'sc-admin-gallery',
+			plugins_url( 'assets/admin-gallery.js', dirname( __DIR__ ) . '/sound-creations-core.php' ),
+			array( 'jquery' ),
+			'1.0.0',
+			true
+		);
 	}
 );
