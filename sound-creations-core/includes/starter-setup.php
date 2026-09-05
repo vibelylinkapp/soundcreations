@@ -456,3 +456,64 @@ function sc_core_ensure_core_pages() {
 	}
 	return $created;
 }
+
+/**
+ * Backfill the finalized legal pages (Privacy, Terms, Warranty) with their
+ * canonical content whenever the live page is still empty or still shows the
+ * "[CONTENT TO BE CONFIRMED]" placeholder. Runs once per content version on
+ * admin load, so a freshly deployed content update reaches the live pages
+ * without anyone opening Starter Setup. Real, edited content is never touched,
+ * and any page whose canonical copy is itself still a placeholder is skipped.
+ */
+function sc_core_backfill_legal_pages() {
+	$legal = array( 'privacy-policy', 'terms', 'warranty', 'cookie-policy' );
+	$done  = 0;
+	foreach ( sc_core_starter_pages() as $pg ) {
+		list( $title, $slug, $content ) = $pg;
+		if ( in_array( $slug, $legal, true ) === false ) {
+			continue;
+		}
+		if ( is_int( strpos( $content, '[CONTENT TO BE CONFIRMED' ) ) ) {
+			continue; // Canonical copy is itself a placeholder - do not publish it.
+		}
+		$existing = get_page_by_path( $slug, OBJECT, 'page' );
+		if ( null === $existing ) {
+			wp_insert_post(
+				array(
+					'post_title'   => $title,
+					'post_name'    => $slug,
+					'post_content' => $content,
+					'post_status'  => 'publish',
+					'post_type'    => 'page',
+				)
+			);
+			$done++;
+			continue;
+		}
+		$cur   = trim( (string) $existing->post_content );
+		$is_ph = is_int( strpos( $cur, '[CONTENT TO BE CONFIRMED' ) );
+		if ( '' === $cur || $is_ph ) {
+			wp_update_post(
+				array(
+					'ID'           => $existing->ID,
+					'post_content' => $content,
+				)
+			);
+			$done++;
+		}
+	}
+	return $done;
+}
+
+add_action(
+	'admin_init',
+	function () {
+		$ver = 'legal-2026-09-05';
+		if ( get_option( 'sc_core_legal_ver' ) === $ver ) {
+			return;
+		}
+		sc_core_backfill_legal_pages();
+		update_option( 'sc_core_legal_ver', $ver );
+	},
+	6
+);
