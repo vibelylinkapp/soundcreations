@@ -23,6 +23,10 @@ add_action(
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'editor-styles' );
 
+		if ( isset( $GLOBALS['content_width'] ) === false ) {
+			$GLOBALS['content_width'] = 1200;
+		}
+
 		register_nav_menus(
 			array(
 				'primary'          => __( 'Primary Menu', 'soundcreations' ),

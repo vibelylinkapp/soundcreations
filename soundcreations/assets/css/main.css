@@ -1140,3 +1140,6 @@ img { max-width: 100%; height: auto; display: block; }
 .sc-fane-social__icon { display: inline-flex; }
 .sc-fane-social__icon svg { display: block; }
 @media (max-width: 480px) { .sc-fane-social__name { display: none; } .sc-fane-social__btn { padding: .7rem; } }
+
+/* Full-width page-builder template (Elementor / blocks) ========= */
+.sc-fullwidth { width: 100%; }
