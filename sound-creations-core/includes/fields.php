@@ -50,6 +50,13 @@ function sc_core_field_groups() {
 				array( 'gallery', 'Photos (gallery)', 'gallery', 'Click Add / edit photos to pick from the Media Library. Selection order is the display order.' ),
 			),
 		),
+		'sc_resource' => array(
+			'title'  => 'Resource / Video Details',
+			'fields' => array(
+				array( 'video_url', 'YouTube video URL', 'url', 'Paste a YouTube link (watch, youtu.be or shorts) to show this resource as a playable video on the Resources page.' ),
+				array( 'file', 'Download file URL', 'url', 'Optional. Upload a file to the Media Library and paste its link for a downloadable resource (PDF, etc.).' ),
+			),
+		),
 	);
 }
 

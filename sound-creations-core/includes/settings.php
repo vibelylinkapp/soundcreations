@@ -152,6 +152,15 @@ function sc_core_settings_fields() {
 			'fane_x'               => array( 'FANE X (Twitter) URL (blank = company X)', 'text' ),
 			'fane_linkedin'        => array( 'FANE LinkedIn URL (blank = company LinkedIn)', 'text' ),
 			'fane_whatsapp'        => array( 'FANE WhatsApp number, digits only (blank = company WhatsApp)', 'text' ),
+
+			'__sec_resources'         => array( 'Resources / Videos page', 'heading' ),
+			'resources_eyebrow'       => array( 'Resources hero: eyebrow', 'text' ),
+			'resources_title'         => array( 'Resources hero: headline', 'text' ),
+			'resources_lead'          => array( 'Resources hero: intro', 'textarea' ),
+			'resources_videos_title'  => array( 'Videos section: heading', 'text' ),
+			'resources_grid_title'    => array( 'Downloads section: heading', 'text' ),
+			'resources_cta_title'     => array( 'Resources CTA: heading', 'text' ),
+			'resources_cta_text'      => array( 'Resources CTA: text', 'textarea' ),
 	);
 }
 
