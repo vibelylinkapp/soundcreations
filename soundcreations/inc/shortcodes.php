@@ -71,7 +71,7 @@ add_shortcode( 'sc_africa_map', 'sc_render_africa_map' );
  * page Order attribute. If no brands exist yet, a sensible default set is shown.
  */
 function sc_partners_default_names() {
-	return array( 'FANE', 'dB Technologies', 'Shure', 'NEXO', 'Midas', 'Allen & Heath', 'Yamaha', 'Barrisol', 'Rockfon', 'Hikvision', 'Tiange', 'Sommer Cable' );
+	return array( 'FANE', 'dB Technologies', 'Shure', 'Bose Professional', 'Midas', 'Allen & Heath', 'Aid', 'Asona', 'Yamaha', 'Barrisol', 'Rockfon', 'Hikvision', 'Tiange', 'Sommer Cable' );
 }
 
 function sc_render_partners( $atts = array() ) {

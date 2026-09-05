@@ -35,16 +35,17 @@ function sc_core_seed_catalog() {
 	// tagline, menu_order, logo.
 	$brands = array(
 		array( 'db-technologies', 'dB Technologies', 'Italy', 'Loudspeakers & Amplification', 'Active loudspeakers and amplification engineered in Italy.', 10, 'db-technologies', 'https://www.dbtechnologies.com/' ),
-		array( 'nexo', 'NEXO', 'France', 'Loudspeaker Systems', 'Innovative loudspeaker systems designed and built in France.', 20, 'nexo', 'https://www.nexo-sa.com/' ),
 		array( 'fane', 'FANE', 'United Kingdom', 'Loudspeaker Components', 'Precision-engineered drivers and components, built in the UK since 1954.', 30, 'fane', 'https://www.fane-international.com/' ),
 		array( 'shure', 'Shure', 'United States', 'Microphones & Wireless', 'Industry-leading microphones and wireless audio systems.', 40, 'shure', 'https://www.shure.com/' ),
 		array( 'midas', 'Midas', 'United Kingdom', 'Mixing Consoles', 'Legendary digital and analogue mixing consoles trusted worldwide.', 50, 'midas', 'https://www.midasconsoles.com/' ),
-		array( 'biamp', 'Biamp', 'United States', 'DSP & Conferencing', 'Audio DSP, conferencing and collaboration solutions.', 60, 'biamp', 'https://www.biamp.com/' ),
 		array( 'behringer', 'Behringer', 'Germany', 'Mixing & Amplification', 'Accessible professional audio, mixing and amplification.', 70, 'behringer', 'https://www.behringer.com/' ),
 		array( 'rockfon', 'Rockfon', 'Denmark', 'Acoustic Ceilings', 'High-performance acoustic ceiling and wall solutions.', 80, 'rockfon', 'https://www.rockfon.com/' ),
 		array( 'barrisol', 'Barrisol', 'France', 'Acoustic & Stretch Ceilings', 'Acoustic and stretch-ceiling systems for modern spaces.', 90, 'barrisol', 'https://www.barrisol.com/' ),
 		array( 'sommer-cable', 'Sommer Cable', 'Germany', 'Cables & Infrastructure', 'Professional audio, video and signal cabling solutions.', 100, 'somer-cable', 'https://www.sommercable.com/' ),
-		array( 'chamsys', 'ChamSys', 'United Kingdom', 'Lighting Control', 'Professional lighting control consoles and software.', 110, 'chamsys', 'https://chamsyslighting.com/' ),
+		array( 'bose-professional', 'Bose Professional', 'United States', 'Loudspeakers & Conferencing', 'Professional loudspeakers, DSP and conferencing systems.', 120, 'bose-professional', 'https://boseprofessional.com/' ),
+		array( 'aid', 'Aid', 'Singapore', 'Acoustic Panels & Ceilings', 'Acoustic panels, ceiling systems and soundproofing solutions.', 130, 'aid', 'https://aid.co/' ),
+		array( 'asona', 'Asona', 'Netherlands', 'Acoustic Ceilings & Systems', 'Seamless acoustic ceiling and wall systems since 1978.', 140, 'asona', 'https://asona.com/' ),
+		array( 'allen-heath', 'Allen & Heath', 'United Kingdom', 'Mixing Consoles', 'Professional analogue and digital mixing consoles.', 150, 'allen-heath', 'https://www.allen-heath.com/' ),
 	);
 	foreach ( $brands as $b ) {
 		list( $slug, $title, $origin, $cat, $tag, $order, $logo, $website ) = $b;
@@ -80,6 +81,16 @@ function sc_core_seed_catalog() {
 				update_post_meta( $id, '_sc_website', $website );
 			}
 			$report['brands']++;
+		}
+	}
+
+	// Brands we no longer represent: remove any previously seeded posts so they
+	// drop off the /brands/ (Products) page and the homepage partners strip.
+	$sc_retired_brands = array( 'nexo', 'biamp', 'chamsys' );
+	foreach ( $sc_retired_brands as $sc_gone_slug ) {
+		$sc_gone = get_page_by_path( $sc_gone_slug, OBJECT, 'sc_brand' );
+		if ( $sc_gone ) {
+			wp_delete_post( (int) $sc_gone->ID, true );
 		}
 	}
 
