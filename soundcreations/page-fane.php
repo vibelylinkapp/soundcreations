@@ -207,4 +207,55 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 </section>
 
 <?php
+/*
+ * Social channels Sound Creations uses to promote FANE. Every link below is
+ * editable in Sound Creations -> Settings (FANE page - social links). A blank
+ * FANE field falls back to the company-wide profile, so the bar is never empty
+ * by accident. Only channels that resolve to a URL are shown.
+ */
+$sc_fane_soc = array(
+	array( 'Facebook',  sc_setting( 'fane_facebook',  sc_setting( 'facebook' ) ),  'facebook',  '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg>' ),
+	array( 'Instagram', sc_setting( 'fane_instagram', sc_setting( 'instagram' ) ), 'instagram', '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>' ),
+	array( 'YouTube',   sc_setting( 'fane_youtube',   sc_setting( 'youtube' ) ),   'youtube',   '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg>' ),
+	array( 'TikTok',    sc_setting( 'fane_tiktok' ),                                'tiktok',    '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16 3c.3 2 1.6 3.6 3.5 4v2.4c-1.3 0-2.5-.3-3.5-.9v5.6a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3H16z"/></svg>' ),
+	array( 'X',         sc_setting( 'fane_x',         sc_setting( 'x' ) ),         'x',         '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5-6.6L4.3 22H1.2l8.2-9.4L1 2h7.1l4.5 6 6.3-6zm-2.4 18h1.9L7.6 4H5.6z"/></svg>' ),
+	array( 'LinkedIn',  sc_setting( 'fane_linkedin',  sc_setting( 'linkedin' ) ),  'linkedin',  '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM3 8.5h3.9V21H3zM9.5 8.5h3.7v1.7h.1c.5-.9 1.8-1.9 3.6-1.9 3.9 0 4.6 2.5 4.6 5.8V21h-3.9v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9.5z"/></svg>' ),
+);
+$sc_fane_wa = trim( (string) sc_setting( 'fane_whatsapp' ) );
+if ( '' === $sc_fane_wa ) {
+	$sc_fane_wa = (string) sc_setting( 'whatsapp' );
+}
+$sc_fane_wa = preg_replace( '/[^0-9]/', '', $sc_fane_wa );
+if ( strlen( $sc_fane_wa ) > 0 ) {
+	$sc_fane_soc[] = array( 'WhatsApp', 'https://wa.me/' . $sc_fane_wa, 'whatsapp', '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.5-1.3-.7-1.8-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8s1.9 3 4.7 4.2c1.7.7 2.4.8 3.2.7.5-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1z"/></svg>' );
+}
+$sc_fane_links = array();
+foreach ( $sc_fane_soc as $sc_s ) {
+	if ( strlen( trim( (string) $sc_s[1] ) ) > 0 ) {
+		$sc_fane_links[] = $sc_s;
+	}
+}
+?>
+<?php if ( count( $sc_fane_links ) > 0 ) : ?>
+<section class="sc-section sc-section--tight" id="fane-social">
+	<div class="sc-container">
+		<div class="sc-fane-social">
+			<div class="sc-fane-social__intro">
+				<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'fane_social_title', 'Follow FANE with Sound Creations' ) ); ?></p>
+				<p class="sc-fane-social__lead"><?php echo esc_html( sc_setting( 'fane_social_text', 'See FANE loudspeakers, live demos and installations on the channels we use to bring the brand to East Africa and the Middle East.' ) ); ?></p>
+			</div>
+			<div class="sc-fane-social__links">
+				<?php foreach ( $sc_fane_links as $sc_l ) : ?>
+					<a class="sc-fane-social__btn sc-fane-social__btn--<?php echo esc_attr( $sc_l[2] ); ?>" href="<?php echo esc_url( $sc_l[1] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $sc_l[0] ); ?>">
+						<span class="sc-fane-social__icon" aria-hidden="true"><?php echo $sc_l[3]; ?></span>
+						<span class="sc-fane-social__name"><?php echo esc_html( $sc_l[0] ); ?></span>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
+
+<?php
 get_footer();

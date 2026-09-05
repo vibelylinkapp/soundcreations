@@ -141,6 +141,17 @@ function sc_core_settings_fields() {
 			'proj_stats'           => array( 'Projects stats (one per line: Number | Label | Sub-note)', 'textarea' ),
 			'projects_cta_title'   => array( 'Projects CTA: heading', 'text' ),
 			'projects_cta_text'    => array( 'Projects CTA: text', 'textarea' ),
+
+			'__sec_fane'           => array( 'FANE page - social links', 'heading' ),
+			'fane_social_title'    => array( 'FANE social bar: heading', 'text' ),
+			'fane_social_text'     => array( 'FANE social bar: sub-text', 'textarea' ),
+			'fane_facebook'        => array( 'FANE Facebook URL (blank = company Facebook)', 'text' ),
+			'fane_instagram'       => array( 'FANE Instagram URL (blank = company Instagram)', 'text' ),
+			'fane_youtube'         => array( 'FANE YouTube URL (blank = company YouTube)', 'text' ),
+			'fane_tiktok'          => array( 'FANE TikTok URL', 'text' ),
+			'fane_x'               => array( 'FANE X (Twitter) URL (blank = company X)', 'text' ),
+			'fane_linkedin'        => array( 'FANE LinkedIn URL (blank = company LinkedIn)', 'text' ),
+			'fane_whatsapp'        => array( 'FANE WhatsApp number, digits only (blank = company WhatsApp)', 'text' ),
 	);
 }
 
@@ -178,7 +189,7 @@ function sc_core_sanitize_settings( $input ) {
 			continue;
 		}
 		$val = trim( (string) $input[ $key ] );
-		if ( in_array( $key, array( 'facebook', 'x', 'linkedin', 'youtube', 'instagram' ), true ) || 'image' === $type ) {
+		if ( in_array( $key, array( 'facebook', 'x', 'linkedin', 'youtube', 'instagram', 'fane_facebook', 'fane_x', 'fane_linkedin', 'fane_youtube', 'fane_instagram', 'fane_tiktok' ), true ) || 'image' === $type ) {
 			$clean[ $key ] = esc_url_raw( $val );
 		} elseif ( 'email' === $key ) {
 			$clean[ $key ] = sanitize_email( $val );
