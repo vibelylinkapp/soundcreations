@@ -15,7 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 function sc_enq_forms() {
 	$country  = array( 'Kenya', 'Uganda', 'Tanzania', 'Rwanda', 'Burundi', 'Ethiopia', 'South Sudan', 'DR Congo', 'UAE', 'Other' );
 	$sector   = array( 'Houses of Worship', 'Corporate & Offices', 'Hospitality', 'Education', 'Entertainment', 'Government & Institutions', 'Professional Audio / Rental', 'OEM / Manufacturing', 'Other' );
-	$timeline = array( 'Immediate', '1-3 months', '3-6 months', '6+ months', 'Just planning' );
 	$biztype  = array( 'Dealer / Reseller', 'System Integrator', 'Rental Company', 'Consultant', 'OEM / Cabinet Manufacturer', 'Other' );
 	$yesno    = array( 'Yes', 'Limited', 'No' );
 	$orgtype  = array( 'OEM Loudspeaker Manufacturer', 'Cabinet Manufacturer', 'System Integrator', 'Rental Company', 'Church', 'Consultant', 'Dealer / Reseller', 'Sound Engineer', 'Other' );
@@ -37,9 +36,7 @@ function sc_enq_forms() {
 				array( 'phone', 'Phone Number', 'tel', true, true, array(), 'Your phone number' ),
 				array( 'country', 'Country', 'select', true, true, $country, 'Select your country' ),
 				array( 'city', 'City', 'text', true, true, array(), 'Your city' ),
-				array( 'project_type', 'Project Type', 'select', true, true, $sector, 'Select project type' ),
-				array( 'timeline', 'Expected Timeline', 'select', false, true, $timeline, 'Select timeline' ),
-				array( 'budget', 'Estimated Budget (optional)', 'text', false, false, array(), 'e.g. $50,000' ),
+				array( 'project_type', 'Project Type', 'select', true, false, $sector, 'Select project type' ),
 				array( 'message', 'Tell us about your project / requirements', 'textarea', true, false, array(), 'Provide as much detail as possible about your project...' ),
 			),
 		),

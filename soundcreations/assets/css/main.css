@@ -1091,3 +1091,24 @@ img { max-width: 100%; height: auto; display: block; }
 .post-type-archive-sc_solution .sc-hero-pills{margin-top:1.4rem;gap:.9rem 2rem;}
 .post-type-archive-sc_solution .sc-scard__body{padding:1.7rem 1.25rem 1.2rem;}
 .post-type-archive-sc_solution .sc-footer{margin-top:0;}
+
+/* ============================================================
+   Consultation page — premium polish (scoped to consult page)
+   ============================================================ */
+.sc-consult-hero__media img { box-shadow: 0 34px 80px rgba(0,0,0,.55); }
+
+/* Value props become refined feature cards */
+.sc-consult-pills .sc-contact-pill { align-items: center; gap: .9rem; padding: 1.15rem 1.2rem; background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012)); border: 1px solid var(--sc-border); border-radius: var(--sc-radius-lg); transition: transform .25s var(--sc-ease, ease), border-color .25s var(--sc-ease, ease), box-shadow .25s var(--sc-ease, ease); }
+.sc-consult-pills .sc-contact-pill:hover { transform: translateY(-4px); border-color: rgba(225,29,42,.45); box-shadow: 0 20px 44px rgba(0,0,0,.4); }
+.sc-consult-pills .sc-contact-pill__icon { width: 44px; height: 44px; border-radius: 13px; background: rgba(225,29,42,.1); border: 1px solid rgba(225,29,42,.28); }
+.sc-consult-pills .sc-contact-pill__icon svg { width: 22px; height: 22px; }
+
+/* Team + form cards: shared soft depth and an accent top-rule */
+.sc-consult-main .sc-teamcard, .sc-consult-main .sc-formcard { position: relative; }
+.sc-consult-main .sc-teamcard { box-shadow: 0 20px 54px rgba(0,0,0,.34); }
+.sc-consult-main .sc-teamcard::before, .sc-consult-main .sc-formcard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--sc-red), rgba(225,29,42,0)); border-radius: var(--sc-radius-lg) var(--sc-radius-lg) 0 0; }
+
+/* Consultation form: refined focus + gradient submit */
+.sc-consult-form .sc-field input:focus, .sc-consult-form .sc-field select:focus, .sc-consult-form .sc-field textarea:focus { box-shadow: 0 0 0 3px rgba(225,29,42,.15); }
+.sc-consult-form .sc-form__submit { background: linear-gradient(135deg, #e11d2a, #b3141f); border: 0; box-shadow: 0 14px 30px rgba(225,29,42,.28); transition: transform .2s var(--sc-ease, ease), box-shadow .2s var(--sc-ease, ease), filter .2s var(--sc-ease, ease); }
+.sc-consult-form .sc-form__submit:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(225,29,42,.38); filter: brightness(1.06); }

@@ -212,7 +212,7 @@
 	function initContacts(map) {
 		var data;
 		try { data = JSON.parse(map.getAttribute('data-sc-contacts') || '{}'); } catch (e) { data = {}; }
-		var info = map.closest('.sc-contact-info') || document;
+		var info = map.closest('.sc-teamcard') || document;
 		var phoneEl = info.querySelector('[data-sc-phone]');
 		var emailEl = info.querySelector('[data-sc-email]');
 		var hoursEl = info.querySelector('[data-sc-hours]');

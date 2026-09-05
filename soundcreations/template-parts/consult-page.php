@@ -37,6 +37,27 @@ $sc_phone_link = sc_setting( 'phone_link', '+254715754758' );
 $sc_email      = sc_setting( 'email', 'info@soundcreationsltd.com' );
 $sc_hours_week = sc_setting( 'hours_week', 'Mon - Fri: 8:00 AM - 5:30 PM' );
 $sc_hours_sat  = sc_setting( 'hours_sat', 'Sat: 9:00 AM - 1:00 PM' );
+
+// Per-office contact details. Kigali uses the Rwanda office line; every other
+// office uses the Kenya head-office details. Hours lines are pipe-separated.
+$sc_ke_contact = array(
+	'phone'      => $sc_phone,
+	'phone_link' => $sc_phone_link,
+	'email'      => $sc_email,
+	'hours'      => $sc_hours_week . ' | ' . $sc_hours_sat,
+);
+$sc_rw_contact = array(
+	'phone'      => '+250 783 141 050 | 782 739 889',
+	'phone_link' => '+250783141050',
+	'email'      => 'fred@soundcreationsltd.com',
+	'hours'      => 'Mon – Fri: 9:00am – 6:00pm',
+);
+$sc_contacts_map = array(
+	'nairobi'  => $sc_ke_contact,
+	'kigali'   => $sc_rw_contact,
+	'kinshasa' => $sc_ke_contact,
+	'dubai'    => $sc_ke_contact,
+);
 ?>
 
 <section class="sc-consult-hero">
@@ -72,20 +93,20 @@ $sc_hours_sat  = sc_setting( 'hours_sat', 'Sat: 9:00 AM - 1:00 PM' );
 			<ul class="sc-getintouch__list sc-teamcard__contact">
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
-					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Phone', 'soundcreations' ); ?></span><a href="tel:<?php echo esc_attr( $sc_phone_link ); ?>"><?php echo esc_html( $sc_phone ); ?></a></div>
+					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Phone', 'soundcreations' ); ?></span><a href="tel:<?php echo esc_attr( $sc_phone_link ); ?>" data-sc-phone><?php echo esc_html( $sc_phone ); ?></a></div>
 				</li>
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Email', 'soundcreations' ); ?></span><a href="mailto:<?php echo esc_attr( $sc_email ); ?>"><?php echo esc_html( $sc_email ); ?></a></div>
+					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Email', 'soundcreations' ); ?></span><a href="mailto:<?php echo esc_attr( $sc_email ); ?>" data-sc-email><?php echo esc_html( $sc_email ); ?></a></div>
 				</li>
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Business Hours', 'soundcreations' ); ?></span><span class="sc-getintouch__v"><?php echo esc_html( $sc_hours_week ); ?><br><?php echo esc_html( $sc_hours_sat ); ?></span></div>
+					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Business Hours', 'soundcreations' ); ?></span><span class="sc-getintouch__v" data-sc-hours><?php echo esc_html( $sc_hours_week ); ?><br><?php echo esc_html( $sc_hours_sat ); ?></span></div>
 				</li>
 			</ul>
 			<hr class="sc-teamcard__rule">
 			<h3 class="sc-teamcard__offhead"><?php esc_html_e( 'Our Offices', 'soundcreations' ); ?></h3>
-			<div class="sc-teamcard__geo" data-sc-locmap>
+			<div class="sc-teamcard__geo" data-sc-locmap data-sc-contacts="<?php echo esc_attr( wp_json_encode( $sc_contacts_map ) ); ?>">
 				<ul class="sc-teamcard__offices">
 					<?php foreach ( $sc_offices as $i => $o ) : ?>
 						<li class="sc-teamcard__office<?php echo 0 === $i ? ' is-active' : ''; ?>" data-loc="<?php echo esc_attr( $o['id'] ); ?>" tabindex="0" role="button" aria-label="<?php echo esc_attr( sprintf( 'Show %s on the map', $o['name'] ) ); ?>">
