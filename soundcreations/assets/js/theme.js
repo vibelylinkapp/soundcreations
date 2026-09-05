@@ -206,3 +206,39 @@
 		}
 	});
 })();
+
+/* Contact page: clicking an office swaps the "Reach us directly" phone / email / hours */
+(function () {
+	function initContacts(map) {
+		var data;
+		try { data = JSON.parse(map.getAttribute('data-sc-contacts') || '{}'); } catch (e) { data = {}; }
+		var info = map.closest('.sc-contact-info') || document;
+		var phoneEl = info.querySelector('[data-sc-phone]');
+		var emailEl = info.querySelector('[data-sc-email]');
+		var hoursEl = info.querySelector('[data-sc-hours]');
+		function setLoc(loc) {
+			var c = data[loc];
+			if (c) {
+				if (phoneEl) { phoneEl.textContent = c.phone; phoneEl.setAttribute('href', 'tel:' + c.phone_link); }
+				if (emailEl) { emailEl.textContent = c.email; emailEl.setAttribute('href', 'mailto:' + c.email); }
+				if (hoursEl) {
+					while (hoursEl.firstChild) { hoursEl.removeChild(hoursEl.firstChild); }
+					var lines = (c.hours || '').split('|');
+					for (var j = 0; j < lines.length; j++) {
+						if (j > 0) { hoursEl.appendChild(document.createElement('br')); }
+						hoursEl.appendChild(document.createTextNode(lines[j].trim()));
+					}
+				}
+			}
+		}
+		var trig = map.querySelectorAll('[data-loc]');
+		for (var i = 0; i < trig.length; i++) {
+			trig[i].addEventListener('click', function () { setLoc(this.getAttribute('data-loc')); });
+			trig[i].addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { setLoc(this.getAttribute('data-loc')); } });
+		}
+	}
+	document.addEventListener('DOMContentLoaded', function () {
+		var maps = document.querySelectorAll('[data-sc-locmap][data-sc-contacts]');
+		for (var i = 0; i < maps.length; i++) { initContacts(maps[i]); }
+	});
+})();

@@ -38,6 +38,27 @@ $sc_hours_sat  = sc_setting( 'hours_sat', 'Sat: 9:00 AM - 1:30 PM' );
 $sc_addr       = sc_setting( 'address', 'Mpaka Plaza, Mpaka Road, Westlands, Nairobi' );
 $sc_whatsapp   = trim( (string) sc_setting( 'whatsapp', '' ) );
 $sc_wa_digits  = preg_replace( '/[^0-9]/', '', $sc_whatsapp );
+
+// Per-office contact details. Kigali uses the Rwanda office line; every other
+// office uses the Kenya head-office details. Hours lines are pipe-separated.
+$sc_ke_contact = array(
+	'phone'      => $sc_phone,
+	'phone_link' => $sc_phone_link,
+	'email'      => $sc_email,
+	'hours'      => $sc_hours_week . ' | ' . $sc_hours_sat,
+);
+$sc_rw_contact = array(
+	'phone'      => '+250 783 141 050 | 782 739 889',
+	'phone_link' => '+250783141050',
+	'email'      => 'fred@soundcreationsltd.com',
+	'hours'      => 'Mon – Fri: 9:00am – 6:00pm',
+);
+$sc_contacts_map = array(
+	'nairobi'  => $sc_ke_contact,
+	'kigali'   => $sc_rw_contact,
+	'kinshasa' => $sc_ke_contact,
+	'dubai'    => $sc_ke_contact,
+);
 ?>
 
 <section class="sc-section sc-section--tight sc-section--compact sc-contactpage-hero">
@@ -45,35 +66,6 @@ $sc_wa_digits  = preg_replace( '/[^0-9]/', '', $sc_whatsapp );
 		<span class="sc-eyebrow"><?php echo esc_html( sc_setting( 'contact_eyebrow', 'Get in touch' ) ); ?></span>
 		<h1 class="sc-contactpage-hero__title"><?php echo esc_html( sc_setting( 'contact_title', 'Contact Us' ) ); ?></h1>
 		<p class="sc-lead sc-contactpage-hero__lead"><?php echo esc_html( sc_setting( 'contact_lead', 'Have a question, need a quote, or want to visit us? Reach our team through any of the channels below, or send us a message and we will get back to you quickly.' ) ); ?></p>
-	</div>
-</section>
-
-<section class="sc-section--half sc-section--compact">
-	<div class="sc-container">
-		<div class="sc-contact-methods">
-			<a class="sc-contact-method" href="tel:<?php echo esc_attr( $sc_phone_link ); ?>">
-				<span class="sc-contact-method__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_call; ?></svg></span>
-				<span class="sc-contact-method__k"><?php esc_html_e( 'Call us', 'soundcreations' ); ?></span>
-				<span class="sc-contact-method__v"><?php echo esc_html( $sc_phone ); ?></span>
-			</a>
-			<a class="sc-contact-method" href="mailto:<?php echo esc_attr( $sc_email ); ?>">
-				<span class="sc-contact-method__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_mail; ?></svg></span>
-				<span class="sc-contact-method__k"><?php esc_html_e( 'Email us', 'soundcreations' ); ?></span>
-				<span class="sc-contact-method__v"><?php echo esc_html( $sc_email ); ?></span>
-			</a>
-			<?php if ( strlen( $sc_wa_digits ) > 0 ) : ?>
-			<a class="sc-contact-method" href="https://wa.me/<?php echo esc_attr( $sc_wa_digits ); ?>" target="_blank" rel="noopener noreferrer">
-				<span class="sc-contact-method__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_chat; ?></svg></span>
-				<span class="sc-contact-method__k"><?php esc_html_e( 'WhatsApp', 'soundcreations' ); ?></span>
-				<span class="sc-contact-method__v"><?php esc_html_e( 'Chat with us', 'soundcreations' ); ?></span>
-			</a>
-			<?php endif; ?>
-			<a class="sc-contact-method" href="#sc-offices">
-				<span class="sc-contact-method__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_pin; ?></svg></span>
-				<span class="sc-contact-method__k"><?php esc_html_e( 'Visit us', 'soundcreations' ); ?></span>
-				<span class="sc-contact-method__v"><?php echo esc_html( $sc_addr ); ?></span>
-			</a>
-		</div>
 	</div>
 </section>
 
@@ -90,20 +82,20 @@ $sc_wa_digits  = preg_replace( '/[^0-9]/', '', $sc_whatsapp );
 			<ul class="sc-getintouch__list sc-teamcard__contact">
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_call; ?></svg></span>
-					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Phone', 'soundcreations' ); ?></span><a href="tel:<?php echo esc_attr( $sc_phone_link ); ?>"><?php echo esc_html( $sc_phone ); ?></a></div>
+					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Phone', 'soundcreations' ); ?></span><a href="tel:<?php echo esc_attr( $sc_phone_link ); ?>" data-sc-phone><?php echo esc_html( $sc_phone ); ?></a></div>
 				</li>
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_mail; ?></svg></span>
-					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Email', 'soundcreations' ); ?></span><a href="mailto:<?php echo esc_attr( $sc_email ); ?>"><?php echo esc_html( $sc_email ); ?></a></div>
+					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Email', 'soundcreations' ); ?></span><a href="mailto:<?php echo esc_attr( $sc_email ); ?>" data-sc-email><?php echo esc_html( $sc_email ); ?></a></div>
 				</li>
 				<li>
 					<span class="sc-getintouch__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $sc_i_clock; ?></svg></span>
-					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Business Hours', 'soundcreations' ); ?></span><span class="sc-getintouch__v"><?php echo esc_html( $sc_hours_week ); ?><br><?php echo esc_html( $sc_hours_sat ); ?></span></div>
+					<div><span class="sc-getintouch__k"><?php esc_html_e( 'Business Hours', 'soundcreations' ); ?></span><span class="sc-getintouch__v" data-sc-hours><?php echo esc_html( $sc_hours_week ); ?><br><?php echo esc_html( $sc_hours_sat ); ?></span></div>
 				</li>
 			</ul>
 			<hr class="sc-teamcard__rule">
 			<h3 class="sc-teamcard__offhead"><?php esc_html_e( 'Our Offices', 'soundcreations' ); ?></h3>
-			<div class="sc-teamcard__geo" data-sc-locmap>
+			<div class="sc-teamcard__geo" data-sc-locmap data-sc-contacts="<?php echo esc_attr( wp_json_encode( $sc_contacts_map ) ); ?>">
 				<ul class="sc-teamcard__offices">
 					<?php foreach ( $sc_offices as $i => $o ) : ?>
 						<li class="sc-teamcard__office<?php echo 0 === $i ? ' is-active' : ''; ?>" data-loc="<?php echo esc_attr( $o['id'] ); ?>" tabindex="0" role="button" aria-label="<?php echo esc_attr( sprintf( 'Show %s on the map', $o['name'] ) ); ?>">
