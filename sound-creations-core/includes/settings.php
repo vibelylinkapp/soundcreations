@@ -254,6 +254,28 @@ function sc_core_render_settings_page() {
 						esc_textarea( $value ),
 						esc_attr( $placeholder )
 					);
+				} elseif ( 'image' === $type ) {
+					$sc_is_img = ( substr( $key, -4 ) === '_img' ) || in_array( $key, array( 'home_hero_poster', 'home_cta_image', 'about_hero_image' ), true );
+					$sc_mtype  = $sc_is_img ? 'image' : '';
+					$sc_btn    = $sc_is_img ? 'Select image' : 'Select file';
+					$sc_prev   = '';
+					if ( strlen( (string) $value ) > 0 ) {
+						if ( preg_match( '/[.](jpe?g|png|webp|gif|svg|avif)([?].*)?$/i', $value ) === 1 ) {
+							$sc_prev = '<img src="' . esc_url( $value ) . '" alt="" style="max-width:190px;height:auto;border-radius:8px;margin-top:8px;display:block;border:1px solid #dcdcde;">';
+						} else {
+							$sc_prev = '<code style="display:inline-block;margin-top:8px;word-break:break-all;">' . esc_html( $value ) . '</code>';
+						}
+					}
+					printf(
+						'<tr><th scope="row"><label for="sc_%1$s">%2$s</label></th><td><div class="sc-media-field" data-sc-media-type="%5$s"><input type="text" id="sc_%1$s" name="soundcreations_settings[%1$s]" value="%3$s" placeholder="%4$s" class="regular-text sc-media-url" style="width:26rem;max-width:100%%;"> <button type="button" class="button sc-media-pick">%6$s</button> <button type="button" class="button sc-media-clear">Remove</button><div class="sc-media-prev">%7$s</div></div></td></tr>',
+						esc_attr( $key ),
+						esc_html( $label ),
+						esc_attr( $value ),
+						esc_attr( $placeholder ),
+						esc_attr( $sc_mtype ),
+						esc_html( $sc_btn ),
+						$sc_prev
+					);
 				} else {
 					printf(
 						'<tr><th scope="row"><label for="sc_%1$s">%2$s</label></th><td><input type="text" id="sc_%1$s" name="soundcreations_settings[%1$s]" value="%3$s" placeholder="%4$s" class="regular-text" style="width:34rem;max-width:100%%;"></td></tr>',
@@ -271,3 +293,20 @@ function sc_core_render_settings_page() {
 	</div>
 	<?php
 }
+
+
+add_action(
+	'admin_enqueue_scripts',
+	function ( $hook ) {
+		if ( 'toplevel_page_sc-settings' === $hook ) {
+			wp_enqueue_media();
+			wp_enqueue_script(
+				'sc-admin-media',
+				plugins_url( 'assets/admin-media.js', dirname( __DIR__ ) . '/sound-creations-core.php' ),
+				array( 'jquery' ),
+				'1.0.0',
+				true
+			);
+		}
+	}
+);

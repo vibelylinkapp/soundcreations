@@ -48,9 +48,7 @@ if ( $sc_q->have_posts() ) {
 		$loc   = (string) get_post_meta( $pid, '_sc_location', true );
 		$sol   = (string) get_post_meta( $pid, '_sc_solution', true );
 		$sum   = (string) get_post_meta( $pid, '_sc_summary', true );
-		$imgk  = (string) get_post_meta( $pid, '_sc_image', true );
-		$rel   = 'assets/img/projects/' . $imgk . '.jpg';
-		$img   = ( '' !== $imgk && file_exists( get_theme_file_path( $rel ) ) ) ? get_theme_file_uri( $rel ) : ( SC_THEME_URI . '/assets/img/projects-hero.jpg' );
+		$img = sc_project_card_image( $pid );
 		if ( '' !== $sol && ! in_array( $sol, $sc_sols, true ) ) {
 			$sc_sols[] = $sol;
 		}

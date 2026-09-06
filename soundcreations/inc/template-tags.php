@@ -353,3 +353,35 @@ if ( function_exists( 'sc_youtube_id' ) === false ) {
 		return '';
 	}
 }
+
+
+/**
+ * Resolve a project card image URL, WordPress-native first.
+ * Order: Featured Image -> first gallery photo -> legacy seeded theme-file key -> default.
+ */
+function sc_project_card_image( $post_id ) {
+	if ( has_post_thumbnail( $post_id ) ) {
+		$sc_u = get_the_post_thumbnail_url( $post_id, 'large' );
+		if ( is_string( $sc_u ) && strlen( $sc_u ) > 0 ) {
+			return $sc_u;
+		}
+	}
+	$sc_gal = (string) get_post_meta( $post_id, '_sc_gallery', true );
+	if ( strlen( $sc_gal ) > 0 ) {
+		$sc_ids = array_filter( array_map( 'absint', explode( ',', $sc_gal ) ) );
+		if ( count( $sc_ids ) > 0 ) {
+			$sc_u = wp_get_attachment_image_url( reset( $sc_ids ), 'large' );
+			if ( is_string( $sc_u ) && strlen( $sc_u ) > 0 ) {
+				return $sc_u;
+			}
+		}
+	}
+	$sc_key = (string) get_post_meta( $post_id, '_sc_image', true );
+	if ( strlen( $sc_key ) > 0 ) {
+		$sc_rel = 'assets/img/projects/' . $sc_key . '.jpg';
+		if ( file_exists( get_theme_file_path( $sc_rel ) ) ) {
+			return get_theme_file_uri( $sc_rel );
+		}
+	}
+	return SC_THEME_URI . '/assets/img/projects/boardroom.jpg';
+}

@@ -101,9 +101,7 @@ $sc_pills = array(
 					while ( $sc_pq->have_posts() ) :
 						$sc_pq->the_post();
 						$pid  = get_the_ID();
-						$imgk = (string) get_post_meta( $pid, '_sc_image', true );
-						$rel  = 'assets/img/projects/' . $imgk . '.jpg';
-						$img  = ( strlen( $imgk ) > 0 && file_exists( get_theme_file_path( $rel ) ) ) ? get_theme_file_uri( $rel ) : ( SC_THEME_URI . '/assets/img/projects/boardroom.jpg' );
+						$img = sc_project_card_image( $pid );
 						$loc  = (string) get_post_meta( $pid, '_sc_location', true );
 						?>
 						<a class="sc-project" href="<?php the_permalink(); ?>"><span class="sc-project__media"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async" width="400" height="250"></span><h3 class="sc-project__title"><?php echo esc_html( get_the_title() ); ?></h3><?php if ( strlen( $loc ) > 0 ) : ?><p class="sc-project__loc"><?php echo esc_html( $loc ); ?></p><?php endif; ?></a>
