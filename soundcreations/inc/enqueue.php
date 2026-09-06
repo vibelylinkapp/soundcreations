@@ -16,7 +16,6 @@ add_action(
 		// render-blocking requests and apply the preloaded fonts immediately.
 		wp_enqueue_style( 'sc-main', SC_THEME_URI . '/assets/css/main.css', array(), SC_THEME_VERSION );
 		wp_enqueue_style( 'sc-content', SC_THEME_URI . '/assets/css/content.css', array( 'sc-main' ), SC_THEME_VERSION );
-		wp_enqueue_style( 'sc-proto', SC_THEME_URI . '/assets/css/proto.css', array( 'sc-main' ), SC_THEME_VERSION );
 
 		wp_enqueue_script( 'sc-theme', SC_THEME_URI . '/assets/js/theme.js', array(), SC_THEME_VERSION, true );
 		wp_enqueue_script( 'sc-map', SC_THEME_URI . '/assets/js/map.js', array(), SC_THEME_VERSION, true );

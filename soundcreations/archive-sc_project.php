@@ -1,10 +1,9 @@
 <?php
 /**
- * Project archive - owns /projects/. Faithful .sc-proto port of the prototype
- * Projects route: page hero + filters/search bar + project grid + red CTA.
- * Cards are data-driven from published sc_project posts (image, tag, location,
- * summary, permalink) with a prototype-matching fallback set. Filter + search is
- * self-contained client-side JS that matches card text.
+ * Project archive. Owns the /projects/ URL (sc_project has_archive => projects).
+ * Cards are data-driven from published sc_project posts, ordered by menu_order
+ * (editable in wp-admin). Category / location / solution filtering and search are
+ * client-side (see [data-sc-projfilter] wiring in assets/js/theme.js).
  *
  * @package SoundCreations
  */
@@ -14,8 +13,32 @@ if ( defined( 'ABSPATH' ) === false ) {
 }
 get_header();
 
-$sc_q = new WP_Query( array( 'post_type' => 'sc_project', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'no_found_rows' => true ) );
+$sc_archive  = get_post_type_archive_link( 'sc_project' );
+if ( empty( $sc_archive ) ) {
+	$sc_archive = home_url( '/projects/' );
+}
+$sc_consult  = home_url( '/request-a-consultation/' );
+$sc_hero_img = SC_THEME_URI . '/assets/img/projects-hero.jpg';
+$sc_cta_img  = SC_THEME_URI . '/assets/img/projects-cta.jpg';
+$sc_arrow    = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+$sc_pinicon  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+// Category pills (fixed set matching the design). Slug must match sanitize_title of each card's category.
+$sc_cat_pills = array( 'Acoustic', 'Audio', 'Visual' );
+
+// Collect projects (data-driven, ordered by menu_order).
+$sc_q = new WP_Query(
+	array(
+		'post_type'      => 'sc_project',
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+		'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+		'no_found_rows'  => true,
+	)
+);
 $sc_items = array();
+$sc_sols  = array();
+$sc_locs  = array();
 if ( $sc_q->have_posts() ) {
 	while ( $sc_q->have_posts() ) {
 		$sc_q->the_post();
@@ -27,116 +50,162 @@ if ( $sc_q->have_posts() ) {
 		$sum   = (string) get_post_meta( $pid, '_sc_summary', true );
 		$imgk  = (string) get_post_meta( $pid, '_sc_image', true );
 		$rel   = 'assets/img/projects/' . $imgk . '.jpg';
-		if ( has_post_thumbnail( $pid ) ) {
-			$img = get_the_post_thumbnail_url( $pid, 'large' );
-		} elseif ( strlen( $imgk ) && file_exists( get_theme_file_path( $rel ) ) ) {
-			$img = get_theme_file_uri( $rel );
+		$img   = ( '' !== $imgk && file_exists( get_theme_file_path( $rel ) ) ) ? get_theme_file_uri( $rel ) : ( SC_THEME_URI . '/assets/img/projects-hero.jpg' );
+		if ( '' !== $sol && ! in_array( $sol, $sc_sols, true ) ) {
+			$sc_sols[] = $sol;
+		}
+		if ( '' !== $loc && ! in_array( $loc, $sc_locs, true ) ) {
+			$sc_locs[] = $loc;
+		}
+		$division_meta = (string) get_post_meta( $pid, '_sc_division', true );
+		if ( strlen( $division_meta ) > 0 ) {
+			$divs = array_values( array_filter( array_map( 'trim', explode( ',', $division_meta ) ) ) );
 		} else {
-			$img = SC_THEME_URI . '/assets/img/projects-hero.jpg';
+			$hay  = strtolower( $sol . ' ' . $cat . ' ' . $sum . ' ' . get_the_title() );
+			$divs = array();
+			if ( is_int( strpos( $hay, 'acoustic' ) ) || is_int( strpos( $hay, 'reverb' ) ) || is_int( strpos( $hay, 'stone-wool' ) ) || is_int( strpos( $hay, 'ceiling' ) ) || is_int( strpos( $hay, 'treatment' ) ) ) {
+				$divs[] = 'Acoustic';
+			}
+			if ( is_int( strpos( $hay, 'audio' ) ) || is_int( strpos( $hay, 'sound' ) ) || is_int( strpos( $hay, 'pa system' ) ) || is_int( strpos( $hay, 'loudspeaker' ) ) || is_int( strpos( $hay, 'amplif' ) ) || is_int( strpos( $hay, 'monitor' ) ) || is_int( strpos( $hay, 'front-of-house' ) ) || is_int( strpos( $hay, 'subwoofer' ) ) || is_int( strpos( $hay, 'console' ) ) || is_int( strpos( $hay, 'reinforcement' ) ) || is_int( strpos( $hay, ' av ' ) ) ) {
+				$divs[] = 'Audio';
+			}
+			if ( is_int( strpos( $hay, 'visual' ) ) || is_int( strpos( $hay, 'video' ) ) || is_int( strpos( $hay, 'lecture' ) ) || is_int( strpos( $hay, 'projection' ) ) || is_int( strpos( $hay, 'display' ) ) || is_int( strpos( $hay, 'screen' ) ) || is_int( strpos( $hay, ' av ' ) ) || is_int( strpos( $hay, 'integrat' ) ) ) {
+				$divs[] = 'Visual';
+			}
+			if ( count( $divs ) === 0 ) {
+				$divs[] = 'Audio';
+			}
 		}
-		$tag = strlen( $badge ) ? $badge : ( strlen( $cat ) ? $cat : ( strlen( $sol ) ? $sol : 'Project' ) );
-		if ( strlen( $sum ) === 0 ) {
-			$sum = wp_strip_all_tags( get_the_excerpt() );
+		$division_slugs = array();
+		foreach ( $divs as $d ) {
+			$division_slugs[] = sanitize_title( $d );
 		}
-		$sc_items[] = array( 'title' => get_the_title(), 'href' => get_permalink( $pid ), 'loc' => $loc, 'tag' => $tag, 'sum' => $sum, 'img' => $img );
+		$sc_items[] = array(
+			'title' => get_the_title(),
+			'href'  => get_permalink( $pid ),
+			'cat'   => implode( ' ', $division_slugs ),
+			'badge' => implode( ' / ', $divs ),
+			'loc'   => $loc,
+			'sol'   => $sol,
+			'sum'   => $sum,
+			'img'   => $img,
+		);
 	}
 	wp_reset_postdata();
 }
-if ( count( $sc_items ) === 0 ) {
-	$sc_fb = array(
-		array( 'citam-buruburu', 'AUDIO', 'CITAM Buruburu', 'Nairobi, Kenya' ),
-		array( 'cathedral', 'ACOUSTIC / AUDIO', 'All Saints Cathedral', 'Nairobi, Kenya' ),
-		array( 'pcea-chuka', 'ACOUSTIC', 'PCEA Chuka', 'Chuka, Kenya' ),
-		array( 'kabarak-university', 'AUDIO / VISUAL', 'Kabarak University', 'Nakuru, Kenya' ),
-		array( 'chapel', 'AUDIO', 'Nairobi Chapel', 'Nairobi, Kenya' ),
-		array( 'boardroom', 'AUDIO / VISUAL', 'Corporate Boardroom', 'Kigali, Rwanda' ),
-		array( 'conference', 'AUDIO', 'Conference Centre', 'Dubai, UAE' ),
-		array( 'performance', 'AUDIO', 'Live Event Production', 'DR Congo' ),
-	);
-	foreach ( $sc_fb as $f ) {
-		$sc_items[] = array( 'title' => $f[2], 'href' => home_url( '/projects/' ), 'loc' => $f[3], 'tag' => $f[1], 'sum' => 'Professional systems engineered for clarity, performance and reliability.', 'img' => SC_THEME_URI . '/assets/img/projects/' . $f[0] . '.jpg' );
-	}
-}
 ?>
 
-<div class="sc-proto">
-
-<?php
-echo sc_proto_pagehero( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- first-party markup.
-	array(
-		'title' => sc_setting( 'projects_title', 'Real solutions. Real impact.' ),
-		'desc'  => sc_setting( 'projects_lead', 'Explore selected professional audio, acoustic, visual and integration projects delivered across the region.' ),
-		'img'   => SC_THEME_URI . '/assets/img/projects-hero.jpg',
-	)
-);
-?>
-
-<section class="section">
-	<div class="container">
-		<div class="filters">
-			<button class="filter active" data-filter="all"><?php esc_html_e( 'All Projects', 'soundcreations' ); ?></button>
-			<button class="filter" data-filter="acoustic"><?php esc_html_e( 'Acoustic', 'soundcreations' ); ?></button>
-			<button class="filter" data-filter="audio"><?php esc_html_e( 'Audio', 'soundcreations' ); ?></button>
-			<button class="filter" data-filter="visual"><?php esc_html_e( 'Visual', 'soundcreations' ); ?></button>
-			<input class="search" id="scProjectSearch" placeholder="<?php esc_attr_e( 'Search project, venue or solution...', 'soundcreations' ); ?>">
+<section class="sc-projhero">
+	<div class="sc-container sc-projhero__grid">
+		<div class="sc-projhero__text">
+			<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Projects', '' ) ) ); ?>
+			<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'projects_eyebrow', 'Our Projects' ) ); ?></p>
+			<h1 class="sc-projhero__title"><?php echo esc_html( sc_setting( 'projects_title', 'Real solutions. Real impact.' ) ); ?></h1>
+			<p class="sc-lead sc-projhero__lead"><?php echo esc_html( sc_setting( 'projects_lead', 'Explore a selection of our professional audio, acoustics and integration projects across Africa and the Middle East.' ) ); ?></p>
+			<a class="sc-btn sc-btn--primary sc-projhero__btn" href="<?php echo esc_url( $sc_consult ); ?>"><?php esc_html_e( 'Start Your Project', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 		</div>
-		<div class="sectionhead">
-			<h2><?php esc_html_e( 'Featured Projects', 'soundcreations' ); ?></h2>
-			<a class="btn secondary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Start Your Project', 'soundcreations' ); ?> &rarr;</a>
+		<div class="sc-projhero__media">
+			<img src="<?php echo esc_url( $sc_hero_img ); ?>" alt="<?php esc_attr_e( 'Concert hall and auditorium installation', 'soundcreations' ); ?>" loading="eager" decoding="async">
 		</div>
-		<div class="projectgrid" id="scProjectGrid">
-			<?php foreach ( $sc_items as $it ) : ?>
-				<a class="card projectcard" href="<?php echo esc_url( $it['href'] ); ?>"><div class="projectphoto"><img src="<?php echo esc_url( $it['img'] ); ?>" alt="<?php echo esc_attr( $it['title'] ); ?>" loading="lazy" decoding="async"><span class="tag"><?php echo esc_html( strtoupper( $it['tag'] ) ); ?></span></div><div class="projectbody"><?php if ( strlen( $it['loc'] ) ) : ?><span class="location"><?php echo esc_html( $it['loc'] ); ?></span><?php endif; ?><h3><?php echo esc_html( $it['title'] ); ?></h3><?php if ( strlen( $it['sum'] ) ) : ?><p><?php echo esc_html( wp_trim_words( $it['sum'], 18 ) ); ?></p><?php endif; ?><span class="link"><?php esc_html_e( 'View Project', 'soundcreations' ); ?> &rarr;</span></div></a>
-			<?php endforeach; ?>
-		</div>
-		<p id="scProjectEmpty" class="lead" style="display:none;margin-top:24px"><?php esc_html_e( 'No projects match your filters.', 'soundcreations' ); ?></p>
 	</div>
 </section>
 
-<?php
-echo sc_proto_cta( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- first-party markup.
-	array(
-		'title' => sc_setting( 'projects_cta_title', 'Have a project in mind?' ),
-		'text'  => sc_setting( 'projects_cta_text', 'Our team is ready to help you design and deliver the right solution.' ),
-	)
-);
-?>
+<section class="sc-section sc-projfilter-sec">
+	<div class="sc-container" data-sc-projfilter>
+		<div class="sc-projfilters">
+			<div class="sc-projfilters__row">
+				<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> <?php esc_html_e( 'Filter by Category', 'soundcreations' ); ?></span>
+				<div class="sc-projfilters__pills">
+					<button type="button" class="sc-projpill is-active" data-proj-cat="all"><?php esc_html_e( 'All Projects', 'soundcreations' ); ?></button>
+					<?php foreach ( $sc_cat_pills as $c ) : ?>
+						<button type="button" class="sc-projpill" data-proj-cat="<?php echo esc_attr( sanitize_title( $c ) ); ?>"><?php echo esc_html( $c ); ?></button>
+					<?php endforeach; ?>
+				</div>
+			</div>
+			<div class="sc-projfilters__row sc-projfilters__row--controls">
+				<label class="sc-projctrl sc-projctrl--search">
+					<span class="sc-projfilters__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> <?php esc_html_e( 'Search Projects', 'soundcreations' ); ?></span>
+					<input type="search" data-proj-search placeholder="<?php esc_attr_e( 'Search project, venue or solution...', 'soundcreations' ); ?>">
+				</label>
+			</div>
+		</div>
 
-</div>
+		<div class="sc-projfeat-head">
+			<h2><?php esc_html_e( 'Featured Projects', 'soundcreations' ); ?></h2>
+			<a class="sc-linkbtn" href="<?php echo esc_url( $sc_archive ); ?>"><?php esc_html_e( 'View All Projects', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+		</div>
 
-<script>
-(function(){
-	var grid=document.getElementById('scProjectGrid');
-	if(grid===null){return;}
-	var cards=[].slice.call(grid.querySelectorAll('.projectcard'));
-	var filters=[].slice.call(document.querySelectorAll('.sc-proto .filter'));
-	var search=document.getElementById('scProjectSearch');
-	var empty=document.getElementById('scProjectEmpty');
-	var current='all';
-	function apply(){
-		var q=(search&&search.value?search.value:'').toLowerCase();
-		var shown=0;
-		cards.forEach(function(c){
-			var t=c.innerText.toLowerCase();
-			var okCat=(current==='all')||(t.indexOf(current)>-1);
-			var okQ=(q==='')||(t.indexOf(q)>-1);
-			var on=okCat&&okQ;
-			c.style.display=on?'':'none';
-			if(on){shown=shown+1;}
-		});
-		if(empty){empty.style.display=(shown===0)?'block':'none';}
-	}
-	filters.forEach(function(b){
-		b.addEventListener('click',function(){
-			filters.forEach(function(x){x.classList.remove('active');});
-			b.classList.add('active');
-			current=b.getAttribute('data-filter')||'all';
-			apply();
-		});
-	});
-	if(search){search.addEventListener('input',apply);}
-})();
-</script>
+		<?php if ( count( $sc_items ) > 0 ) : ?>
+			<div class="sc-projgrid">
+				<?php
+				foreach ( $sc_items as $it ) :
+					$text = strtolower( $it['title'] . ' ' . $it['loc'] . ' ' . $it['cat'] . ' ' . $it['sol'] . ' ' . $it['sum'] );
+					?>
+					<article class="sc-projcard" data-card data-category="<?php echo esc_attr( $it['cat'] ); ?>" data-location="<?php echo esc_attr( sanitize_title( $it['loc'] ) ); ?>" data-solution="<?php echo esc_attr( sanitize_title( $it['sol'] ) ); ?>" data-text="<?php echo esc_attr( $text ); ?>">
+						<a class="sc-projcard__media" href="<?php echo esc_url( $it['href'] ); ?>" style="background-image:url('<?php echo esc_url( $it['img'] ); ?>');">
+							<?php if ( '' !== $it['badge'] ) : ?>
+								<span class="sc-projcard__badge"><?php echo esc_html( $it['badge'] ); ?></span>
+							<?php endif; ?>
+							<?php if ( '' !== $it['loc'] ) : ?>
+								<span class="sc-projcard__loc"><?php echo $sc_pinicon; ?> <?php echo esc_html( $it['loc'] ); ?></span>
+							<?php endif; ?>
+						</a>
+						<div class="sc-projcard__body">
+							<h3 class="sc-projcard__title"><?php echo esc_html( $it['title'] ); ?></h3>
+							<?php if ( '' !== $it['sum'] ) : ?>
+								<p class="sc-projcard__desc"><?php echo esc_html( $it['sum'] ); ?></p>
+							<?php endif; ?>
+							<a class="sc-projcard__link" href="<?php echo esc_url( $it['href'] ); ?>"><?php esc_html_e( 'View Project', 'soundcreations' ); ?> <span aria-hidden="true">&rarr;</span></a>
+						</div>
+					</article>
+				<?php endforeach; ?>
+			</div>
+			<p class="sc-projempty" data-proj-empty hidden><?php esc_html_e( 'No projects match your filters.', 'soundcreations' ); ?></p>
+		<?php else : ?>
+			<div class="sc-empty"><?php esc_html_e( 'No projects published yet. In wp-admin, open Sound Creations -> Sample Catalog to add starter items.', 'soundcreations' ); ?></div>
+		<?php endif; ?>
+	</div>
+</section>
+
+<section class="sc-stats sc-stats--proof">
+	<div class="sc-container">
+		<div class="sc-stats__grid">
+			<div class="sc-stat">
+				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m12 6.4 1.13 2.29 2.53.37-1.83 1.78.43 2.52L12 12.06l-2.26 1.19.43-2.52-1.83-1.78 2.53-.37z"/><path d="M9 14.4 7.5 21l4.5-2.6L16.5 21 15 14.4"/></svg></span>
+				<div class="sc-stat__body">
+					<div class="sc-stat__head sc-stat__head--num">22+</div>
+					<div class="sc-stat__sub">Years Experience</div>
+				</div>
+			</div>
+			<div class="sc-stat">
+				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.5 4 5.6 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.6-4-9s1.4-6.5 4-9z"/></svg></span>
+				<div class="sc-stat__body">
+					<div class="sc-stat__head sc-stat__head--num">4</div>
+					<div class="sc-stat__sub">Regional Locations<span class="sc-stat__note">Kenya | Rwanda | DR Congo | UAE</span></div>
+				</div>
+			</div>
+			<div class="sc-stat">
+				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4.5h6a1 1 0 0 1 1 1V6a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-.5a1 1 0 0 1 1-1z"/><path d="M8 5.5H6a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5a2 2 0 0 0-2-2h-2"/><path d="m8.5 13.5 2.2 2.2 4.3-4.3"/></svg></span>
+				<div class="sc-stat__body">
+					<div class="sc-stat__head sc-stat__head--num">850+</div>
+					<div class="sc-stat__sub">Projects Completed</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="sc-section">
+	<div class="sc-container">
+		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( $sc_cta_img ); ?>');">
+			<div class="sc-cta-band__inner">
+				<h2><?php echo esc_html( sc_setting( 'projects_cta_title', 'Have a project in mind?' ) ); ?></h2>
+				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'projects_cta_text', 'Our team of experts is ready to help you design and deliver the right solution.' ) ); ?></p>
+				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $sc_consult ); ?>"><?php esc_html_e( 'Request a Consultation', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
+			</div>
+		</div>
+	</div>
+</section>
 
 <?php
 get_footer();
