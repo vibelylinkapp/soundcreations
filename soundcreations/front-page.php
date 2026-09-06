@@ -83,16 +83,41 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 				'integration'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.2 2.2 0 0 1 0 4.4H2V19a2 2 0 0 0 2 2h3.8v-1.5a2.2 2.2 0 0 1 4.4 0V21H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>',
 				'aftersale'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M20 14a2 2 0 0 1-2 2h-2v-5h2a2 2 0 0 1 2 2z"/><path d="M4 14a2 2 0 0 0 2 2h2v-5H6a2 2 0 0 0-2 2z"/><path d="M18 16v1a3 3 0 0 1-3 3h-3"/></svg>',
 			);
+			// Live links to the /service/{slug}/ pages, matched by title keyword so a
+			// slug typo (for example "intergration") still resolves; falls back to the
+			// legacy URL when the matching Service page does not exist yet.
+			$sc_service_links = array();
+			$sc_svc_q = new WP_Query( array( 'post_type' => 'sc_service', 'post_status' => 'publish', 'posts_per_page' => -1, 'no_found_rows' => true ) );
+			if ( $sc_svc_q->have_posts() ) {
+				while ( $sc_svc_q->have_posts() ) {
+					$sc_svc_q->the_post();
+					$sc_service_links[] = array( 't' => strtolower( get_the_title() ), 'u' => get_permalink() );
+				}
+				wp_reset_postdata();
+			}
 			$sc_services = array(
-				array( 'service-consultancy.jpg', 'consultancy', 'Consultancy', 'Design and consultation across audio, acoustics, lighting and visuals - at every phase of your project.', '/request-a-consultation/', 'home_svc1_img' ),
-				array( 'service-distribution.jpg', 'distribution', 'Distribution & Dealership', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.', '/brands/', 'home_svc2_img' ),
-				array( 'service-integration.jpg', 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support for every audio and acoustic need.', '/solutions/', 'home_svc3_img' ),
-				array( 'service-aftersale.jpg', 'aftersale', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keep your systems performing.', '/contact/', 'home_svc4_img' ),
+				array( 'service-consultancy.jpg', 'consultancy', 'Consultancy', 'Design and consultation across audio, acoustics, lighting and visuals - at every phase of your project.', '/request-a-consultation/', 'home_svc1_img', array( 'consult' ) ),
+				array( 'service-distribution.jpg', 'distribution', 'Distribution & Dealership', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.', '/brands/', 'home_svc2_img', array( 'distribut', 'dealer' ) ),
+				array( 'service-integration.jpg', 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support for every audio and acoustic need.', '/solutions/', 'home_svc3_img', array( 'integ' ) ),
+				array( 'service-aftersale.jpg', 'aftersale', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keep your systems performing.', '/contact/', 'home_svc4_img', array( 'after', 'sale' ) ),
 			);
 			foreach ( $sc_services as $sc_s ) :
-				$sc_img = sc_setting( $sc_s[5], SC_THEME_URI . '/assets/img/home/' . $sc_s[0] );
+				$sc_img  = sc_setting( $sc_s[5], SC_THEME_URI . '/assets/img/home/' . $sc_s[0] );
+				$sc_href = home_url( $sc_s[4] );
+				foreach ( $sc_service_links as $sc_l ) {
+					$sc_hit = false;
+					foreach ( $sc_s[6] as $sc_nd ) {
+						if ( is_int( strpos( $sc_l['t'], $sc_nd ) ) ) {
+							$sc_hit = true;
+						}
+					}
+					if ( $sc_hit === true ) {
+						$sc_href = $sc_l['u'];
+						break;
+					}
+				}
 				?>
-				<a class="sc-svcard" href="<?php echo esc_url( home_url( $sc_s[4] ) ); ?>">
+				<a class="sc-svcard" href="<?php echo esc_url( $sc_href ); ?>">
 					<span class="sc-svcard__img">
 						<img src="<?php echo esc_url( $sc_img ); ?>" alt="<?php echo esc_attr( $sc_s[2] ); ?>" loading="lazy" decoding="async" width="600" height="450">
 					</span>
