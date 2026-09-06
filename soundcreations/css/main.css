@@ -1501,3 +1501,14 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 /* Site-wide font uniformity: force the homepage font (Inter) on builder / WooCommerce / block-content contexts */
 .elementor-widget-container,.elementor-heading-title,.elementor-button,.elementor-widget-text-editor,.woocommerce,.woocommerce-page,.woocommerce p,.woocommerce span,.woocommerce a,.woocommerce li,.woocommerce button,.woocommerce input,.entry-content,.wp-block-post-content{font-family:var(--sc-font-body)}
 .elementor h1,.elementor h2,.elementor h3,.elementor h4,.entry-content h1,.entry-content h2,.entry-content h3,.entry-content h4,.woocommerce h1,.woocommerce h2,.woocommerce h3{font-family:var(--sc-font-display)}
+
+
+/* ===== Mobile action bar + pillars (2026-09-07): keep CTA button on one line; hide value pillars on phones ===== */
+@media (max-width: 782px){
+  .sc-mobabar__btn { white-space: nowrap; min-width: 0; overflow: hidden; font-size: .82rem; gap: .35rem; }
+  .sc-pillars { display: none; }
+}
+@media (max-width: 560px){
+  .sc-mobabar__btn { font-size: .78rem; gap: .3rem; }
+  .sc-mobabar__btn--cta span[aria-hidden="true"] { display: none; }
+}
