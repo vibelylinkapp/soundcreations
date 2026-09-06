@@ -14,7 +14,7 @@ if ( defined( 'ABSPATH' ) === false ) {
 get_header();
 
 $sc_hero_video  = sc_setting( 'hero_video' );
-$sc_hero_poster = SC_THEME_URI . '/assets/img/hero-poster.jpg';
+$sc_hero_poster = sc_setting( 'home_hero_poster', SC_THEME_URI . '/assets/img/hero-poster.jpg' );
 
 $sc_hc1_l = sc_setting( 'home_hero_cta1_label', 'Request a Consultation' );
 $sc_hc1_u = sc_setting( 'home_hero_cta1_url', '/request-a-consultation/' );
@@ -84,20 +84,20 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 				'aftersale'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M20 14a2 2 0 0 1-2 2h-2v-5h2a2 2 0 0 1 2 2z"/><path d="M4 14a2 2 0 0 0 2 2h2v-5H6a2 2 0 0 0-2 2z"/><path d="M18 16v1a3 3 0 0 1-3 3h-3"/></svg>',
 			);
 			$sc_services = array(
-				array( 'service-consultancy.jpg', 'consultancy', 'Consultancy', 'Design and consultation across audio, acoustics, lighting and visuals - at every phase of your project.', '/request-a-consultation/' ),
-				array( 'service-distribution.jpg', 'distribution', 'Distribution & Dealership', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.', '/brands/' ),
-				array( 'service-integration.jpg', 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support for every audio and acoustic need.', '/solutions/' ),
-				array( 'service-aftersale.jpg', 'aftersale', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keep your systems performing.', '/contact/' ),
+				array( 'service-consultancy.jpg', 'consultancy', 'Consultancy', 'Design and consultation across audio, acoustics, lighting and visuals - at every phase of your project.', '/request-a-consultation/', 'home_svc1_img' ),
+				array( 'service-distribution.jpg', 'distribution', 'Distribution & Dealership', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.', '/brands/', 'home_svc2_img' ),
+				array( 'service-integration.jpg', 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support for every audio and acoustic need.', '/solutions/', 'home_svc3_img' ),
+				array( 'service-aftersale.jpg', 'aftersale', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keep your systems performing.', '/contact/', 'home_svc4_img' ),
 			);
 			foreach ( $sc_services as $sc_s ) :
-				$sc_img = SC_THEME_URI . '/assets/img/home/' . $sc_s[0];
+				$sc_img = sc_setting( $sc_s[5], SC_THEME_URI . '/assets/img/home/' . $sc_s[0] );
 				?>
 				<a class="sc-svcard" href="<?php echo esc_url( home_url( $sc_s[4] ) ); ?>">
 					<span class="sc-svcard__img">
 						<img src="<?php echo esc_url( $sc_img ); ?>" alt="<?php echo esc_attr( $sc_s[2] ); ?>" loading="lazy" decoding="async" width="600" height="450">
-						<span class="sc-svcard__badge"><?php echo $sc_svc_ico[ $sc_s[1] ]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span>
 					</span>
 					<span class="sc-svcard__body">
+						<span class="sc-svcard__badge"><?php echo $sc_svc_ico[ $sc_s[1] ]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span>
 						<h3><?php echo esc_html( $sc_s[2] ); ?></h3>
 						<p><?php echo esc_html( $sc_s[3] ); ?></p>
 						<span class="sc-svcard__more"><?php esc_html_e( 'Learn more', 'soundcreations' ); ?> &rarr;</span>
@@ -122,12 +122,12 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 		<div class="sc-solgrid">
 			<?php
 			$sc_sols = array(
-				array( 'solution-professional-audio.jpg', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/' ),
-				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/' ),
-				array( 'solution-av-integration.jpg', 'Audio Visual & Integration', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', '/solutions/installation/' ),
+				array( 'solution-professional-audio.jpg', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img' ),
+				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img' ),
+				array( 'solution-av-integration.jpg', 'Audio Visual & Integration', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', '/solutions/installation/', 'home_sol3_img' ),
 			);
 			foreach ( $sc_sols as $sc_so ) :
-				$sc_img = SC_THEME_URI . '/assets/img/home/' . $sc_so[0];
+				$sc_img = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );
 				?>
 				<a class="sc-solcard" href="<?php echo esc_url( home_url( $sc_so[3] ) ); ?>">
 					<span class="sc-solcard__img"><img src="<?php echo esc_url( $sc_img ); ?>" alt="<?php echo esc_attr( $sc_so[1] ); ?>" loading="lazy" decoding="async" width="640" height="440"></span>
@@ -249,7 +249,7 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 
 <section class="sc-section">
 	<div class="sc-container">
-		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( SC_THEME_URI . '/assets/img/cta-building.jpg' ); ?>');">
+		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( sc_setting( 'home_cta_image', SC_THEME_URI . '/assets/img/cta-building.jpg' ) ); ?>');">
 			<div class="sc-cta-band__inner">
 				<h2><?php echo esc_html( sc_setting( 'home_cta_title', 'Have a project in mind?' ) ); ?></h2>
 				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'home_cta_text', 'Tell us about your space and application. Our technical team will help you specify the right system.' ) ); ?></p>
