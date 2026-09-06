@@ -34,6 +34,7 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 	<div class="sc-container sc-hero__inner">
 		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_hero_eyebrow', 'Consult -> Design -> Distribute -> Integrate -> Support' ) ); ?></p>
 		<h1 class="sc-hero__title"><?php echo esc_html( sc_setting( 'home_hero_title', 'Engineering exceptional sound. Delivering complete solutions.' ) ); ?></h1>
+		<p class="sc-hero__lead"><?php echo esc_html( sc_setting( 'home_hero_lead', 'We design, supply, integrate and support professional audio, visual, lighting and acoustic systems across Africa and the Middle East.' ) ); ?></p>
 		<div class="sc-hero__cta">
 			<?php if ( '' !== $sc_hc1_l ) : ?><a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $sc_hc1_h ); ?>"><?php echo esc_html( $sc_hc1_l ); ?></a><?php endif; ?>
 			<?php if ( '' !== $sc_hc2_l ) : ?><a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( $sc_hc2_h ); ?>"><?php echo esc_html( $sc_hc2_l ); ?></a><?php endif; ?>
@@ -48,21 +49,21 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 				<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_whatwedo_eyebrow', 'What we do' ) ); ?></p>
 				<h2><?php echo esc_html( sc_setting( 'home_whatwedo_title', 'More than equipment. A complete solution.' ) ); ?></h2>
 			</div>
-			<p class="sc-lead sc-whatwedo__lead"><?php echo esc_html( sc_setting( 'home_whatwedo_lead', 'We consult, design, supply, integrate and support professional audio, visual, lighting and acoustic systems-engineered for your space and built to perform.' ) ); ?></p>
+			<p class="sc-lead sc-whatwedo__lead"><?php echo esc_html( sc_setting( 'home_whatwedo_lead', "If it sounds good, it's Sound Creations. From acoustic design and system engineering to equipment, integration, commissioning and support, we deliver world-class technology and expertise across Africa and the Middle East." ) ); ?></p>
 		</div>
 		<div class="sc-svcs">
 			<?php
 			$sc_svc_icons = array(
-				'consultancy'             => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h4v4l5-4h7a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/><path d="M12 6.7a3 3 0 0 0-1.8 5.4c.35.27.55.7.55 1.15h2.5c0-.45.2-.88.55-1.15A3 3 0 0 0 12 6.7z"/><path d="M10.9 14.4h2.2"/></svg>',
-				'distribution-dealership' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h13v10H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>',
-				'integration'             => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.2 2.2 0 0 1 0 4.4H2V19a2 2 0 0 0 2 2h3.8v-1.5a2.2 2.2 0 0 1 4.4 0V21H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>',
-				'after-sale-services'     => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M20 14a2 2 0 0 1-2 2h-2v-5h2a2 2 0 0 1 2 2z"/><path d="M4 14a2 2 0 0 0 2 2h2v-5H6a2 2 0 0 0-2 2z"/><path d="M18 16v1a3 3 0 0 1-3 3h-3"/></svg>',
+				'consultancy'             => '◈',
+				'distribution-dealership' => '▣',
+				'integration'             => '✣',
+				'after-sale-services'     => '◉',
 			);
 			$sc_svc_fallback = array(
-				array( 'consultancy', 'Consultancy', 'We listen, assess and design the right solution across audio, acoustics, lighting and visuals.' ),
-				array( 'distribution-dealership', 'Distribution & Dealership', 'Certified exclusive dealer for leading global brands, with reliable regional distribution.' ),
+				array( 'consultancy', 'Consultancy', 'Design and consultation across audio, acoustics, lighting and visuals — at every phase of your project.' ),
+				array( 'distribution-dealership', 'Distribution & Dealership', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.' ),
 				array( 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support.' ),
-				array( 'after-sale-services', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support.' ),
+				array( 'after-sale-services', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keeps your system performing.' ),
 			);
 			$sc_svcq = new WP_Query( array( 'post_type' => 'sc_service', 'post_status' => 'publish', 'posts_per_page' => 8, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'no_found_rows' => true ) );
 			if ( $sc_svcq->have_posts() ) :
