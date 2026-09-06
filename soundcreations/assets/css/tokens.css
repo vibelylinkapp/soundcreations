@@ -3,9 +3,9 @@
   --sc-indigo: #5A4FCF;   /* [VERIFY] extract exact value from logo source */
   --sc-radius: 10px;
   --sc-radius-lg: 18px;
-  --sc-container: 1200px;
-  --sc-gutter: clamp(1rem, 0.5rem + 2vw, 2.5rem);
-  --sc-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --sc-container: 1180px;
+  --sc-gutter: clamp(1rem, 0.5rem + 2vw, 1.5rem);
+  --sc-font-display: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --sc-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --sc-ease: cubic-bezier(.2,.7,.2,1);
 }

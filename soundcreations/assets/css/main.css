@@ -13,8 +13,8 @@ body {
   transition: background-color .4s var(--sc-ease), color .4s var(--sc-ease);
 }
 h1, h2, h3, h4 { font-family: var(--sc-font-display); font-weight: 600; line-height: 1.12; margin: 0 0 .5em; }
-h1 { font-size: clamp(2.4rem, 1.4rem + 4.4vw, 4.4rem); letter-spacing: -.02em; }
-h2 { font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.9rem); letter-spacing: -.01em; }
+h1 { font-size: clamp(2.4rem, 1.4rem + 4.4vw, 4.4rem); letter-spacing: -.035em; }
+h2 { font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.9rem); letter-spacing: -.03em; }
 h3 { font-size: 1.35rem; }
 p { margin: 0 0 1rem; }
 a { color: inherit; text-decoration: none; }
@@ -1250,7 +1250,7 @@ h3 { font-size: 1.4rem; line-height: 1.2; letter-spacing: -.01em; }
 .sc-eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--sc-red); border-radius: 2px; flex: none; }
 
 /* Premium vertical rhythm + anchor offset under the sticky header */
-.sc-section { padding-block: clamp(3.25rem, 2.25rem + 4.2vw, 6.5rem); }
+.sc-section { padding-block: clamp(3rem, 2rem + 3vw, 5.5rem); }
 :target { scroll-margin-top: 96px; }
 
 /* Buttons: one clear primary action (Request a Consultation), quiet secondary */
