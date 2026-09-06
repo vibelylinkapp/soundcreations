@@ -37,7 +37,6 @@ add_action(
 	'wp_head',
 	function () {
 		$u = SC_THEME_URI;
-		echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( $u . '/assets/fonts/inter-400.woff2' ) . '">' . "\n";
 		echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( $u . '/assets/fonts/inter-600.woff2' ) . '">' . "\n";
 		if ( is_front_page() ) {
 			echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( $u . '/assets/img/hero-poster.jpg' ) . '">' . "\n";

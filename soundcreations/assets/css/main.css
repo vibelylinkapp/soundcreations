@@ -1310,3 +1310,42 @@ h3 { font-size: 1.4rem; line-height: 1.2; letter-spacing: -.01em; }
 .sc-case__block--tech .sc-ticklist li::before { content: ""; position: absolute; left: 0; top: .5em; width: 11px; height: 6px; border-left: 2px solid var(--sc-red); border-bottom: 2px solid var(--sc-red); transform: rotate(-45deg); }
 .sc-case__cta { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); }
 .sc-case__cta h2 { margin: 0 0 .5rem; }
+
+
+/* ============================================================
+   Typography system - Inter, engineering/premium scale
+   Enabled by the Inter variable face (weights 100-900) in fonts.css.
+   Appended last so it governs the final type hierarchy site-wide.
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 { font-family: var(--sc-font-display); }
+
+/* Section H2 - 44-50px desktop, 32-38px mobile, 800, tight */
+h2 { font-size: clamp(2rem, 1.15rem + 2.9vw, 3.125rem); font-weight: 800; line-height: 1.06; letter-spacing: -.035em; }
+
+/* Page H1 - 56-72px desktop, 40-44px mobile, 800, tight */
+h1 { font-size: clamp(2.5rem, 1.35rem + 4.6vw, 4.5rem); font-weight: 800; line-height: 1.03; letter-spacing: -.03em; }
+
+/* Generic H3 (cards override below) */
+h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.01em; }
+
+/* Hero H1 - 68-76px desktop, 42px mobile, 800, very tight, dense */
+.sc-hero__title { font-weight: 800; letter-spacing: -.04em; line-height: 1.0; }
+.sc-hero--video .sc-hero__title { font-size: clamp(2.625rem, 1.05rem + 5.4vw, 4.75rem); font-weight: 800; line-height: 1.0; letter-spacing: -.04em; }
+
+/* Eyebrow labels - 9-10px, 800, uppercase, ~1.8px tracking */
+.sc-eyebrow { font-size: .625rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+
+/* Navigation - 12px, weight 600, clean/compact */
+.sc-nav a { font-size: .75rem; font-weight: 600; letter-spacing: .01em; }
+
+/* CTA buttons - 12px, weight 800, uppercase, confident */
+.sc-btn { font-size: .75rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+
+/* Card headings - 16-18px, weight 700 */
+.sc-card h3, .sc-card__body h3, .sc-projcard__title, .sc-project__title { font-size: 1.0625rem; font-weight: 700; line-height: 1.25; letter-spacing: -.005em; }
+
+/* Metrics / big numbers - 32px, weight 800 */
+.sc-stat__head--num, .sc-projstat__text strong { font-size: 2rem; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+
+/* Footer headings - 10-11px, weight 800, uppercase */
+.sc-footer h2 { font-size: .6875rem; font-weight: 800; letter-spacing: .14em; line-height: 1.3; }
