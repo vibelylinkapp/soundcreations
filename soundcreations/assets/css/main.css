@@ -1201,7 +1201,7 @@ img { max-width: 100%; height: auto; display: block; }
 .sc-video-card__desc { color: var(--sc-muted); font-size: .9rem; line-height: 1.55; margin: 0; }
 
 /* ===== Footer - always-dark professional refinement (overrides earlier footer rules) ===== */
-.sc-footer { background: #0d0f13; color: #c8cdd3; border-top: 3px solid var(--sc-red, #E11D2A); padding-block: 4rem 1.75rem; margin-top: 4rem; }
+.sc-footer { background: #0d0f13; color: #c8cdd3; border-top: 1px solid rgba(255,255,255,.08); padding-block: 4rem 1.75rem; margin-top: 4rem; }
 .sc-footer .sc-container { max-width: 1200px; }
 .sc-footer__grid { display: grid; grid-template-columns: 1.9fr 1fr 1.15fr 1.5fr; gap: 2.6rem; align-items: start; }
 .sc-footer h2 { font-size: .76rem; text-transform: uppercase; letter-spacing: .15em; color: #ffffff; font-weight: 700; margin: 0 0 1.2rem; padding-bottom: .55rem; position: relative; }
@@ -1425,8 +1425,8 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 
 /* Section head: title left, intro right */
 .sc-sechead{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(1.5rem,4vw,4.4rem);align-items:end;margin-bottom:2.1rem}
-.sc-sechead h2{margin:0}
-.sc-sechead__intro{color:var(--sc-muted);font-size:1rem;line-height:1.6;margin:0}
+.sc-sechead h2{margin:0;font-size:clamp(2rem, 1.3rem + 2.8vw, 2.15rem);line-height:1.08;letter-spacing:-.015em}
+.sc-sechead__intro{color:var(--sc-muted);font-size:0.9rem;line-height:1.5;margin:0}
 
 /* 4-icon pillar strip under the hero */
 .sc-pillars{background:var(--sc-surface-2);border-top:1px solid var(--sc-border);border-bottom:1px solid var(--sc-border)}
@@ -1488,3 +1488,10 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
   .sc-pillar:first-child{padding-left:1.5rem}
   .sc-pillar:nth-child(3){border-bottom:1px solid var(--sc-border)}
 }
+
+
+/* ===== Homepage tuning (2026-09-06 pm): hero fit, CTA height, footer clearance ===== */
+.sc-hero--video .sc-hero__title{font-size:clamp(2.6rem, 1rem + 5.2vw, 4.7rem);line-height:1.0;letter-spacing:-.035em;max-width:800px}
+.home .sc-cta-band--photo{padding-block:clamp(1rem, .7rem + 1vw, 1.7rem)}
+.home .sc-cta-band__inner h2{margin:0 0 .5rem}
+@media (min-width:783px){.sc-footer{padding-bottom:5rem}}
