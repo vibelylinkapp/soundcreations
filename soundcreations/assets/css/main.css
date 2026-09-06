@@ -1493,7 +1493,7 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 
 /* ===== Homepage tuning (2026-09-06 pm): hero fit, CTA height, footer clearance ===== */
 .sc-hero--video{height:auto;max-height:none}
-.sc-hero--video .sc-hero__title{font-size:clamp(2.3rem, 1.2rem + 3.5vw, 3.9rem);line-height:1.06;letter-spacing:-.03em;max-width:820px}
+.sc-hero--video .sc-hero__title{font-size:clamp(2.3rem, 1.2rem + 4.5vw, 7.9rem);line-height:1.06;letter-spacing:-.03em;max-width:820px}
 .home .sc-cta-band--photo{padding-block:clamp(1rem, .7rem + 1vw, 1.7rem)}
 .home .sc-cta-band__inner h2{margin:0 0 .5rem}
 @media (min-width:783px){.sc-footer__bottom{padding-right:184px}}
