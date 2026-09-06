@@ -517,3 +517,169 @@ add_action(
 	},
 	6
 );
+
+
+/**
+ * Real project case studies. Seeded once (idempotent by slug) so the Projects
+ * archive ships populated. Every field stays editable in wp-admin afterwards.
+ */
+function sc_core_starter_projects() {
+	return array(
+		array(
+			'title' => "West Nairobi School",
+			'slug' => "west-nairobi-school",
+			'industry' => "Education",
+			'summary' => "A bespoke auditorium where acoustics, sound and lighting work as one, designed around the school's mission to nurture the whole child.",
+			'client' => "West Nairobi School",
+			'location' => "Nairobi, Kenya",
+			'year' => "",
+			'scope' => "Acoustic design and treatment
+Audio system design and installation
+Stage and feature lighting",
+			'brands' => "Yamaha, NEXO, Shure, TianGe Acoustic",
+			'challenge' => "The auditorium had to serve both learning and worship, which called for even, natural sound across the whole room and a space that felt inspiring rather than clinical. Reflections off hard surfaces had to be controlled while the design still expressed the school's identity and values.",
+			'solution' => "Sound Creations delivered an integrated acoustic, audio and visual design. The side walls carry a bespoke treatment shaped like trees, crafted with absorbing materials from TianGe Acoustic and lit with rainbow LED, symbolising growth while managing reflections. A curved acoustic ceiling reflects sound from the stage and distributes it evenly across the audience, complemented by acoustic seating, an acoustic carpet and a fully treated back wall that removes unwanted reflections.",
+			'technology' => "Yamaha TF5 digital mixing console
+NEXO and Yamaha speaker systems: ID84I, ID24I, IDS32-I
+Yamaha NXAMP4X1MK2 amplifier
+Yamaha DZR12-D and HS5 speakers
+Shure QLXD, ULXD and UA wireless microphone system
+Shure SM57 and SM98 microphones",
+			'result' => "A truly bespoke space where acoustics, sound and lighting work in harmony, lifting the auditory experience while heightening the sense of spirituality, and giving the school a remarkable environment for both learning and worship.",
+			'content' => "The acoustic, audio and visual design of the West Nairobi School auditorium was inspired by the school's mission: nurturing the academic, emotional, physical, social and spiritual development of the whole child.",
+		),
+		array(
+			'title' => "Sarit Expo Centre",
+			'slug' => "sarit-expo-centre",
+			'industry' => "Events",
+			'summary' => "Acoustic treatment for Nairobi's premier 3,300-square-metre column-free venue, engineered to host multiple concurrent events with complete sound isolation.",
+			'client' => "Sarit Centre (Expo Centre, Phase III)",
+			'location' => "Westlands, Nairobi, Kenya",
+			'year' => "",
+			'scope' => "Acoustic wall panels
+Acoustical ceilings
+Acoustical dividing doors",
+			'brands' => "",
+			'challenge' => "The vision was a multifunctional space that could host several concurrent meetings yet transform into a single spacious hall when needed. An exhibition room seating up to 7,000 and a meeting area for up to 500 had to work side by side, with no sound spilling between events running at the same time.",
+			'solution' => "Sound Creations was entrusted with the acoustic treatment of both spaces. We installed tailored solutions including precision-engineered wall panels and acoustical ceilings, together with specialised acoustical doors designed to subdivide the exhibition hall into discrete rooms with complete sound isolation.",
+			'technology' => "Precision-engineered acoustic wall panels
+Acoustical ceiling systems
+Specialised acoustical dividing doors for sound isolation",
+			'result' => "The venue can now run concurrent events with entirely distinct audio requirements while keeping optimal acoustical integrity, with no undesirable sound spillage between the divided spaces.",
+			'content' => "The Sarit Expo Centre is Nairobi's premier event venue, 3,300 square metres of expansive, column-free space in the heart of Westlands, built as part of the Sarit Centre expansion (Phase III) to host international gatherings of the highest calibre.",
+		),
+		array(
+			'title' => "PCEA Kahawa Farmers Church",
+			'slug' => "pcea-kahawa-farmers",
+			'industry' => "Worship",
+			'summary' => "An acoustic ceiling solution that tames reverberation in a large worship space, bringing clarity to speech, music and amplified sound.",
+			'client' => "PCEA Kahawa Farmers Church",
+			'location' => "Kahawa, Nairobi, Kenya",
+			'year' => "",
+			'scope' => "Acoustic assessment
+Acoustic ceiling design and installation",
+			'brands' => "Rockfon",
+			'challenge' => "The church's high ceiling and extensive hard surfaces created significant reflections and reverberation, letting sound linger far longer than desired. This reduced speech intelligibility and the clarity of music and amplified sound, so the congregation could not perceive sound evenly across the room.",
+			'solution' => "An acoustic ceiling solution using Rockfon Arctic tiles was designed and implemented as the key element of the sound-management strategy. It provides absorption across the large overhead surface, reducing the reflections that drove excessive reverberation, and was carefully integrated into the existing architecture to preserve the room's bright, open character.",
+			'technology' => "Rockfon Arctic acoustic ceiling tiles",
+			'result' => "A more acoustically controlled worship environment, with clearer sound, better-managed reverberation, and speech and music the congregation can experience with greater clarity and comfort, delivered by a clean, uniform ceiling that performs as much as it decorates.",
+			'content' => "The acoustic design of PCEA Kahawa Farmers was driven by the need to improve sound clarity within a large worship space.",
+		),
+		array(
+			'title' => "RPF Rubavu Multipurpose Hall",
+			'slug' => "rpf-rubavu-hall",
+			'industry' => "Events",
+			'summary' => "A diffuser-based acoustic design that solves the whispering-gallery and focusing effects of a concave-walled hall, for balanced, even sound.",
+			'client' => "RPF Rubavu",
+			'location' => "Rubavu, Rwanda",
+			'year' => "",
+			'scope' => "Diffuser acoustic design
+Ceiling reflectors and absorbers
+Acoustic flooring and wall treatment
+Acoustic isolation doors",
+			'brands' => "",
+			'challenge' => "The hall's concave walls naturally amplify reflections along their curved surfaces, producing the whispering-gallery and focusing effects. These concentrate speech or music in specific areas and leave sound unevenly distributed, diminishing the experience for the audience.",
+			'solution' => "An innovative diffuser acoustic design was implemented to counter the defects of the concave geometry. The ceiling was engineered as a curated balance of sound reflectors and absorbing panels with approved Noise Reduction Coefficient (NRC) values for uniform propagation from stage to audience. The floor was fitted with an acoustic carpet, the walls fully treated with sound-absorbent materials, and acoustic doors installed to isolate the hall from external noise.",
+			'technology' => "Diffuser acoustic wall design
+Ceiling balanced with reflectors and NRC-rated absorbing panels
+Acoustic carpet flooring
+Full sound-absorbent wall treatment
+Acoustic isolation doors",
+			'result' => "A hall that achieves both aesthetic appeal and an optimal auditory experience, with sound that is clear, evenly distributed and free from the disruptive effects of the concave geometry.",
+			'content' => "The acoustic design of the Rubavu multipurpose hall was shaped by a unique challenge: its concave walls.",
+		),
+		array(
+			'title' => "YU Mwaminifu Concert by James Kahero",
+			'slug' => "yu-mwaminifu-concert",
+			'industry' => "Live Events",
+			'summary' => "Full concert sound reinforcement for James Kahero's YU Mwaminifu concert at Sarit Expo, delivering clear, powerful coverage from a compact line array.",
+			'client' => "SOW Kenya",
+			'location' => "Sarit Expo Centre, Westlands, Nairobi",
+			'year' => "",
+			'scope' => "Concert PA design
+Front-of-house and monitor mixing
+Microphone and stage-box setup",
+			'brands' => "dB Technologies, Allen and Heath, Yamaha, Shure",
+			'challenge' => "A live gospel concert needed powerful, even coverage across a large expo hall, dependable radio microphones for the vocalists, and a flexible mixing setup for both front of house and monitors, all delivering consistent clarity for a full audience.",
+			'solution' => "Sound Creations deployed a compact line-array PA with dedicated subs and stage monitors, driven by dual digital consoles with networked stage boxes for flexible front-of-house and monitor mixing.",
+			'technology' => "8 pairs dB Technologies DVA M2M and 4 DVA M2S mini line-array modules
+2 dB Technologies S30 subwoofers
+2 dB Technologies LVX M15 stage monitors
+Allen and Heath Avantis and Yamaha CL5 digital consoles
+Networked RIO stage boxes
+Shure BLX14/PG98H and CM457 microphones",
+			'result' => "A clear, powerful and reliable concert experience for artist and audience alike. The client, Pastor James Kahero, commended the team on the quality and professionalism of the sound delivery.",
+			'content' => "Sound Creations provided the concert sound reinforcement for the YU Mwaminifu concert by James Kahero, staged at the Sarit Expo Centre.",
+		),
+	);
+}
+
+add_action(
+	'admin_init',
+	function () {
+		$ver = 'projects-2026-09-06';
+		if ( get_option( 'sc_core_projects_ver' ) === $ver ) {
+			return;
+		}
+		if ( function_exists( 'sc_core_starter_projects' ) === false ) {
+			return;
+		}
+		foreach ( sc_core_starter_projects() as $p ) {
+			if ( get_page_by_path( $p['slug'], OBJECT, 'sc_project' ) ) {
+				continue;
+			}
+			$pid = wp_insert_post(
+				array(
+					'post_title'   => $p['title'],
+					'post_name'    => $p['slug'],
+					'post_content' => $p['content'],
+					'post_status'  => 'publish',
+					'post_type'    => 'sc_project',
+				)
+			);
+			if ( is_int( $pid ) === false || $pid < 1 ) {
+				continue;
+			}
+			$meta = array(
+				'summary'     => $p['summary'],
+				'client'      => $p['client'],
+				'location'    => $p['location'],
+				'year'        => $p['year'],
+				'scope'       => $p['scope'],
+				'brands_used' => $p['brands'],
+				'challenge'   => $p['challenge'],
+				'solution'    => $p['solution'],
+				'technology'  => $p['technology'],
+				'result'      => $p['result'],
+			);
+			foreach ( $meta as $mk => $mv ) {
+				update_post_meta( $pid, '_sc_' . $mk, $mv );
+			}
+			if ( strlen( (string) $p['industry'] ) > 0 ) {
+				wp_set_object_terms( $pid, $p['industry'], 'sc_industry', false );
+			}
+		}
+		update_option( 'sc_core_projects_ver', $ver );
+	},
+	7
+);

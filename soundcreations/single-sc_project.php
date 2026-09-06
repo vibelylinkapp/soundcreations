@@ -30,6 +30,10 @@ while ( have_posts() ) :
 	$sc_gallery = array_filter( array_map( 'absint', explode( ',', (string) sc_field( 'gallery' ) ) ) );
 	$sc_body    = get_the_content();
 	$sc_hasbody = strlen( trim( wp_strip_all_tags( $sc_body ) ) ) > 0;
+	$sc_challenge  = (string) sc_field( 'challenge' );
+	$sc_solution   = (string) sc_field( 'solution' );
+	$sc_technology = sc_field( 'technology' );
+	$sc_result     = (string) sc_field( 'result' );
 	?>
 	<article class="sc-case">
 		<div class="sc-container">
@@ -53,6 +57,36 @@ while ( have_posts() ) :
 			<div class="sc-case__main">
 				<?php if ( $sc_hasbody ) : ?>
 					<div class="sc-prose sc-case__prose"><?php the_content(); ?></div>
+				<?php endif; ?>
+
+				<?php if ( strlen( trim( $sc_challenge ) ) > 0 || strlen( trim( $sc_solution ) ) > 0 || strlen( trim( (string) $sc_technology ) ) > 0 || strlen( trim( $sc_result ) ) > 0 ) : ?>
+					<div class="sc-case__blocks">
+						<?php if ( strlen( trim( $sc_challenge ) ) > 0 ) : ?>
+							<section class="sc-case__block">
+								<span class="sc-case__block-label"><?php esc_html_e( 'The Challenge', 'soundcreations' ); ?></span>
+								<div class="sc-prose sc-case__prose"><?php echo wpautop( esc_html( $sc_challenge ) ); ?></div>
+							</section>
+						<?php endif; ?>
+						<?php if ( strlen( trim( $sc_solution ) ) > 0 ) : ?>
+							<section class="sc-case__block">
+								<span class="sc-case__block-label"><?php esc_html_e( 'The Solution', 'soundcreations' ); ?></span>
+								<div class="sc-prose sc-case__prose"><?php echo wpautop( esc_html( $sc_solution ) ); ?></div>
+							</section>
+						<?php endif; ?>
+						<?php $sc_tech_html = sc_render_ticklist( $sc_technology ); ?>
+						<?php if ( strlen( $sc_tech_html ) > 0 ) : ?>
+							<section class="sc-case__block sc-case__block--tech">
+								<span class="sc-case__block-label"><?php esc_html_e( 'The Technology', 'soundcreations' ); ?></span>
+								<?php echo $sc_tech_html; ?>
+							</section>
+						<?php endif; ?>
+						<?php if ( strlen( trim( $sc_result ) ) > 0 ) : ?>
+							<section class="sc-case__block">
+								<span class="sc-case__block-label"><?php esc_html_e( 'The Result', 'soundcreations' ); ?></span>
+								<div class="sc-prose sc-case__prose"><?php echo wpautop( esc_html( $sc_result ) ); ?></div>
+							</section>
+						<?php endif; ?>
+					</div>
 				<?php endif; ?>
 
 				<?php if ( count( $sc_gallery ) > 0 ) : ?>
@@ -119,6 +153,14 @@ while ( have_posts() ) :
 					<a class="sc-btn sc-btn--primary sc-factcard__cta" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Start a similar project', 'soundcreations' ); ?></a>
 				</div>
 			</aside>
+		</div>
+
+		<div class="sc-container">
+			<div class="sc-cta-band sc-cta-band--compact sc-case__cta">
+				<h2><?php esc_html_e( 'Planning a similar project?', 'soundcreations' ); ?></h2>
+				<p class="sc-lead"><?php esc_html_e( 'Tell us about your space and requirements and our team will design a system that fits.', 'soundcreations' ); ?></p>
+				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Start a similar project', 'soundcreations' ); ?></a>
+			</div>
 		</div>
 	</article>
 	<?php

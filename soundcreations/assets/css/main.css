@@ -1299,3 +1299,14 @@ h3 { font-size: 1.4rem; line-height: 1.2; letter-spacing: -.01em; }
 .post-type-archive-sc_solution .sc-hero--solutions .sc-hero__title { font-size: clamp(2.6rem, 1.5rem + 3.4vw, 3.75rem); line-height: 1.02; letter-spacing: -.04em; }
 .post-type-archive-sc_solution h2 { font-size: clamp(2rem, 1.2rem + 2.8vw, 3.125rem); line-height: 1.05; letter-spacing: -.04em; }
 .post-type-archive-sc_solution .sc-eyebrow { font-size: .7rem; letter-spacing: .22em; }
+
+/* ============ Project case-study sections ============ */
+.sc-case__blocks { margin: clamp(1.5rem, 1rem + 2vw, 2.5rem) 0 0; }
+.sc-case__block { padding: clamp(1.6rem, 1.1rem + 2vw, 2.4rem) 0; border-top: 1px solid var(--sc-border); }
+.sc-case__blocks .sc-case__block:first-child { border-top: 0; padding-top: 0; }
+.sc-case__block-label { display: block; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sc-red); font-weight: 700; margin-bottom: .75rem; }
+.sc-case__block--tech .sc-ticklist { list-style: none; margin: .1rem 0 0; padding: 0; display: grid; gap: .6rem; max-width: 60ch; }
+.sc-case__block--tech .sc-ticklist li { position: relative; padding-left: 1.7rem; line-height: 1.5; color: var(--sc-text); }
+.sc-case__block--tech .sc-ticklist li::before { content: ""; position: absolute; left: 0; top: .5em; width: 11px; height: 6px; border-left: 2px solid var(--sc-red); border-bottom: 2px solid var(--sc-red); transform: rotate(-45deg); }
+.sc-case__cta { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); }
+.sc-case__cta h2 { margin: 0 0 .5rem; }
