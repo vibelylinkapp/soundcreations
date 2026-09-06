@@ -42,52 +42,69 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 	</div>
 </section>
 
+<section class="sc-pillars">
+	<div class="sc-container sc-pillars__grid">
+		<?php
+		$sc_pillars = array(
+			array( '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M8.3 6H15a3 3 0 0 1 3 3v6.7"/><path d="M6 8.3V15a3 3 0 0 0 3 3h6.7"/></svg>', 'End-to-end Expertise', 'From concept to commissioning and beyond.' ),
+			array( '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3v3M14 3v3M10 18v3M14 18v3M3 10h3M3 14h3M18 10h3M18 14h3"/></svg>', 'World-class Technology', 'Trusted brands, engineered for your environment.' ),
+			array( '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.3"/><path d="M2.5 19a5.5 5.5 0 0 1 11 0"/><path d="M14.8 14.3a4.6 4.6 0 0 1 6.7 4.7"/></svg>', 'Long-term Partnership', 'Reliable support that keeps you performing.' ),
+			array( '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-8 0z"/><path d="M8 5H5v1.4A3.5 3.5 0 0 0 8 10M16 5h3v1.4A3.5 3.5 0 0 1 16 10"/><path d="M12 12v3M9 20h6M10 20l.6-3h2.8l.6 3"/></svg>', 'Proven Results', 'Hundreds of successful projects across the region.' ),
+		);
+		foreach ( $sc_pillars as $sc_p ) :
+			?>
+			<div class="sc-pillar">
+				<span class="sc-pillar__icon"><?php echo $sc_p[0]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span>
+				<div class="sc-pillar__text">
+					<strong><?php echo esc_html( $sc_p[1] ); ?></strong>
+					<span><?php echo esc_html( $sc_p[2] ); ?></span>
+				</div>
+			</div>
+			<?php
+		endforeach;
+		?>
+	</div>
+</section>
+
 <section class="sc-section" id="services">
 	<div class="sc-container">
-		<div class="sc-whatwedo__head">
-			<div class="sc-whatwedo__intro">
-				<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_whatwedo_eyebrow', 'What we do' ) ); ?></p>
-				<h2><?php echo esc_html( sc_setting( 'home_whatwedo_title', 'More than equipment. A complete solution.' ) ); ?></h2>
+		<div class="sc-sechead">
+			<div>
+				<p class="sc-eyebrow">What We Do</p>
+				<h2>More than equipment. A complete solution.</h2>
 			</div>
-			<p class="sc-lead sc-whatwedo__lead"><?php echo esc_html( sc_setting( 'home_whatwedo_lead', "If it sounds good, it's Sound Creations. From acoustic design and system engineering to equipment, integration, commissioning and support, we deliver world-class technology and expertise across Africa and the Middle East." ) ); ?></p>
+			<p class="sc-sechead__intro">If it sounds good, it's Sound Creations. From acoustic design and system engineering to equipment, integration, commissioning and support, we deliver world-class technology and expertise across Africa and the Middle East.</p>
 		</div>
-		<div class="sc-svcs">
+		<div class="sc-svcards">
 			<?php
-			$sc_svc_icons = array(
-				'consultancy'             => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h4v4l5-4h7a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/><path d="M12 6.7a3 3 0 0 0-1.8 5.4c.35.27.55.7.55 1.15h2.5c0-.45.2-.88.55-1.15A3 3 0 0 0 12 6.7z"/><path d="M10.9 14.4h2.2"/></svg>',
-				'distribution-dealership' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h13v10H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>',
-				'integration'             => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.2 2.2 0 0 1 0 4.4H2V19a2 2 0 0 0 2 2h3.8v-1.5a2.2 2.2 0 0 1 4.4 0V21H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>',
-				'after-sale-services'     => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M20 14a2 2 0 0 1-2 2h-2v-5h2a2 2 0 0 1 2 2z"/><path d="M4 14a2 2 0 0 0 2 2h2v-5H6a2 2 0 0 0-2 2z"/><path d="M18 16v1a3 3 0 0 1-3 3h-3"/></svg>',
+			$sc_svc_ico = array(
+				'consultancy'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h4v4l5-4h7a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/><path d="M12 6.7a3 3 0 0 0-1.8 5.4c.35.27.55.7.55 1.15h2.5c0-.45.2-.88.55-1.15A3 3 0 0 0 12 6.7z"/><path d="M10.9 14.4h2.2"/></svg>',
+				'distribution' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h13v10H1z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>',
+				'integration'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.2 2.2 0 0 1 0 4.4H2V19a2 2 0 0 0 2 2h3.8v-1.5a2.2 2.2 0 0 1 4.4 0V21H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>',
+				'aftersale'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M20 14a2 2 0 0 1-2 2h-2v-5h2a2 2 0 0 1 2 2z"/><path d="M4 14a2 2 0 0 0 2 2h2v-5H6a2 2 0 0 0-2 2z"/><path d="M18 16v1a3 3 0 0 1-3 3h-3"/></svg>',
 			);
-			$sc_svc_fallback = array(
-				array( 'consultancy', 'Consultancy', 'Design and consultation across audio, acoustics, lighting and visuals — at every phase of your project.' ),
-				array( 'distribution-dealership', 'Distribution & Dealership', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.' ),
-				array( 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support.' ),
-				array( 'after-sale-services', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keeps your system performing.' ),
+			$sc_services = array(
+				array( 'service-consultancy.jpg', 'consultancy', 'Consultancy', 'Design and consultation across audio, acoustics, lighting and visuals - at every phase of your project.', '/request-a-consultation/' ),
+				array( 'service-distribution.jpg', 'distribution', 'Distribution & Dealership', 'Certified exclusive dealers for leading global brands, with reliable regional distribution and logistics.', '/brands/' ),
+				array( 'service-integration.jpg', 'integration', 'Integration', 'Site mapping, system design, installation, commissioning, training and support for every audio and acoustic need.', '/solutions/' ),
+				array( 'service-aftersale.jpg', 'aftersale', 'After-Sale Services', 'Warranty management, genuine spare parts, servicing and technical support that keep your systems performing.', '/contact/' ),
 			);
-			$sc_svcq = new WP_Query( array( 'post_type' => 'sc_service', 'post_status' => 'publish', 'posts_per_page' => 8, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'no_found_rows' => true ) );
-			if ( $sc_svcq->have_posts() ) :
-				while ( $sc_svcq->have_posts() ) :
-					$sc_svcq->the_post();
-					$sc_sslug = get_post_field( 'post_name', get_the_ID() );
-					$sc_sicon = isset( $sc_svc_icons[ $sc_sslug ] ) ? $sc_svc_icons[ $sc_sslug ] : $sc_svc_icons['integration'];
-					$sc_ssum  = sc_field( 'summary' );
-					if ( '' === $sc_ssum ) {
-						$sc_ssum = wp_strip_all_tags( get_the_excerpt() );
-					}
-					?>
-					<a class="sc-svc" href="<?php the_permalink(); ?>"><span class="sc-svc__icon"><?php echo $sc_sicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span><h3 class="sc-svc__title"><?php echo esc_html( get_the_title() ); ?></h3><p class="sc-svc__desc"><?php echo esc_html( $sc_ssum ); ?></p><span class="sc-svc__more"><?php esc_html_e( 'Learn more', 'soundcreations' ); ?> &rarr;</span></a>
-					<?php
-				endwhile;
-				wp_reset_postdata();
-			else :
-				foreach ( $sc_svc_fallback as $sc_sv ) :
-					$sc_sicon = isset( $sc_svc_icons[ $sc_sv[0] ] ) ? $sc_svc_icons[ $sc_sv[0] ] : $sc_svc_icons['integration'];
-					?>
-					<a class="sc-svc" href="<?php echo esc_url( home_url( '/service/' . $sc_sv[0] . '/' ) ); ?>"><span class="sc-svc__icon"><?php echo $sc_sicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span><h3 class="sc-svc__title"><?php echo esc_html( $sc_sv[1] ); ?></h3><p class="sc-svc__desc"><?php echo esc_html( $sc_sv[2] ); ?></p><span class="sc-svc__more"><?php esc_html_e( 'Learn more', 'soundcreations' ); ?> &rarr;</span></a>
-					<?php
-				endforeach;
-			endif;
+			foreach ( $sc_services as $sc_s ) :
+				$sc_img = SC_THEME_URI . '/assets/img/home/' . $sc_s[0];
+				?>
+				<a class="sc-svcard" href="<?php echo esc_url( home_url( $sc_s[4] ) ); ?>">
+					<span class="sc-svcard__img">
+						<img src="<?php echo esc_url( $sc_img ); ?>" alt="<?php echo esc_attr( $sc_s[2] ); ?>" loading="lazy" decoding="async" width="600" height="450">
+						<span class="sc-svcard__badge"><?php echo $sc_svc_ico[ $sc_s[1] ]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static inline SVG. ?></span>
+					</span>
+					<span class="sc-svcard__body">
+						<h3><?php echo esc_html( $sc_s[2] ); ?></h3>
+						<p><?php echo esc_html( $sc_s[3] ); ?></p>
+						<span class="sc-svcard__more"><?php esc_html_e( 'Learn more', 'soundcreations' ); ?> &rarr;</span>
+					</span>
+				</a>
+				<?php
+			endforeach;
 			?>
 		</div>
 	</div>
@@ -95,12 +112,34 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 
 <section class="sc-section sc-section--surface">
 	<div class="sc-container">
-		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'home_solutions_eyebrow', 'Solutions' ) ); ?></p>
-		<h2 style="margin-bottom:2rem;"><?php echo esc_html( sc_setting( 'home_solutions_title', 'Built around your room, application and operating requirements.' ) ); ?></h2>
-		<div class="sc-grid sc-grid--3">
-			<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/service/consultancy/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/consultation.jpg' ); ?>" alt="Consultation" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Consultation</h3><p>Site assessment, system design and specification - we measure, model and plan the right solution before a single cable is run.</p></div></a>
-			<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/acoustics/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/acoustics.jpg' ); ?>" alt="Acoustics" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Acoustics</h3><p>Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.</p></div></a>
-			<a class="sc-card sc-card--media" href="<?php echo esc_url( home_url( '/solutions/installation/' ) ); ?>"><span class="sc-card__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/installation.jpg' ); ?>" alt="Live Sound and Installation" loading="lazy" decoding="async" width="640" height="420"></span><div class="sc-card__body"><h3>Live Sound &amp; Installation</h3><p>Professional live-sound systems, installation, commissioning and calibration by our technical team.</p></div></a>
+		<div class="sc-sechead">
+			<div>
+				<p class="sc-eyebrow">Our Solutions</p>
+				<h2>Complete technology solutions for every environment.</h2>
+			</div>
+			<p class="sc-sechead__intro">From houses of worship and corporate spaces to live events and hospitality venues, we deliver tailored audio, visual, lighting and acoustic solutions.</p>
+		</div>
+		<div class="sc-solgrid">
+			<?php
+			$sc_sols = array(
+				array( 'solution-professional-audio.jpg', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/' ),
+				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/' ),
+				array( 'solution-av-integration.jpg', 'Audio Visual & Integration', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', '/solutions/installation/' ),
+			);
+			foreach ( $sc_sols as $sc_so ) :
+				$sc_img = SC_THEME_URI . '/assets/img/home/' . $sc_so[0];
+				?>
+				<a class="sc-solcard" href="<?php echo esc_url( home_url( $sc_so[3] ) ); ?>">
+					<span class="sc-solcard__img"><img src="<?php echo esc_url( $sc_img ); ?>" alt="<?php echo esc_attr( $sc_so[1] ); ?>" loading="lazy" decoding="async" width="640" height="440"></span>
+					<span class="sc-solcard__body">
+						<h3><?php echo esc_html( $sc_so[1] ); ?></h3>
+						<p><?php echo esc_html( $sc_so[2] ); ?></p>
+						<span class="sc-solcard__more"><?php esc_html_e( 'Explore solution', 'soundcreations' ); ?> &rarr;</span>
+					</span>
+				</a>
+				<?php
+			endforeach;
+			?>
 		</div>
 	</div>
 </section>
@@ -129,7 +168,7 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 					array(
 						'post_type'      => 'sc_project',
 						'post_status'    => 'publish',
-						'posts_per_page' => 6,
+						'posts_per_page' => 8,
 						'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
 						'no_found_rows'  => true,
 					)

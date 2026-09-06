@@ -1416,3 +1416,75 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
   html { scroll-behavior: auto; }
   .sc-mobabar__btn, .sc-btn, .sc-card, .sc-project, .sc-scard { transition: none; }
 }
+
+
+/* ===================================================================
+   Homepage rebuild - reference-aligned sections (2026-09-06)
+   Pillars strip, What We Do image cards, Solutions grid, 4-up projects
+   =================================================================== */
+
+/* Section head: title left, intro right */
+.sc-sechead{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(1.5rem,4vw,4.4rem);align-items:end;margin-bottom:2.1rem}
+.sc-sechead h2{margin:0}
+.sc-sechead__intro{color:var(--sc-muted);font-size:1rem;line-height:1.6;margin:0}
+
+/* 4-icon pillar strip under the hero */
+.sc-pillars{background:var(--sc-surface-2);border-top:1px solid var(--sc-border);border-bottom:1px solid var(--sc-border)}
+.sc-pillars__grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.sc-pillar{display:flex;gap:1rem;align-items:center;padding:1.6rem 1.5rem;border-right:1px solid var(--sc-border)}
+.sc-pillar:first-child{padding-left:0}
+.sc-pillar:last-child{border-right:0}
+.sc-pillar__icon{flex:0 0 48px;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;color:var(--sc-red);background:rgba(225,29,42,.12);border:1px solid rgba(225,29,42,.22)}
+.sc-pillar__icon svg{width:22px;height:22px}
+.sc-pillar__text strong{display:block;font-family:var(--sc-font-display);font-size:.98rem;line-height:1.2;margin-bottom:.3rem}
+.sc-pillar__text span{display:block;color:var(--sc-muted);font-size:.82rem;line-height:1.45}
+
+/* What We Do - image + icon badge + text (4-up) */
+.sc-svcards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.sc-svcard{display:flex;flex-direction:column;background:var(--sc-surface);border:1px solid var(--sc-border);border-radius:var(--sc-radius-lg);overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s var(--sc-ease),border-color .25s var(--sc-ease)}
+.sc-svcard:hover{transform:translateY(-4px);border-color:var(--sc-red)}
+.sc-svcard__img{position:relative;display:block;aspect-ratio:4/3;overflow:hidden}
+.sc-svcard__img img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--sc-ease)}
+.sc-svcard:hover .sc-svcard__img img{transform:scale(1.05)}
+.sc-svcard__badge{position:absolute;left:14px;bottom:-18px;width:40px;height:40px;border-radius:11px;background:var(--sc-red);color:#fff;display:grid;place-items:center;box-shadow:0 7px 16px rgba(0,0,0,.32)}
+.sc-svcard__badge svg{width:20px;height:20px}
+.sc-svcard__body{display:flex;flex-direction:column;flex:1;padding:1.7rem 1.2rem 1.4rem}
+.sc-svcard__body h3{font-size:1.05rem;margin:0 0 .5rem}
+.sc-svcard__body p{color:var(--sc-muted);font-size:.9rem;line-height:1.55;margin:0 0 1rem;flex:1}
+.sc-svcard__more{color:var(--sc-red);font-family:var(--sc-font-display);font-weight:700;font-size:.82rem;letter-spacing:.02em}
+
+/* Our Solutions - image + text (3-up) */
+.sc-solgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.sc-solcard{display:flex;flex-direction:column;background:var(--sc-surface);border:1px solid var(--sc-border);border-radius:var(--sc-radius-lg);overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s var(--sc-ease),border-color .25s var(--sc-ease)}
+.sc-solcard:hover{transform:translateY(-4px);border-color:var(--sc-red)}
+.sc-solcard__img{display:block;aspect-ratio:16/11;overflow:hidden}
+.sc-solcard__img img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--sc-ease)}
+.sc-solcard:hover .sc-solcard__img img{transform:scale(1.04)}
+.sc-solcard__body{display:flex;flex-direction:column;flex:1;padding:1.5rem 1.5rem 1.6rem}
+.sc-solcard__body h3{font-size:1.2rem;margin:0 0 .6rem}
+.sc-solcard__body p{color:var(--sc-muted);font-size:.95rem;line-height:1.55;margin:0 0 1.1rem;flex:1}
+.sc-solcard__more{color:var(--sc-red);font-family:var(--sc-font-display);font-weight:700;font-size:.88rem;letter-spacing:.02em}
+
+/* Featured Projects - exactly 4 visible then scroll (desktop) */
+@media (min-width:901px){.sc-carousel__track{grid-auto-columns:calc((100% - 3.75rem) / 4)}}
+
+/* Responsive */
+@media (max-width:900px){
+  .sc-sechead{grid-template-columns:1fr;gap:1rem;align-items:start}
+  .sc-svcards{grid-template-columns:1fr 1fr}
+  .sc-pillars__grid{grid-template-columns:1fr 1fr}
+  .sc-pillar{border-bottom:1px solid var(--sc-border)}
+  .sc-pillar:first-child{padding-left:1.5rem}
+  .sc-pillar:nth-child(2){border-right:0}
+  .sc-pillar:nth-child(3),.sc-pillar:nth-child(4){border-bottom:0}
+}
+@media (max-width:860px){
+  .sc-solgrid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .sc-svcards{grid-template-columns:1fr}
+  .sc-pillars__grid{grid-template-columns:1fr}
+  .sc-pillar{border-right:0}
+  .sc-pillar:first-child{padding-left:1.5rem}
+  .sc-pillar:nth-child(3){border-bottom:1px solid var(--sc-border)}
+}
