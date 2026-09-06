@@ -1512,3 +1512,18 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
   .sc-mobabar__btn { font-size: .78rem; gap: .3rem; }
   .sc-mobabar__btn--cta span[aria-hidden="true"] { display: none; }
 }
+
+
+/* ===== Image blend (2026-09-07): melt card photos into the card body so they read as part of the card, not a pasted-on box ===== */
+.sc-card__media, .sc-scard__media, .sc-project__media,
+.sc-svcard__img, .sc-solcard__img, .sc-prod-card__media { position: relative; }
+.sc-card__media::after, .sc-scard__media::after,
+.sc-svcard__img::after, .sc-solcard__img::after,
+.sc-prod-card__media::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 60%, var(--sc-surface) 100%);
+}
+.sc-project__media::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 60%, var(--sc-bg) 100%);
+}
