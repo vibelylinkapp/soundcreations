@@ -1349,3 +1349,70 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 
 /* Footer headings - 10-11px, weight 800, uppercase */
 .sc-footer h2 { font-size: .6875rem; font-weight: 800; letter-spacing: .14em; line-height: 1.3; }
+
+
+/* =====================================================================
+   Mobile-first refinement layer - added 2026-09-06
+   Additive only; desktop layout unchanged. Larger tap targets, roomier
+   single-column forms, horizontal brand strip, simplified cards, a
+   sticky mobile action bar, and smoother motion (reduced-motion aware).
+   ===================================================================== */
+
+/* Momentum + snap padding on horizontal scrollers */
+.sc-carousel__track, .sc-brands { -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scroll-padding-inline: var(--sc-gutter); }
+
+/* Motion-safe smooth in-page scrolling */
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* Larger tap targets on phone/tablet widths */
+@media (max-width: 782px) {
+  .sc-btn { min-height: 48px; padding: .9rem 1.4rem; }
+  .sc-menu-toggle { width: 48px; height: 48px; }
+  .sc-nav .sc-nav__list a { padding: 1.05rem 1.35rem; }
+  .sc-nav__list .sub-menu a { padding: .8rem 1.35rem .8rem 2.35rem; font-size: 1rem; }
+  .sc-nav__social a, .sc-foot-soc a { width: 44px; height: 44px; }
+  .sc-nav__social svg, .sc-foot-soc svg { width: 18px; height: 18px; }
+  .sc-projpill, .sc-linkbtn, .sc-brand-card__link { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+/* Roomier, never-cramped forms (single column earlier, comfortable inputs) */
+@media (max-width: 782px) {
+  .sc-form__grid { grid-template-columns: 1fr; gap: 1.1rem; }
+  .sc-form { padding: clamp(1.25rem, .9rem + 3vw, 1.9rem); }
+  .sc-field input, .sc-field select, .sc-field textarea { min-height: 48px; padding: .85rem .9rem; font-size: 16px; }
+  .sc-field textarea { min-height: 150px; }
+  .sc-form__actions { gap: .9rem; }
+  .sc-form__actions .sc-btn { width: 100%; justify-content: center; }
+}
+
+/* Simplified cards on small screens */
+@media (max-width: 560px) {
+  .sc-card { padding: 1.25rem; }
+  .sc-card__body { padding: 1.05rem 1.15rem 1.25rem; }
+  .sc-scard__body, .sc-brand-card__body { padding: 1rem 1.1rem 1.15rem; }
+  .sc-brand-card__desc { display: none; }
+  .sc-projgrid, .sc-brand-grid { grid-template-columns: 1fr; }
+}
+
+/* Horizontal brand strip (snap) on small screens */
+@media (max-width: 560px) {
+  .sc-brands { display: flex; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; gap: .8rem; padding-bottom: .5rem; }
+  .sc-brands > * { flex: 0 0 46%; scroll-snap-align: start; }
+}
+
+/* Sticky mobile action bar: CTA always within thumb reach */
+.sc-mobabar { display: none; }
+@media (max-width: 782px) {
+  .sc-mobabar { display: flex; gap: .5rem; align-items: stretch; position: fixed; left: 0; right: 0; bottom: 0; z-index: 400; padding: .55rem .7rem calc(.55rem + env(safe-area-inset-bottom, 0px)); background: var(--sc-header-bg, var(--sc-surface)); backdrop-filter: saturate(140%) blur(12px); border-top: 1px solid var(--sc-border); box-shadow: 0 -6px 20px rgba(0,0,0,.14); }
+  .sc-mobabar__btn { flex: 1 1 0; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border: 1px solid var(--sc-border); border-radius: var(--sc-radius); background: var(--sc-surface); color: var(--sc-text); font-family: var(--sc-font-display); font-weight: 700; font-size: .9rem; text-decoration: none; line-height: 1; transition: transform .16s var(--sc-ease), background-color .16s, border-color .16s; }
+  .sc-mobabar__btn:active { transform: translateY(1px); }
+  .sc-mobabar__btn--wa { background: #25D366; border-color: #25D366; color: #fff; }
+  .sc-mobabar__btn--cta { flex: 1.6 1 0; background: var(--sc-red); border-color: var(--sc-red); color: #fff; }
+  body { padding-bottom: 68px; }
+}
+
+/* Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sc-mobabar__btn, .sc-btn, .sc-card, .sc-project, .sc-scard { transition: none; }
+}

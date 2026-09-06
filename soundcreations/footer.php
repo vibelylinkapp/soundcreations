@@ -137,11 +137,35 @@ if ( strlen( $sc_wa ) > 0 ) :
 	.sc-wa-float svg{flex:0 0 auto}
 	.sc-wa-float__label{white-space:nowrap}
 	@media (max-width:600px){.sc-wa-float{right:14px;bottom:14px;padding:12px}.sc-wa-float__label{display:none}}
+	@media (max-width:782px){.sc-wa-float{display:none}}
 	@media (prefers-reduced-motion:reduce){.sc-wa-float{transition:none}}
 	</style>
 	<?php
 endif;
 ?>
+<?php
+/* Mobile sticky action bar - keeps the primary CTA and quick contact reachable on phones. */
+$sc_bar_tel = sc_setting( 'phone_link' );
+$sc_bar_wa  = sc_whatsapp_url();
+?>
+<div class="sc-mobabar" role="navigation" aria-label="<?php esc_attr_e( 'Quick actions', 'soundcreations' ); ?>">
+	<?php if ( strlen( (string) $sc_bar_tel ) > 0 ) : ?>
+	<a class="sc-mobabar__btn sc-mobabar__btn--call" href="tel:<?php echo esc_attr( $sc_bar_tel ); ?>">
+		<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.6 9.8a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
+		<span><?php esc_html_e( 'Call', 'soundcreations' ); ?></span>
+	</a>
+	<?php endif; ?>
+	<?php if ( strlen( $sc_bar_wa ) > 0 ) : ?>
+	<a class="sc-mobabar__btn sc-mobabar__btn--wa" href="<?php echo esc_url( $sc_bar_wa ); ?>" target="_blank" rel="noopener noreferrer nofollow">
+		<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20z"/></svg>
+		<span><?php esc_html_e( 'WhatsApp', 'soundcreations' ); ?></span>
+	</a>
+	<?php endif; ?>
+	<a class="sc-mobabar__btn sc-mobabar__btn--cta" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>">
+		<span><?php esc_html_e( 'Get a Consultation', 'soundcreations' ); ?></span>
+		<span aria-hidden="true">&rarr;</span>
+	</a>
+</div>
 <?php wp_footer(); ?>
 </body>
 </html>
