@@ -145,7 +145,7 @@ function sc_seo_jsonld() {
 	if ( $email ) {
 		$org['email'] = $email;
 	}
-	$org['areaServed'] = array( 'Kenya', 'Rwanda', 'DR Congo', 'United Arab Emirates', 'East Africa' );
+	$org['areaServed'] = array( 'Kenya', 'Rwanda', 'DRC Congo', 'United Arab Emirates', 'East Africa' );
 	$org['knowsAbout'] = array(
 		'professional audio', 'sound reinforcement', 'PA systems', 'loudspeaker system design',
 		'audio-visual integration', 'acoustics', 'conferencing systems', 'stage lighting',

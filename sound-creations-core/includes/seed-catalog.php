@@ -143,7 +143,7 @@ function sc_core_seed_catalog() {
 		array( 'nairobi-chapel', 'Nairobi Chapel', 'Nairobi Chapel', 'Nairobi, Kenya', 'Houses of Worship', 'Worship', 'Worship', 'Professional Audio', 'chapel', 'High-performance audio solution delivering clarity and impact for modern worship.', 50 ),
 		array( 'hotel-audio-solution', 'Hotel Audio Solution', 'Hotel Audio Solution', 'Dubai, UAE', 'Hospitality', 'Hospitality', 'Hospitality', 'Professional Audio', 'hotel', 'Distributed audio system for guest areas, restaurants and conference facilities.', 60 ),
 		array( 'corporate-boardroom', 'Corporate Boardroom', 'Corporate Boardroom', 'Kigali, Rwanda', 'Corporate & Offices', 'Corporate', 'Corporate', 'System Integration', 'boardroom', 'Integrated AV solution for executive meetings and hybrid collaboration.', 70 ),
-		array( 'live-event-production', 'Live Event Production', 'Live Event Production', 'DR Congo', 'Entertainment', 'Entertainment', 'Entertainment', 'Live Events', 'performance', 'Full sound reinforcement solution for large-scale live events and concerts.', 80 ),
+		array( 'live-event-production', 'Live Event Production', 'Live Event Production', 'DRC Congo', 'Entertainment', 'Entertainment', 'Entertainment', 'Live Events', 'performance', 'Full sound reinforcement solution for large-scale live events and concerts.', 80 ),
 	);
 	$project_bodies = sc_core_project_bodies();
 	foreach ( $projects as $pr ) {
@@ -289,7 +289,7 @@ HTML;
 	$distribution = <<<'HTML'
 <p>With over 13 years of experience in the local and regional market, we have built deep product specialisation. Over this time we have been certified as the exclusive authorised dealer for a number of leading global brands.</p>
 <p>Our distribution model sets us apart: we offer direct customer sales, retailer sales at friendly resale prices, and manufacturer-to-client sales. Reliable, expert shipping partners ensure goods reach the client in the best possible time and condition.</p>
-<p>Our customer orientation, transparency and efficiency have made us the preferred choice for clients and manufacturers across Kenya, Rwanda, Tanzania, DR Congo and the UAE.</p>
+<p>Our customer orientation, transparency and efficiency have made us the preferred choice for clients and manufacturers across Kenya, Rwanda, Tanzania, DRC Congo and the UAE.</p>
 HTML;
 
 	$integration = <<<'HTML'

@@ -18,7 +18,7 @@ function sc_africa_map_locations() {
 	return array(
 		array( 'id' => 'nairobi', 'name' => 'Nairobi, Kenya', 'role' => 'Head office', 'note' => 'Mpaka Plaza, Mpaka Road, Westlands - our head office and technical base.', 'x' => 62, 'y' => 61, 'map' => true ),
 		array( 'id' => 'kigali', 'name' => 'Kigali, Rwanda', 'role' => 'Branch', 'note' => 'Regional branch serving Rwanda and the wider region.', 'x' => 56, 'y' => 63, 'map' => true ),
-		array( 'id' => 'drc', 'name' => 'DR Congo', 'role' => 'Distribution & projects', 'note' => 'Distribution and professional sound project delivery across the DRC.', 'x' => 46, 'y' => 64, 'map' => true ),
+		array( 'id' => 'drc', 'name' => 'DRC Congo', 'role' => 'Distribution & projects', 'note' => 'Distribution and professional sound project delivery across the DRC.', 'x' => 46, 'y' => 64, 'map' => true ),
 		array( 'id' => 'dubai', 'name' => 'Dubai, UAE', 'role' => 'Middle East hub', 'note' => 'Our UAE base for Middle East sourcing, logistics and distribution.', 'x' => 79, 'y' => 33, 'map' => true ),
 	);
 }

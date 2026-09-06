@@ -181,7 +181,7 @@ if ( $sc_q->have_posts() ) {
 				<span class="sc-stat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.5 4 5.6 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.6-4-9s1.4-6.5 4-9z"/></svg></span>
 				<div class="sc-stat__body">
 					<div class="sc-stat__head sc-stat__head--num">4</div>
-					<div class="sc-stat__sub">Regional Locations<span class="sc-stat__note">Kenya | Rwanda | DR Congo | UAE</span></div>
+					<div class="sc-stat__sub">Regional Locations<span class="sc-stat__note">Kenya | Rwanda | DRC Congo | UAE</span></div>
 				</div>
 			</div>
 			<div class="sc-stat">

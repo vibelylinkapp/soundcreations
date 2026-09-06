@@ -21,7 +21,7 @@ function sc_core_starter_pages() {
 <li>Registered office: Mpaka Plaza, Mpaka Road, Westlands, Nairobi, Kenya</li>
 <li>Email: info@soundcreationsltd.com</li>
 <li>Telephone: +254 715 754 758</li>
-<li>Regional offices: Nairobi (Kenya), Kigali (Rwanda), Kinshasa (DR Congo), Dubai (UAE)</li>
+<li>Regional offices: Nairobi (Kenya), Kigali (Rwanda), Kinshasa (DRC Congo), Dubai (UAE)</li>
 </ul>
 <p>For any questions about this policy or your personal data, contact us using the details above, marked for the attention of the Data Protection Officer.</p>
 <h2>2. The personal data we collect</h2>
@@ -53,14 +53,14 @@ function sc_core_starter_pages() {
 <h2>6. Sharing your data</h2>
 <p>We may share your personal data with:</p>
 <ul>
-<li>Group offices and staff in Kenya, Rwanda, DR Congo and the UAE who need it to serve you.</li>
+<li>Group offices and staff in Kenya, Rwanda, DRC Congo and the UAE who need it to serve you.</li>
 <li>Suppliers, manufacturers and service providers who help us deliver products, installation, logistics, IT and support services.</li>
 <li>Professional advisers, auditors and insurers.</li>
 <li>Public authorities and regulators where required by law.</li>
 </ul>
 <p>We do not sell your personal data.</p>
 <h2>7. International transfers</h2>
-<p>As a business operating across Kenya, Rwanda, DR Congo and the UAE, your data may be transferred to and processed in countries other than your own. Where we transfer personal data across borders, we take steps to ensure it is protected by appropriate safeguards and in accordance with applicable data protection law.</p>
+<p>As a business operating across Kenya, Rwanda, DRC Congo and the UAE, your data may be transferred to and processed in countries other than your own. Where we transfer personal data across borders, we take steps to ensure it is protected by appropriate safeguards and in accordance with applicable data protection law.</p>
 <h2>8. Data retention</h2>
 <p>We keep personal data only for as long as necessary for the purposes for which it was collected, including to satisfy legal, accounting, warranty or reporting requirements. When data is no longer needed, we securely delete or anonymise it.</p>
 <h2>9. Cookies</h2>
@@ -84,7 +84,7 @@ HTML;
 <p><em>Last updated: 6 September 2026</em></p>
 <p>These Terms and Conditions ("Terms") govern your use of the website at soundcreationsltd.com (the "Website") and the sale and supply of products and services by Sound Creations Ltd ("Sound Creations", "we", "us" or "our"). By using our Website or engaging our products or services, you agree to these Terms.</p>
 <h2>1. About us</h2>
-<p>Sound Creations Ltd provides professional audio, visual, lighting and acoustic solutions, with its registered office at Mpaka Plaza, Mpaka Road, Westlands, Nairobi, Kenya, and regional offices in Kigali (Rwanda), Kinshasa (DR Congo) and Dubai (UAE). Contact: info@soundcreationsltd.com, +254 715 754 758.</p>
+<p>Sound Creations Ltd provides professional audio, visual, lighting and acoustic solutions, with its registered office at Mpaka Plaza, Mpaka Road, Westlands, Nairobi, Kenya, and regional offices in Kigali (Rwanda), Kinshasa (DRC Congo) and Dubai (UAE). Contact: info@soundcreationsltd.com, +254 715 754 758.</p>
 <h2>2. Use of the Website</h2>
 <ul>
 <li>The Website and its content are provided for general information about our products and services.</li>

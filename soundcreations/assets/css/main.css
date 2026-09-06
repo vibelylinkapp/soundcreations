@@ -1491,7 +1491,12 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 
 
 /* ===== Homepage tuning (2026-09-06 pm): hero fit, CTA height, footer clearance ===== */
-.sc-hero--video .sc-hero__title{font-size:clamp(2.6rem, 1rem + 5.2vw, 4.7rem);line-height:1.0;letter-spacing:-.035em;max-width:800px}
+.sc-hero--video{height:auto;max-height:none}
+.sc-hero--video .sc-hero__title{font-size:clamp(2.3rem, 1.2rem + 3.5vw, 3.9rem);line-height:1.06;letter-spacing:-.03em;max-width:820px}
 .home .sc-cta-band--photo{padding-block:clamp(1rem, .7rem + 1vw, 1.7rem)}
 .home .sc-cta-band__inner h2{margin:0 0 .5rem}
 @media (min-width:783px){.sc-footer{padding-bottom:5rem}}
+
+/* Site-wide font uniformity: force the homepage font (Inter) on builder / WooCommerce / block-content contexts */
+.elementor-widget-container,.elementor-heading-title,.elementor-button,.elementor-widget-text-editor,.woocommerce,.woocommerce-page,.woocommerce p,.woocommerce span,.woocommerce a,.woocommerce li,.woocommerce button,.woocommerce input,.entry-content,.wp-block-post-content{font-family:var(--sc-font-body)}
+.elementor h1,.elementor h2,.elementor h3,.elementor h4,.entry-content h1,.entry-content h2,.entry-content h3,.entry-content h4,.woocommerce h1,.woocommerce h2,.woocommerce h3{font-family:var(--sc-font-display)}

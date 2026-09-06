@@ -1,8 +1,10 @@
 <?php
 /**
  * Solutions landing page (renders at /solutions/, the sc_solution archive).
- * Hero, section headings, sectors, support callout and About cards are all
- * editable in Sound Creations -> Settings (Solutions page content).
+ * The Our Solutions and Featured Projects sections mirror the homepage:
+ * the same solution cards (shared home_sol*_img settings) and the same
+ * live sc_project carousel. Hero, pills and CTA band remain editable in
+ * Sound Creations -> Settings (Solutions page content).
  *
  * @package SoundCreations
  */
@@ -12,7 +14,6 @@ if ( defined( 'ABSPATH' ) === false ) {
 }
 get_header();
 
-$sc_img       = SC_THEME_URI . '/assets/img/solutions/';
 $sc_sol_hero  = SC_THEME_URI . '/assets/img/solutions-hero.jpg';
 $sc_cta_photo = SC_THEME_URI . '/assets/img/cta-building.jpg';
 
@@ -20,19 +21,6 @@ $sc_pills = array(
 	array( 'End-to-end expertise', 'From concept to commissioning and beyond.', '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>' ),
 	array( 'World-class technology', 'The best brands, engineered for your environment.', '<circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>' ),
 	array( 'Long-term partnership', 'Reliable support that keeps you performing.', '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>' ),
-);
-
-$sc_solutions = array(
-	array( 'Consultation', 'Site assessment, system design and specification - we measure, model and plan the right solution before any equipment goes in.', 'consultation.jpg', '/service/consultancy/', '<path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h4v4l5-4h7a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/><path d="M12 6.7a3 3 0 0 0-1.8 5.4c.35.27.55.7.55 1.15h2.5c0-.45.2-.88.55-1.15A3 3 0 0 0 12 6.7z"/><path d="M10.9 14.4h2.2"/>' ),
-	array( 'Acoustics', 'Acoustic design, measurement, analysis, treatment and noise control for clear, intelligible sound in every space.', 'acoustics.jpg', '/solutions/acoustics/', '<path d="M2 12h3l2-6 3 13 3-16 2 9h4"/>' ),
-	array( 'Live Sound &amp; Installation', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', 'installation.jpg', '/solutions/installation/', '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>' ),
-);
-
-$sc_projects = array(
-	array( 'Worship Centre', 'Nairobi, Kenya', 'worship.jpg' ),
-	array( 'Conference Centre', 'Dubai, UAE', 'conference.jpg' ),
-	array( 'Corporate Boardroom', 'Kigali, Rwanda', 'boardroom.jpg' ),
-	array( 'Performing Arts Theatre', 'DR Congo', 'performance.jpg' ),
 );
 ?>
 
@@ -55,22 +43,34 @@ $sc_projects = array(
 
 <section class="sc-section">
 	<div class="sc-container">
-		<p class="sc-eyebrow"><?php esc_html_e( 'Our Solutions', 'soundcreations' ); ?></p>
-		<h2 style="margin:.4rem 0 1.75rem;"><?php echo esc_html( sc_setting( 'sol_solutions_title', 'Complete technology solutions for every environment.' ) ); ?></h2>
-		<div class="sc-scard-grid">
-			<?php foreach ( $sc_solutions as $s ) : ?>
-				<a class="sc-scard" href="<?php echo esc_url( home_url( $s[3] ) ); ?>">
-					<span class="sc-scard__media">
-						<span class="sc-scard__frame"><img src="<?php echo esc_url( $sc_img . $s[2] ); ?>" alt="<?php echo esc_attr( wp_strip_all_tags( $s[0] ) ); ?>" loading="lazy"></span>
-						<span class="sc-scard__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $s[4]; ?></svg></span>
+		<div class="sc-sechead">
+			<div>
+				<p class="sc-eyebrow"><?php esc_html_e( 'Our Solutions', 'soundcreations' ); ?></p>
+				<h2><?php echo esc_html( sc_setting( 'sol_solutions_title', 'Complete technology solutions for every environment.' ) ); ?></h2>
+			</div>
+			<p class="sc-sechead__intro">From houses of worship and corporate spaces to live events and hospitality venues, we deliver tailored audio, visual, lighting and acoustic solutions.</p>
+		</div>
+		<div class="sc-solgrid">
+			<?php
+			$sc_sols = array(
+				array( 'solution-professional-audio.jpg', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img' ),
+				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img' ),
+				array( 'solution-av-integration.jpg', 'Audio Visual & Integration', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', '/solutions/installation/', 'home_sol3_img' ),
+			);
+			foreach ( $sc_sols as $sc_so ) :
+				$sc_scimg = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );
+				?>
+				<a class="sc-solcard" href="<?php echo esc_url( home_url( $sc_so[3] ) ); ?>">
+					<span class="sc-solcard__img"><img src="<?php echo esc_url( $sc_scimg ); ?>" alt="<?php echo esc_attr( $sc_so[1] ); ?>" loading="lazy" decoding="async" width="640" height="440"></span>
+					<span class="sc-solcard__body">
+						<h3><?php echo esc_html( $sc_so[1] ); ?></h3>
+						<p><?php echo esc_html( $sc_so[2] ); ?></p>
+						<span class="sc-solcard__more"><?php esc_html_e( 'Explore solution', 'soundcreations' ); ?> &rarr;</span>
 					</span>
-					<div class="sc-scard__body">
-						<h3><?php echo wp_kses_post( $s[0] ); ?></h3>
-						<p><?php echo esc_html( $s[1] ); ?></p>
-						<span class="sc-scard__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-					</div>
 				</a>
-			<?php endforeach; ?>
+				<?php
+			endforeach;
+			?>
 		</div>
 	</div>
 </section>
@@ -87,9 +87,37 @@ $sc_projects = array(
 		<div class="sc-carousel" data-sc-carousel>
 			<button class="sc-carousel__btn sc-carousel__btn--prev" type="button" data-sc-prev aria-label="Previous">&lsaquo;</button>
 			<div class="sc-carousel__track">
-				<?php foreach ( $sc_projects as $pr ) : ?>
-					<a class="sc-project" href="<?php echo esc_url( home_url( '/projects/' ) ); ?>"><span class="sc-project__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/projects/' . $pr[2] ); ?>" alt="<?php echo esc_attr( $pr[0] ); ?>" loading="lazy"></span><h3 class="sc-project__title"><?php echo esc_html( $pr[0] ); ?></h3><p class="sc-project__loc"><?php echo esc_html( $pr[1] ); ?></p></a>
-				<?php endforeach; ?>
+				<?php
+				$sc_pq = new WP_Query(
+					array(
+						'post_type'      => 'sc_project',
+						'post_status'    => 'publish',
+						'posts_per_page' => 8,
+						'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+						'no_found_rows'  => true,
+					)
+				);
+				if ( $sc_pq->have_posts() ) :
+					while ( $sc_pq->have_posts() ) :
+						$sc_pq->the_post();
+						$pid  = get_the_ID();
+						$imgk = (string) get_post_meta( $pid, '_sc_image', true );
+						$rel  = 'assets/img/projects/' . $imgk . '.jpg';
+						$img  = ( strlen( $imgk ) > 0 && file_exists( get_theme_file_path( $rel ) ) ) ? get_theme_file_uri( $rel ) : ( SC_THEME_URI . '/assets/img/projects/boardroom.jpg' );
+						$loc  = (string) get_post_meta( $pid, '_sc_location', true );
+						?>
+						<a class="sc-project" href="<?php the_permalink(); ?>"><span class="sc-project__media"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async" width="400" height="250"></span><h3 class="sc-project__title"><?php echo esc_html( get_the_title() ); ?></h3><?php if ( strlen( $loc ) > 0 ) : ?><p class="sc-project__loc"><?php echo esc_html( $loc ); ?></p><?php endif; ?></a>
+						<?php
+					endwhile;
+					wp_reset_postdata();
+				else :
+					?>
+					<a class="sc-project" href="<?php echo esc_url( home_url( '/projects/' ) ); ?>"><span class="sc-project__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/projects/boardroom.jpg' ); ?>" alt="Corporate Boardroom" loading="lazy" decoding="async" width="400" height="250"></span><h3 class="sc-project__title">Corporate Boardroom</h3><p class="sc-project__loc">Nairobi, Kenya</p></a>
+					<a class="sc-project" href="<?php echo esc_url( home_url( '/projects/' ) ); ?>"><span class="sc-project__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/projects/worship.jpg' ); ?>" alt="House of Worship" loading="lazy" decoding="async" width="400" height="250"></span><h3 class="sc-project__title">House of Worship</h3><p class="sc-project__loc">Kigali, Rwanda</p></a>
+					<a class="sc-project" href="<?php echo esc_url( home_url( '/projects/' ) ); ?>"><span class="sc-project__media"><img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/projects/conference.jpg' ); ?>" alt="Conference Centre" loading="lazy" decoding="async" width="400" height="250"></span><h3 class="sc-project__title">Conference Centre</h3><p class="sc-project__loc">Dubai, UAE</p></a>
+					<?php
+				endif;
+				?>
 			</div>
 			<button class="sc-carousel__btn sc-carousel__btn--next" type="button" data-sc-next aria-label="Next">&rsaquo;</button>
 		</div>
