@@ -1235,3 +1235,57 @@ img { max-width: 100%; height: auto; display: block; }
 .sc-footer__legal a:hover { color: #ffffff; }
 @media (max-width: 900px) { .sc-footer__grid { grid-template-columns: 1fr 1fr; gap: 2.1rem; } }
 @media (max-width: 560px) { .sc-footer__grid { grid-template-columns: 1fr; } .sc-footer__bottom { justify-content: flex-start; } }
+
+/* ===== Design system v2 - engineering premium (Phase 1) - overrides earlier primitives ===== */
+
+/* Type: stronger, tighter, more authoritative hierarchy */
+h1, h2, h3, h4 { font-weight: 700; letter-spacing: -.02em; }
+h1 { font-size: clamp(2.6rem, 1.5rem + 4.8vw, 4.75rem); line-height: 1.03; }
+h2 { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.15rem); line-height: 1.08; letter-spacing: -.015em; }
+h3 { font-size: 1.4rem; line-height: 1.2; letter-spacing: -.01em; }
+.sc-lead { font-size: clamp(1.08rem, 1rem + .55vw, 1.35rem); line-height: 1.62; color: var(--sc-muted); max-width: 54ch; }
+
+/* Eyebrow: a deliberate red engineering tick before the label */
+.sc-eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-size: .74rem; letter-spacing: .22em; margin-bottom: 1.1rem; }
+.sc-eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--sc-red); border-radius: 2px; flex: none; }
+
+/* Premium vertical rhythm + anchor offset under the sticky header */
+.sc-section { padding-block: clamp(3.25rem, 2.25rem + 4.2vw, 6.5rem); }
+:target { scroll-margin-top: 96px; }
+
+/* Buttons: one clear primary action (Request a Consultation), quiet secondary */
+.sc-btn { padding: .95rem 1.7rem; font-size: .98rem; min-height: 48px; }
+.sc-btn--primary { background: var(--sc-red); color: #fff; box-shadow: 0 6px 20px rgba(225,29,42,.26); }
+.sc-btn--primary:hover { background: #c2121f; color: #fff; box-shadow: 0 12px 30px rgba(225,29,42,.42); transform: translateY(-2px); }
+.sc-btn--ghost { background: transparent; border-color: var(--sc-border); color: var(--sc-text); box-shadow: none; }
+.sc-btn--ghost:hover { border-color: var(--sc-text); color: var(--sc-text); background: transparent; transform: translateY(-1px); }
+
+/* Cards: intentional (softer) red on hover, subtle depth, cinematic media */
+.sc-card { border-radius: 16px; }
+.sc-card:hover { transform: translateY(-4px); border-color: rgba(225,29,42,.45); box-shadow: var(--sc-shadow); }
+.sc-svc-card:hover { border-color: rgba(225,29,42,.45); transform: translateY(-3px); box-shadow: var(--sc-shadow); }
+.sc-card__media img { aspect-ratio: 16 / 10; }
+.sc-project__media { overflow: hidden; }
+.sc-project__media img { transition: transform .55s var(--sc-ease); }
+.sc-project:hover .sc-project__media img { transform: scale(1.06); }
+
+/* Larger, more cinematic hero headline */
+.sc-hero--video .sc-hero__title { font-size: clamp(2.4rem, 1.3rem + 4.6vw, 4.5rem); line-height: 1.02; }
+
+/* Mobile-first: full-width primary CTAs, easy to reach */
+@media (max-width: 640px) {
+  .sc-hero__cta { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .sc-hero__cta .sc-btn, .sc-cta-band .sc-btn { width: 100%; justify-content: center; }
+}
+
+/* ===== What we do - two-column header + premium card rhythm (Phase 1) ===== */
+.sc-whatwedo__head { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(1.5rem, 1rem + 3vw, 4rem); align-items: end; margin-bottom: clamp(2.5rem, 1.8rem + 2.5vw, 4rem); }
+.sc-whatwedo__intro h2 { margin: 0; max-width: 20ch; }
+.sc-whatwedo__lead { margin: 0 0 .35rem; max-width: 48ch; }
+.sc-svcs { margin-top: 0; gap: clamp(1rem, .6rem + 1vw, 1.6rem); }
+.sc-svc { padding: 2rem 1.75rem; }
+.sc-svc__icon { margin-bottom: 1.3rem; }
+@media (max-width: 860px) {
+  .sc-whatwedo__head { grid-template-columns: 1fr; gap: 1rem; align-items: start; margin-bottom: 2rem; }
+  .sc-whatwedo__intro h2 { max-width: 100%; }
+}
