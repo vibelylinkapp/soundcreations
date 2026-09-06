@@ -1530,3 +1530,24 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, transparent 60%, var(--sc-bg) 100%);
 }
+
+
+/* ===== 2026-09-07 UI batch: partners touch, about hero polish, contact spacing ===== */
+
+/* Partners marquee: allow vertical page scroll when a finger is on the logos, and
+   do not leave the marquee permanently paused after a tap (mobile hover sticks). */
+.sc-partners { touch-action: pan-y; }
+@media (hover: none) {
+  .sc-partners:hover .sc-partners__track { animation-play-state: running; }
+}
+
+/* About hero: a more polished, professional top section (framed, richer photo). */
+.sc-about-hero__media { position: relative; overflow: hidden; border: 1px solid var(--sc-border); box-shadow: 0 22px 55px -26px rgba(0,0,0,.6); }
+.sc-about-hero__media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,0) 52%); }
+.sc-about-hero .sc-journey__lead { font-size: 1.12rem; }
+
+/* Contact page: a later base .sc-section rule was overriding the --tight/--compact
+   modifiers and reintroducing large top/bottom padding. Pin the contact hero + main
+   sections so the heading, lead and the two columns sit closer together. */
+.sc-contactpage-hero.sc-section { padding-block: clamp(1.25rem, 1rem + 1.5vw, 2rem) clamp(.5rem, .3rem + .6vw, 1rem); }
+.sc-contactpage-main.sc-section { padding-block: clamp(.25rem, .2rem + .4vw, .6rem) clamp(1.75rem, 1.2rem + 2vw, 3rem); }
