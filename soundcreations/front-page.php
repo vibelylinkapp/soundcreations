@@ -146,15 +146,39 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 		</div>
 		<div class="sc-solgrid">
 			<?php
+			// Live links to the /solutions/{slug}/ pages, matched by title keyword
+			// (fixes the AV card, whose legacy /solutions/installation/ URL 404s).
+			$sc_solution_links = array();
+			$sc_sol_q = new WP_Query( array( 'post_type' => 'sc_solution', 'post_status' => 'publish', 'posts_per_page' => -1, 'no_found_rows' => true ) );
+			if ( $sc_sol_q->have_posts() ) {
+				while ( $sc_sol_q->have_posts() ) {
+					$sc_sol_q->the_post();
+					$sc_solution_links[] = array( 't' => strtolower( get_the_title() ), 'u' => get_permalink() );
+				}
+				wp_reset_postdata();
+			}
 			$sc_sols = array(
-				array( 'solution-professional-audio.jpg', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img' ),
-				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img' ),
-				array( 'solution-av-integration.jpg', 'Audio Visual & Integration', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', '/solutions/installation/', 'home_sol3_img' ),
+				array( 'solution-professional-audio.jpg', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img', array( 'professional audio', 'audio' ) ),
+				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img', array( 'acoustic' ) ),
+				array( 'solution-av-integration.jpg', 'Audio Visual & Integration', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation', 'visual' ) ),
 			);
 			foreach ( $sc_sols as $sc_so ) :
-				$sc_img = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );
+				$sc_img  = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );
+				$sc_href = home_url( $sc_so[3] );
+				foreach ( $sc_solution_links as $sc_l ) {
+					$sc_hit = false;
+					foreach ( $sc_so[5] as $sc_nd ) {
+						if ( is_int( strpos( $sc_l['t'], $sc_nd ) ) ) {
+							$sc_hit = true;
+						}
+					}
+					if ( $sc_hit === true ) {
+						$sc_href = $sc_l['u'];
+						break;
+					}
+				}
 				?>
-				<a class="sc-solcard" href="<?php echo esc_url( home_url( $sc_so[3] ) ); ?>">
+				<a class="sc-solcard" href="<?php echo esc_url( $sc_href ); ?>">
 					<span class="sc-solcard__img"><img src="<?php echo esc_url( $sc_img ); ?>" alt="<?php echo esc_attr( $sc_so[1] ); ?>" loading="lazy" decoding="async" width="640" height="440"></span>
 					<span class="sc-solcard__body">
 						<h3><?php echo esc_html( $sc_so[1] ); ?></h3>

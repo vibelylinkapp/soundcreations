@@ -1615,3 +1615,14 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 @media (max-width: 520px) {
   .sc-svc-reach__regions { grid-template-columns: 1fr; }
 }
+
+
+/* Solution single: sidebar inclusions / outcome / applications */
+.sc-svc-sidecard__includes { margin-bottom: .4rem; }
+.sc-svc-sidecard__includes .sc-ticklist { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.sc-svc-sidecard__includes .sc-ticklist li { position: relative; padding-left: 1.5rem; font-size: .9rem; line-height: 1.45; color: var(--sc-muted); }
+.sc-svc-sidecard__includes .sc-ticklist li::before { content: ""; position: absolute; left: 0; top: .35em; width: 11px; height: 6px; border-left: 2px solid var(--sc-red); border-bottom: 2px solid var(--sc-red); transform: rotate(-45deg); }
+.sc-svc-fact { border-top: 1px solid var(--sc-border); padding-top: 1rem; margin-top: 1rem; }
+.sc-svc-fact__k { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; color: var(--sc-muted); margin-bottom: .35rem; }
+.sc-svc-fact__v { color: var(--sc-text); font-size: .95rem; line-height: 1.5; }
+.sc-svc-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
