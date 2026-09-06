@@ -120,6 +120,28 @@ $sc_email   = sc_setting( 'email' );
 	</div>
 </footer>
 
+<?php
+/* Floating WhatsApp chat button. Number + greeting are set in Sound Creations -> Settings. */
+$sc_wa = sc_whatsapp_url();
+if ( strlen( $sc_wa ) > 0 ) :
+	$sc_wa_msg  = sc_setting( 'whatsapp_prefill', 'Hello Sound Creations, I would like to enquire about your services.' );
+	$sc_wa_href = esc_url( $sc_wa . '?text=' . rawurlencode( $sc_wa_msg ) );
+	?>
+	<a class="sc-wa-float" href="<?php echo $sc_wa_href; ?>" target="_blank" rel="noopener noreferrer nofollow" aria-label="<?php esc_attr_e( 'Chat with us on WhatsApp', 'soundcreations' ); ?>">
+		<svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.5-1.3-.7-1.8-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8s1.9 3 4.7 4.2c1.7.7 2.4.8 3.2.7.5-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1z"/></svg>
+		<span class="sc-wa-float__label"><?php esc_html_e( 'Chat with us', 'soundcreations' ); ?></span>
+	</a>
+	<style>
+	.sc-wa-float{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:.55rem;background:#25D366;color:#fff;padding:12px 18px 12px 14px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.28);text-decoration:none;font-weight:700;font-size:14px;line-height:1;transition:transform .18s ease,box-shadow .18s ease}
+	.sc-wa-float:hover,.sc-wa-float:focus-visible{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.34);color:#fff}
+	.sc-wa-float svg{flex:0 0 auto}
+	.sc-wa-float__label{white-space:nowrap}
+	@media (max-width:600px){.sc-wa-float{right:14px;bottom:14px;padding:12px}.sc-wa-float__label{display:none}}
+	@media (prefers-reduced-motion:reduce){.sc-wa-float{transition:none}}
+	</style>
+	<?php
+endif;
+?>
 <?php wp_footer(); ?>
 </body>
 </html>

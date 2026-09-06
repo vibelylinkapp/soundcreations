@@ -115,3 +115,8 @@ add_filter(
 		return __( 'Invalid login details. Please try again.', 'soundcreations' );
 	}
 );
+
+/* 9. Disable the built-in wp-admin theme/plugin file editor (post-compromise pivot). */
+if ( defined( 'DISALLOW_FILE_EDIT' ) === false ) {
+	define( 'DISALLOW_FILE_EDIT', true );
+}

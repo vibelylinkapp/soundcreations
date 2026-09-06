@@ -69,3 +69,12 @@ add_action(
 	},
 	2
 );
+
+/* Performance: defer the two front-end scripts (they already load in the footer). */
+function sc_defer_scripts( $tag, $handle ) {
+	if ( in_array( $handle, array( 'sc-theme', 'sc-map' ), true ) && strpos( $tag, ' defer' ) === false ) {
+		$tag = str_replace( ' src=', ' defer src=', $tag );
+	}
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'sc_defer_scripts', 10, 2 );

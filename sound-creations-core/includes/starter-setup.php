@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function sc_core_starter_pages() {
 	$privacy = <<<'HTML'
-<p><em>Last updated: [insert date]</em></p>
+<p><em>Last updated: 6 September 2026</em></p>
 <p>Sound Creations Ltd ("Sound Creations", "we", "us" or "our") is committed to protecting the privacy and personal data of everyone who visits our website, contacts us, or engages our products and services. This Privacy Policy explains what personal data we collect, how and why we use it, who we share it with, how long we keep it, and the rights available to you.</p>
 <p>This policy is designed to align with the Kenya Data Protection Act, 2019 and the Data Protection (General) Regulations, 2021, and reflects the principles of the EU General Data Protection Regulation (GDPR) where applicable.</p>
 <h2>1. Who we are (Data Controller)</h2>
@@ -81,7 +81,7 @@ function sc_core_starter_pages() {
 HTML;
 
 	$terms = <<<'HTML'
-<p><em>Last updated: [insert date]</em></p>
+<p><em>Last updated: 6 September 2026</em></p>
 <p>These Terms and Conditions ("Terms") govern your use of the website at soundcreationsltd.com (the "Website") and the sale and supply of products and services by Sound Creations Ltd ("Sound Creations", "we", "us" or "our"). By using our Website or engaging our products or services, you agree to these Terms.</p>
 <h2>1. About us</h2>
 <p>Sound Creations Ltd provides professional audio, visual, lighting and acoustic solutions, with its registered office at Mpaka Plaza, Mpaka Road, Westlands, Nairobi, Kenya, and regional offices in Kigali (Rwanda), Kinshasa (DR Congo) and Dubai (UAE). Contact: info@soundcreationsltd.com, +254 715 754 758.</p>
@@ -144,7 +144,7 @@ HTML;
 HTML;
 
 	$warranty = <<<'HTML'
-<p><em>Last updated: [insert date]</em></p>
+<p><em>Last updated: 6 September 2026</em></p>
 <p>This Warranty Policy sets out the warranty that Sound Creations Ltd ("Sound Creations", "we", "us" or "our") provides on products supplied and installation work performed by us. It forms part of our Terms and Conditions.</p>
 <h2>1. Manufacturer warranty</h2>
 <ul>
@@ -154,7 +154,7 @@ HTML;
 </ul>
 <h2>2. Installation and workmanship warranty</h2>
 <ul>
-<li>Where Sound Creations designs, integrates and installs a system, we warrant our installation workmanship for a period of [insert period, e.g. 12 months] from the date of completion or handover, unless a different period is stated in your contract.</li>
+<li>Where Sound Creations designs, integrates and installs a system, we warrant our installation workmanship for a period of 12 months from the date of completion or handover, unless a different period is stated in your contract.</li>
 <li>This covers defects arising from our installation work. It does not cover the products themselves, which are covered by the manufacturer warranty above.</li>
 </ul>
 <h2>3. What is covered</h2>
@@ -200,14 +200,14 @@ HTML;
 HTML;
 
 	return array(
-		array( 'About', 'about', 'Sound Creations is a professional audio, acoustics, distribution and integration company serving East Africa from Nairobi. [CONTENT TO BE CONFIRMED]' ),
-		array( 'FANE', 'fane', 'FANE professional loudspeaker components. Sound Creations is developing the FANE dealer ecosystem across East Africa. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Distribution and Dealership', 'distribution', 'Sound Creations is a regional distribution and market-development partner. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Support', 'support', 'Technical support, product training and after-sales service. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Contact', 'contact', 'Talk to our technical team about your project. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Request a Consultation', 'request-a-consultation', 'Tell us about your space and application and our technical team will help you specify the right system. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Become a Dealer', 'become-a-dealer', 'Partner with Sound Creations across East Africa. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Request a Quote', 'request-a-quote', 'Request pricing and availability from a specialist. [CONTENT TO BE CONFIRMED]' ),
+		array( 'About', 'about', 'Sound Creations is a professional audio, acoustics, distribution and integration company serving East Africa from Nairobi.' ),
+		array( 'FANE', 'fane', 'FANE professional loudspeaker components. Sound Creations is developing the FANE dealer ecosystem across East Africa.' ),
+		array( 'Distribution and Dealership', 'distribution', 'Sound Creations is a regional distribution and market-development partner.' ),
+		array( 'Support', 'support', 'Technical support, product training and after-sales service.' ),
+		array( 'Contact', 'contact', 'Talk to our technical team about your project.' ),
+		array( 'Request a Consultation', 'request-a-consultation', 'Tell us about your space and application and our technical team will help you specify the right system.' ),
+		array( 'Become a Dealer', 'become-a-dealer', 'Partner with Sound Creations across East Africa.' ),
+		array( 'Request a Quote', 'request-a-quote', 'Request pricing and availability from a specialist.' ),
 		array( 'Privacy Policy', 'privacy-policy', $privacy ),
 		array( 'Terms and Conditions', 'terms', $terms ),
 		array( 'Warranty', 'warranty', $warranty ),
@@ -217,16 +217,16 @@ HTML;
 
 function sc_core_starter_solutions() {
 	return array(
-		array( 'Professional Audio', 'professional-audio', 'Loudspeaker systems, subwoofers, amplification, DSP, mixing, microphones and wireless - designed, supplied and tuned. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Acoustics', 'acoustics', 'Acoustics as an engineering discipline: measure, analyze, design, treat and verify. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Conferencing', 'conferencing', 'Boardrooms, hybrid meetings and collaboration spaces engineered for clarity and reliability. [CONTENT TO BE CONFIRMED]' ),
-		array( 'System Integration', 'system-integration', 'Supply, installation, commissioning, calibration and project management under one technical team. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Lighting', 'lighting', 'Stage, architectural, entertainment and lighting-control systems - designed, supplied, installed and programmed. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Video and Displays', 'video-displays', 'LED video walls, professional displays, projection and digital signage for live, corporate and commercial spaces. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Broadcast and Recording', 'broadcast-recording', 'Broadcast audio, recording and studio systems - specified, integrated and commissioned to professional standards. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Consultation and Design', 'consultation-design', 'Technical consultation, site assessment, system design and specification. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Installation', 'installation', 'Professional installation and commissioning by our technical team. [CONTENT TO BE CONFIRMED]' ),
-		array( 'Support and Training', 'support-training', 'Technical support, product training and after-sales service. [CONTENT TO BE CONFIRMED]' ),
+		array( 'Professional Audio', 'professional-audio', 'Loudspeaker systems, subwoofers, amplification, DSP, mixing, microphones and wireless - designed, supplied and tuned.' ),
+		array( 'Acoustics', 'acoustics', 'Acoustics as an engineering discipline: measure, analyze, design, treat and verify.' ),
+		array( 'Conferencing', 'conferencing', 'Boardrooms, hybrid meetings and collaboration spaces engineered for clarity and reliability.' ),
+		array( 'System Integration', 'system-integration', 'Supply, installation, commissioning, calibration and project management under one technical team.' ),
+		array( 'Lighting', 'lighting', 'Stage, architectural, entertainment and lighting-control systems - designed, supplied, installed and programmed.' ),
+		array( 'Video and Displays', 'video-displays', 'LED video walls, professional displays, projection and digital signage for live, corporate and commercial spaces.' ),
+		array( 'Broadcast and Recording', 'broadcast-recording', 'Broadcast audio, recording and studio systems - specified, integrated and commissioned to professional standards.' ),
+		array( 'Consultation and Design', 'consultation-design', 'Technical consultation, site assessment, system design and specification.' ),
+		array( 'Installation', 'installation', 'Professional installation and commissioning by our technical team.' ),
+		array( 'Support and Training', 'support-training', 'Technical support, product training and after-sales service.' ),
 	);
 }
 
@@ -466,18 +466,18 @@ function sc_core_ensure_core_pages() {
  * and any page whose canonical copy is itself still a placeholder is skipped.
  */
 function sc_core_backfill_legal_pages() {
-	$legal = array( 'privacy-policy', 'terms', 'warranty', 'cookie-policy' );
+	$create_slugs = array( 'privacy-policy', 'terms', 'warranty', 'cookie-policy' );
 	$done  = 0;
 	foreach ( sc_core_starter_pages() as $pg ) {
 		list( $title, $slug, $content ) = $pg;
-		if ( in_array( $slug, $legal, true ) === false ) {
-			continue;
-		}
-		if ( is_int( strpos( $content, '[CONTENT TO BE CONFIRMED' ) ) ) {
+		if ( is_int( strpos( $content, '[CONTENT TO BE CONFIRMED' ) ) || is_int( strpos( $content, '[insert' ) ) ) {
 			continue; // Canonical copy is itself a placeholder - do not publish it.
 		}
 		$existing = get_page_by_path( $slug, OBJECT, 'page' );
 		if ( null === $existing ) {
+			if ( in_array( $slug, $create_slugs, true ) === false ) {
+				continue;
+			}
 			wp_insert_post(
 				array(
 					'post_title'   => $title,
@@ -491,7 +491,7 @@ function sc_core_backfill_legal_pages() {
 			continue;
 		}
 		$cur   = trim( (string) $existing->post_content );
-		$is_ph = is_int( strpos( $cur, '[CONTENT TO BE CONFIRMED' ) );
+		$is_ph = ( is_int( strpos( $cur, '[CONTENT TO BE CONFIRMED' ) ) || is_int( strpos( $cur, '[insert' ) ) );
 		if ( '' === $cur || $is_ph ) {
 			wp_update_post(
 				array(
@@ -508,7 +508,7 @@ function sc_core_backfill_legal_pages() {
 add_action(
 	'admin_init',
 	function () {
-		$ver = 'legal-2026-09-05';
+		$ver = 'legal-2026-09-06';
 		if ( get_option( 'sc_core_legal_ver' ) === $ver ) {
 			return;
 		}

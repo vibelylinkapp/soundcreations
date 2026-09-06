@@ -27,6 +27,7 @@ function sc_core_settings_fields() {
 		'hours_sun'            => array( 'Hours - Sunday', 'text' ),
 		'regions'              => array( 'Regional presence line', 'text' ),
 		'whatsapp'             => array( 'WhatsApp number (digits only, country code, no +)', 'text' ),
+		'whatsapp_prefill'     => array( 'WhatsApp button: pre-filled greeting message', 'text' ),
 		'facebook'             => array( 'Facebook URL', 'text' ),
 		'x'                    => array( 'X (Twitter) URL', 'text' ),
 		'linkedin'             => array( 'LinkedIn URL', 'text' ),

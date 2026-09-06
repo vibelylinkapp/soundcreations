@@ -52,11 +52,11 @@ function sc_default_settings() {
 		'hours_sat'    => 'Sat: 9:00 AM - 1:30 PM',
 		'hours_sun'    => 'Sun: Closed',
 		'regions'      => 'Kenya · Rwanda · DR Congo · UAE',
-		'whatsapp'     => '', // [VERIFY] No verified WhatsApp number was supplied. Blank = button hidden.
+		'whatsapp'     => '254715754758',
 		'facebook'     => 'https://web.facebook.com/soundcreationsKE',
 		'x'            => 'https://x.com/SCL_kenya',
 		'linkedin'     => 'https://www.linkedin.com/company/soundcreationsltd/',
-		'youtube'      => 'https://www.youtube.com/channel/UCw4U1dOOT0fcz13L3Zqw3Cgwe', // [VERIFY] URL looks malformed.
+		'youtube'      => '',
 		'home_hero_cta1_label' => 'Request a Consultation',
 		'home_hero_cta1_url'   => '/request-a-consultation/',
 		'home_hero_cta2_label' => 'Explore Our Solutions',
