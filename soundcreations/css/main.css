@@ -1665,3 +1665,39 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 .sc-acoustics__shot { margin: 0; }
 .sc-acoustics__shot img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--sc-radius); border: 1px solid var(--sc-border); background: #fff; display: block; }
 .sc-acoustics__shot figcaption { margin-top: .5rem; font-size: .78rem; color: var(--sc-muted); text-transform: uppercase; letter-spacing: .06em; }
+
+/* Shared solution-section header (Professional Audio + Integration) */
+.sc-solsec__head { max-width: 66ch; margin-bottom: clamp(1.25rem, 1rem + 1.5vw, 2rem); }
+.sc-solsec__intro { color: var(--sc-muted); font-size: clamp(1rem, .97rem + .3vw, 1.15rem); line-height: 1.7; margin: .6rem 0 0; }
+
+/* Brand / capability chips */
+.sc-chips { list-style: none; margin: .9rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+.sc-chips li { font-family: var(--sc-font-display); font-weight: 600; font-size: .78rem; color: var(--sc-text); background: var(--sc-surface-2); border: 1px solid var(--sc-border); border-radius: 999px; padding: .34rem .72rem; }
+
+/* Professional Audio capability cards */
+.sc-audio-caps { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, .75rem + 1vw, 1.5rem); }
+@media (max-width: 760px) { .sc-audio-caps { grid-template-columns: 1fr; } }
+.sc-audio-cap { background: var(--sc-surface); border: 1px solid var(--sc-border); border-radius: var(--sc-radius-lg); padding: clamp(1.25rem, 1rem + 1vw, 1.75rem); transition: transform .25s var(--sc-ease), border-color .25s; }
+.sc-audio-cap:hover { transform: translateY(-4px); border-color: var(--sc-red); }
+.sc-audio-cap__ico { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; background: rgba(225,29,42,.09); color: var(--sc-red); margin-bottom: .9rem; }
+.sc-audio-cap__ico svg { width: 23px; height: 23px; }
+.sc-audio-cap h3 { margin: 0 0 .4rem; font-family: var(--sc-font-display); font-size: 1.15rem; }
+.sc-audio-cap p { margin: 0 0 .9rem; color: var(--sc-muted); line-height: 1.65; font-size: .95rem; }
+.sc-audio-cap .sc-chips { margin-top: 0; }
+
+/* Integration process steps */
+.sc-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, .75rem + 1vw, 1.5rem); }
+@media (max-width: 900px) { .sc-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .sc-steps { grid-template-columns: 1fr; } }
+.sc-step { background: var(--sc-surface); border: 1px solid var(--sc-border); border-radius: var(--sc-radius-lg); padding: clamp(1.15rem, 1rem + 1vw, 1.6rem); }
+.sc-step__n { display: block; font-family: var(--sc-font-display); font-weight: 700; font-size: 1.35rem; color: var(--sc-red); letter-spacing: .02em; margin-bottom: .5rem; }
+.sc-step h3 { margin: 0 0 .35rem; font-family: var(--sc-font-display); font-size: 1.02rem; }
+.sc-step p { margin: 0; color: var(--sc-muted); line-height: 1.6; font-size: .9rem; }
+
+/* Deployment / recent-work showcase (Professional Audio + Integration) */
+.sc-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, .75rem + 1vw, 1.5rem); margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+@media (max-width: 640px) { .sc-showcase { grid-template-columns: 1fr; } }
+.sc-shot { position: relative; margin: 0; border-radius: var(--sc-radius-lg); overflow: hidden; border: 1px solid var(--sc-border); }
+.sc-shot img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.sc-shot figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.6rem 1.1rem .95rem; background: linear-gradient(to top, rgba(6,8,12,.86), rgba(6,8,12,0)); }
+.sc-shot figcaption span { color: #fff; font-family: var(--sc-font-display); font-weight: 600; font-size: .95rem; }
