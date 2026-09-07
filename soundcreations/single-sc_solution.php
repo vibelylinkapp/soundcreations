@@ -5,6 +5,8 @@
  * Professional, articulated layout that shares the service design system:
  * hero band, narrative prose, tailored capabilities, a sticky sidebar with the
  * inclusions / outcome / applications, related projects, and a closing CTA.
+ * The Acoustics solution swaps the capabilities strip for a dedicated
+ * "Architectural Acoustic Services" section (accordion + video + photos).
  *
  * @package SoundCreations
  */
@@ -39,11 +41,7 @@ while ( have_posts() ) :
 			array( 'Amplification and DSP', 'Power, processing and system tuning for clean, intelligible sound at every seat.' ),
 			array( 'Mixing, microphones and wireless', 'Consoles, microphones and reliable wireless for live and installed sound.' ),
 		),
-		'acoustics'   => array(
-			array( 'Measure and analyse', 'Room acoustics measured and analysed as an engineering discipline, not guesswork.' ),
-			array( 'Design and treat', 'Absorption, diffusion and isolation designed specifically for your space.' ),
-			array( 'Verify', 'We verify the finished room so it performs exactly as it was designed to.' ),
-		),
+		'acoustics'   => array(),
 		'integration' => array(
 			array( 'System design', 'Complete audio, visual and control system design mapped to your site.' ),
 			array( 'Installation and commissioning', 'Professional installation, calibration and commissioning by our technical team.' ),
@@ -117,6 +115,49 @@ while ( have_posts() ) :
 				</aside>
 			</div>
 		</section>
+
+		<?php if ( 'acoustics' === $sc_sk ) : ?>
+			<section class="sc-section sc-section--tight sc-section--surface sc-acoustics">
+				<div class="sc-container">
+					<div class="sc-acoustics__head">
+						<p class="sc-eyebrow"><?php esc_html_e( 'Acoustic expertise', 'soundcreations' ); ?></p>
+						<h2 class="sc-svc-h2"><?php esc_html_e( 'Architectural Acoustic Services', 'soundcreations' ); ?></h2>
+						<p class="sc-acoustics__intro"><?php esc_html_e( 'From first concept to the finished room, we design, measure and treat critical listening spaces so they perform exactly as intended.', 'soundcreations' ); ?></p>
+					</div>
+					<div class="sc-acoustics__grid">
+						<div class="sc-acc">
+							<details class="sc-acc__item" open>
+								<summary class="sc-acc__q"><span><?php esc_html_e( 'Design and Consulting', 'soundcreations' ); ?></span></summary>
+								<div class="sc-acc__a"><p>In partnership with architects and architectural firms, we can provide innovative solutions and procedures towards creating excellence in acoustic and electroacoustic design and installation. We always look forward to participate in the collaborative design process.</p></div>
+							</details>
+							<details class="sc-acc__item">
+								<summary class="sc-acc__q"><span><?php esc_html_e( 'Testing and Measurement', 'soundcreations' ); ?></span></summary>
+								<div class="sc-acc__a"><p>Using advanced acoustic testing and measurement equipment, Sound Creations&rsquo; consultants can evaluate and analyze different spaces to develop acoustic criteria as well as evaluate their achievement with utmost accuracy.</p></div>
+							</details>
+							<details class="sc-acc__item">
+								<summary class="sc-acc__q"><span><?php esc_html_e( 'Surface Treatments', 'soundcreations' ); ?></span></summary>
+								<div class="sc-acc__a"><p>Critical listening spaces such as auditoria, churches, studios, theatres, conference rooms, home theaters and all speech intelligibility sensitive spaces benefit from accurate acoustic design. We provide appropriate surface treatments to enhance the audio experience in these spaces.</p></div>
+							</details>
+						</div>
+						<div class="sc-acoustics__media">
+							<div class="sc-embed">
+								<iframe src="https://www.youtube-nocookie.com/embed/HtZTBWb701I?rel=0" title="<?php esc_attr_e( 'Sound Creations - Architectural Acoustics', 'soundcreations' ); ?>" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							</div>
+							<div class="sc-acoustics__shots">
+								<figure class="sc-acoustics__shot">
+									<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/acoustics-design.jpg' ); ?>" alt="<?php esc_attr_e( 'Acoustic diffuser and panel design model', 'soundcreations' ); ?>" loading="lazy" decoding="async">
+									<figcaption><?php esc_html_e( 'Acoustic design modelling', 'soundcreations' ); ?></figcaption>
+								</figure>
+								<figure class="sc-acoustics__shot">
+									<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/acoustics-measure.jpg' ); ?>" alt="<?php esc_attr_e( 'On-site reverberation time measurement with an acoustic analyser', 'soundcreations' ); ?>" loading="lazy" decoding="async">
+									<figcaption><?php esc_html_e( 'On-site testing and measurement', 'soundcreations' ); ?></figcaption>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		<?php endif; ?>
 
 		<?php
 		$sc_inds    = get_the_terms( get_the_ID(), 'sc_industry' );
