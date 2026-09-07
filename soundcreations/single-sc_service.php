@@ -2,9 +2,9 @@
 /**
  * Single service (Consultancy, Distribution & Dealership, Integration, After-Sale Services).
  *
- * Professional, articulated layout: hero band, narrative prose, a tailored
- * "what we deliver" strip, a sticky sidebar with sibling services + CTA, an
- * optional distribution-footprint section, and a closing call to action.
+ * Professional, articulated layout: split hero (copy + photo), narrative prose,
+ * a tailored "what we deliver" strip, a sticky sidebar with sibling services +
+ * CTA, an optional distribution-footprint section, and a closing call to action.
  *
  * @package SoundCreations
  */
@@ -40,6 +40,18 @@ while ( have_posts() ) :
 		$sc_kind = 'aftersale';
 	}
 
+	// When no featured image / custom field is set, reuse the matching homepage
+	// "What we do" card image so the card and the page hero always match.
+	$sc_kind_imgs = array(
+		'consultancy'  => 'home/service-consultancy.jpg',
+		'distribution' => 'home/service-distribution.jpg',
+		'integration'  => 'home/service-integration.jpg',
+		'aftersale'    => 'home/service-aftersale.jpg',
+	);
+	if ( strlen( $sc_img ) === 0 && isset( $sc_kind_imgs[ $sc_kind ] ) ) {
+		$sc_img = SC_THEME_URI . '/assets/img/' . $sc_kind_imgs[ $sc_kind ];
+	}
+
 	$sc_high = array(
 		'consultancy'  => array(
 			array( 'Design across every discipline', 'Audio, acoustics, lighting and visuals - modelled in EASE and verified with Rational Acoustics SMAART v8.' ),
@@ -68,25 +80,24 @@ while ( have_posts() ) :
 
 	<article class="sc-svc">
 		<header class="sc-svc-hero">
-			<div class="sc-container">
-				<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Services', home_url( '/#services' ) ), array( get_the_title(), '' ) ) ); ?>
-				<p class="sc-eyebrow"><?php esc_html_e( 'Service', 'soundcreations' ); ?></p>
-				<h1 class="sc-svc-hero__title"><?php the_title(); ?></h1>
-				<?php if ( strlen( $sc_summary ) > 0 ) : ?>
-					<p class="sc-svc-hero__lead"><?php echo esc_html( $sc_summary ); ?></p>
-				<?php endif; ?>
-				<div class="sc-svc-hero__actions">
-					<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Request a Consultation', 'soundcreations' ); ?></a>
-					<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( home_url( '/solutions/' ) ); ?>"><?php esc_html_e( 'Explore Solutions', 'soundcreations' ); ?></a>
+			<div class="sc-container sc-svc-hero__grid<?php echo strlen( $sc_img ) === 0 ? ' is-solo' : ''; ?>">
+				<div class="sc-svc-hero__text">
+					<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Services', home_url( '/#services' ) ), array( get_the_title(), '' ) ) ); ?>
+					<p class="sc-eyebrow"><?php esc_html_e( 'Service', 'soundcreations' ); ?></p>
+					<h1 class="sc-svc-hero__title"><?php the_title(); ?></h1>
+					<?php if ( strlen( $sc_summary ) > 0 ) : ?>
+						<p class="sc-svc-hero__lead"><?php echo esc_html( $sc_summary ); ?></p>
+					<?php endif; ?>
+					<div class="sc-svc-hero__actions">
+						<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Request a Consultation', 'soundcreations' ); ?></a>
+						<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( home_url( '/solutions/' ) ); ?>"><?php esc_html_e( 'Explore Solutions', 'soundcreations' ); ?></a>
+					</div>
 				</div>
+				<?php if ( strlen( $sc_img ) > 0 ) : ?>
+					<div class="sc-svc-hero__media" style="background-image:url('<?php echo esc_url( $sc_img ); ?>');" role="img" aria-label="<?php echo esc_attr( get_the_title() ); ?>"></div>
+				<?php endif; ?>
 			</div>
 		</header>
-
-		<?php if ( strlen( $sc_img ) > 0 ) : ?>
-			<div class="sc-container">
-				<div class="sc-svc-figure"><img src="<?php echo esc_url( $sc_img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async"></div>
-			</div>
-		<?php endif; ?>
 
 		<section class="sc-section sc-section--tight">
 			<div class="sc-container sc-svc-body">
