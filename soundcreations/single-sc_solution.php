@@ -59,26 +59,37 @@ while ( have_posts() ) :
 	?>
 
 	<article class="sc-svc">
-		<header class="sc-svc-hero">
-			<div class="sc-container">
-				<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Solutions', get_post_type_archive_link( 'sc_solution' ) ), array( get_the_title(), '' ) ) ); ?>
-				<p class="sc-eyebrow"><?php echo esc_html( $sc_eyebrow ); ?></p>
-				<h1 class="sc-svc-hero__title"><?php the_title(); ?></h1>
-				<?php if ( strlen( $sc_lead ) > 0 ) : ?>
-					<p class="sc-svc-hero__lead"><?php echo esc_html( $sc_lead ); ?></p>
-				<?php endif; ?>
-				<div class="sc-svc-hero__actions">
-					<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Request a Consultation', 'soundcreations' ); ?></a>
-					<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( get_post_type_archive_link( 'sc_solution' ) ); ?>"><?php esc_html_e( 'All Solutions', 'soundcreations' ); ?></a>
+		<?php
+			$sc_hero_img = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'large' ) : '';
+			if ( '' === (string) $sc_hero_img ) {
+				$sc_heromap = array(
+					'integration' => '/assets/img/solutions/installation.jpg',
+					'audio'       => '/assets/img/solutions/audio.jpg',
+					'acoustics'   => '/assets/img/solutions/acoustics.jpg',
+					'general'     => '/assets/img/solutions-hero.jpg',
+				);
+				$sc_hero_img = SC_THEME_URI . ( isset( $sc_heromap[ $sc_sk ] ) ? $sc_heromap[ $sc_sk ] : $sc_heromap[ 'general' ] );
+			}
+			?>
+			<header class="sc-svc-hero">
+				<div class="sc-container">
+					<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Solutions', get_post_type_archive_link( 'sc_solution' ) ), array( get_the_title(), '' ) ) ); ?>
+					<div class="sc-svc-hero__grid">
+						<div class="sc-svc-hero__text">
+							<p class="sc-eyebrow"><?php echo esc_html( $sc_eyebrow ); ?></p>
+							<h1 class="sc-svc-hero__title"><?php the_title(); ?></h1>
+							<?php if ( strlen( $sc_lead ) > 0 ) : ?>
+								<p class="sc-svc-hero__lead"><?php echo esc_html( $sc_lead ); ?></p>
+							<?php endif; ?>
+							<div class="sc-svc-hero__actions">
+								<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Request a Consultation', 'soundcreations' ); ?></a>
+								<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( get_post_type_archive_link( 'sc_solution' ) ); ?>"><?php esc_html_e( 'All Solutions', 'soundcreations' ); ?></a>
+							</div>
+						</div>
+						<div class="sc-svc-hero__media" style="background-image:url('<?php echo esc_url( $sc_hero_img ); ?>');" role="img" aria-label="<?php echo esc_attr( get_the_title() ); ?>"></div>
+					</div>
 				</div>
-			</div>
-		</header>
-
-		<?php if ( has_post_thumbnail() ) : ?>
-			<div class="sc-container">
-				<div class="sc-svc-figure"><?php the_post_thumbnail( 'large', array( 'loading' => 'lazy', 'decoding' => 'async' ) ); ?></div>
-			</div>
-		<?php endif; ?>
+			</header>
 
 		<?php if ( 'integration' === $sc_sk ) : ?>
 			<section class="sc-section sc-section--tight sc-section--surface sc-solsec">
