@@ -19,7 +19,7 @@ $sc_spec = $sc_img . '/dist-network.jpg';
 $sc_consult = home_url( '/request-a-consultation/' );
 $sc_products_url = sc_setting( 'fane_products_url', home_url( '/products/' ) );
 $sc_apps_url = sc_setting( 'fane_apps_url', home_url( '/projects/' ) );
-$sc_catalogue = sc_setting( 'fane_catalogue_url', '#' );
+$sc_catalogue = trim( (string) sc_setting( 'fane_catalogue_url' ) );
 
 $sc_pills = array(
 	array( '70+', 'Years of Engineering Heritage', '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>' ),
@@ -199,7 +199,9 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'fane_cta_text', 'We’re building the FANE dealer network across Kenya, Rwanda, DRC Congo and the UAE. Sound Creations focuses on large, project-based installations, so we partner with distributors who can stock and sell FANE components at the local level.' ) ); ?></p>
 				<div class="sc-fane-cta__btns">
 					<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/become-a-dealer/' ) ); ?>"><?php esc_html_e( 'Become a Distributor', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
-					<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( $sc_catalogue ); ?>"><?php esc_html_e( 'Download Catalogue', 'soundcreations' ); ?> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+					<?php if ( strlen( $sc_catalogue ) > 0 ) : ?>
+					<a class="sc-btn sc-btn--ghost" href="<?php echo esc_url( $sc_catalogue ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download Catalogue', 'soundcreations' ); ?> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
