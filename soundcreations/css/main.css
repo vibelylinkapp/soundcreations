@@ -1432,13 +1432,13 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 /* 4-icon pillar strip under the hero */
 .sc-pillars{background:var(--sc-surface-2);border-top:1px solid var(--sc-border);border-bottom:1px solid var(--sc-border)}
 .sc-pillars__grid{display:grid;grid-template-columns:repeat(4,1fr)}
-.sc-pillar{display:flex;gap:1rem;align-items:center;padding:1.6rem 1.5rem;border-right:1px solid var(--sc-border)}
+.sc-pillar{display:flex;gap:.85rem;align-items:center;padding:1rem 1.5rem;border-right:1px solid var(--sc-border)}
 .sc-pillar:first-child{padding-left:0}
 .sc-pillar:last-child{border-right:0}
-.sc-pillar__icon{flex:0 0 48px;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;color:var(--sc-red);background:rgba(225,29,42,.12);border:1px solid rgba(225,29,42,.22)}
-.sc-pillar__icon svg{width:22px;height:22px}
-.sc-pillar__text strong{display:block;font-family:var(--sc-font-display);font-size:.98rem;line-height:1.2;margin-bottom:.3rem}
-.sc-pillar__text span{display:block;color:var(--sc-muted);font-size:.82rem;line-height:1.45}
+.sc-pillar__icon{flex:0 0 40px;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:var(--sc-red);background:rgba(225,29,42,.12);border:1px solid rgba(225,29,42,.22)}
+.sc-pillar__icon svg{width:18px;height:18px}
+.sc-pillar__text strong{display:block;font-family:var(--sc-font-display);font-size:.88rem;line-height:1.2;margin-bottom:.2rem}
+.sc-pillar__text span{display:block;color:var(--sc-muted);font-size:.8rem;line-height:1.4}
 
 /* What We Do - image + icon badge + text (4-up) */
 .sc-svcards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
