@@ -148,8 +148,8 @@ function sc_seo_jsonld() {
 	$org['areaServed'] = array( 'Kenya', 'Rwanda', 'DRC Congo', 'United Arab Emirates', 'East Africa' );
 	$org['knowsAbout'] = array(
 		'professional audio', 'sound reinforcement', 'PA systems', 'loudspeaker system design',
-		'audio-visual integration', 'acoustics', 'conferencing systems', 'stage lighting',
-		'LED video walls', 'broadcast', 'systems integration', 'commissioning',
+		'sound and acoustic integration', 'acoustics', 'acoustic treatment', 'conferencing systems',
+		'systems integration', 'installation', 'calibration', 'commissioning',
 	);
 	$same = array();
 	foreach ( array( 'facebook', 'x', 'linkedin', 'youtube', 'instagram', 'google_business' ) as $s ) {

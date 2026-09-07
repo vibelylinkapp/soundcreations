@@ -1,6 +1,6 @@
 <?php
 /**
- * Single solution (Professional Audio, Acoustics, Audio Visual & Integration, ...).
+ * Single solution (Professional Audio, Acoustics, Sound & Acoustic Integration, ...).
  *
  * Professional, articulated layout that shares the service design system:
  * hero band, narrative prose, a sticky sidebar with the inclusions / outcome /
@@ -49,7 +49,7 @@ while ( have_posts() ) :
 	$sc_leadmap = array(
 		'audio'       => 'Live sound, worship and installed audio systems, engineered and supported end to end.',
 		'acoustics'   => 'Acoustic design, measurement and treatment for spaces that sound exactly as intended.',
-		'integration' => 'Complete audio, visual, lighting and acoustic installations, delivered turnkey.',
+		'integration' => 'Complete sound and acoustic installations, delivered turnkey.',
 		'general'     => '',
 	);
 	$sc_lead = strlen( $sc_summary ) > 0 ? $sc_summary : ( isset( $sc_leadmap[ $sc_sk ] ) ? $sc_leadmap[ $sc_sk ] : '' );
@@ -85,9 +85,9 @@ while ( have_posts() ) :
 				<div class="sc-container">
 					<div class="sc-solsec__head">
 						<p class="sc-eyebrow"><?php esc_html_e( 'Installation and integration', 'soundcreations' ); ?></p>
-						<h2 class="sc-svc-h2"><?php esc_html_e( 'Turnkey AV installation and integration', 'soundcreations' ); ?></h2>
-						<p class="sc-solsec__intro">Sound Creations Ltd designs, supplies, installs and supports complete audio, visual, lighting and acoustic systems. From a single boardroom to a full auditorium, we handle the entire project - site survey and system design, professional installation and cabling, calibration and commissioning, operator training and ongoing technical support - so your venue performs reliably from the first event.</p>
-						<ul class="sc-chips"><li>Audio systems</li><li>Video &amp; LED screens</li><li>Stage &amp; architectural lighting</li><li>Acoustic treatment</li><li>Control &amp; automation</li></ul>
+						<h2 class="sc-svc-h2"><?php esc_html_e( 'Turnkey sound and acoustic integration', 'soundcreations' ); ?></h2>
+						<p class="sc-solsec__intro">Sound Creations Ltd designs, supplies, installs and supports complete sound and acoustic systems. From a single boardroom to a full auditorium, we handle the entire project - site survey and system design, professional installation and cabling, calibration and commissioning, operator training and ongoing technical support - so your venue performs reliably from the first event.</p>
+						<ul class="sc-chips"><li>Sound systems</li><li>Acoustic treatment</li><li>Installation &amp; cabling</li><li>Calibration &amp; commissioning</li><li>Control &amp; automation</li></ul>
 					</div>
 					<div class="sc-steps">
 						<div class="sc-step"><span class="sc-step__n">01</span><h3>Site survey and design</h3><p>We map your venue and design a complete system around your space, application and budget.</p></div>
@@ -97,12 +97,12 @@ while ( have_posts() ) :
 					</div>
 					<div class="sc-showcase">
 						<figure class="sc-shot">
-							<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/install-citam.jpg' ); ?>" alt="<?php esc_attr_e( 'Audio, video and lighting installation in a large house of worship', 'soundcreations' ); ?>" loading="lazy" decoding="async">
-							<figcaption><span><?php esc_html_e( 'House of worship: audio, video and lighting', 'soundcreations' ); ?></span></figcaption>
+							<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/install-citam.jpg' ); ?>" alt="<?php esc_attr_e( 'Sound and acoustic installation in a large house of worship', 'soundcreations' ); ?>" loading="lazy" decoding="async">
+							<figcaption><span><?php esc_html_e( 'House of worship: sound and acoustic integration', 'soundcreations' ); ?></span></figcaption>
 						</figure>
 						<figure class="sc-shot">
-							<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/install-theatre.jpg' ); ?>" alt="<?php esc_attr_e( 'Auditorium audio-visual and lighting integration', 'soundcreations' ); ?>" loading="lazy" decoding="async">
-							<figcaption><span><?php esc_html_e( 'Auditorium AV and lighting integration', 'soundcreations' ); ?></span></figcaption>
+							<img src="<?php echo esc_url( SC_THEME_URI . '/assets/img/solutions/install-theatre.jpg' ); ?>" alt="<?php esc_attr_e( 'Auditorium sound and acoustic integration', 'soundcreations' ); ?>" loading="lazy" decoding="async">
+							<figcaption><span><?php esc_html_e( 'Auditorium sound and acoustic integration', 'soundcreations' ); ?></span></figcaption>
 						</figure>
 					</div>
 				</div>

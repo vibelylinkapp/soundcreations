@@ -160,7 +160,7 @@ $sc_hc2_h = ( 0 === strpos( $sc_hc2_u, 'http' ) ) ? $sc_hc2_u : home_url( $sc_hc
 			$sc_sols = array(
 				array( 'solution-professional-audio.jpg', 'Professional Audio', 'Powerful, intelligible and reliable sound systems designed around your room and application.', '/solutions/professional-audio/', 'home_sol1_img', array( 'professional audio', 'audio' ) ),
 				array( 'solution-acoustics.jpg', 'Acoustics', 'Acoustics treated as an engineering discipline: measure, analyze, design, treat and verify for clear, intelligible sound.', '/solutions/acoustics/', 'home_sol2_img', array( 'acoustic' ) ),
-				array( 'solution-av-integration.jpg', 'Audio Visual & Integration', 'Professional live-sound systems, installation, commissioning and calibration by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation', 'visual' ) ),
+				array( 'solution-av-integration.jpg', 'Sound & Acoustic Integration', 'Professional sound and acoustic systems, installed, commissioned and calibrated by our technical team.', '/solutions/installation/', 'home_sol3_img', array( 'integ', 'installation' ) ),
 			);
 			foreach ( $sc_sols as $sc_so ) :
 				$sc_img  = sc_setting( $sc_so[4], SC_THEME_URI . '/assets/img/home/' . $sc_so[0] );

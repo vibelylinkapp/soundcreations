@@ -80,7 +80,7 @@ function sc_core_settings_fields() {
 		'home_svc4_img'        => array( 'What we do - After-Sale Services: photo', 'image' ),
 		'home_sol1_img'        => array( 'Solutions - Professional Audio: photo', 'image' ),
 		'home_sol2_img'        => array( 'Solutions - Acoustics: photo', 'image' ),
-		'home_sol3_img'        => array( 'Solutions - Audio Visual & Integration: photo', 'image' ),
+		'home_sol3_img'        => array( 'Solutions - Sound & Acoustic Integration: photo', 'image' ),
 		'home_cta_image'       => array( 'Closing CTA band: background photo', 'image' ),
 
 		'__sec_about'          => array( 'About page content', 'heading' ),
