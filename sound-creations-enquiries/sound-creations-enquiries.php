@@ -24,6 +24,7 @@ define( 'SC_ENQ_URI', plugin_dir_url( __FILE__ ) );
 require_once SC_ENQ_DIR . 'includes/forms.php';
 require_once SC_ENQ_DIR . 'includes/handler.php';
 require_once SC_ENQ_DIR . 'includes/admin.php';
+require_once SC_ENQ_DIR . 'includes/mail.php';
 
 // Ensure a private enquiry store exists even if the Core plugin is not active.
 add_action(
