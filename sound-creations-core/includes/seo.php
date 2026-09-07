@@ -44,7 +44,7 @@ function sc_seo_description() {
 			return wp_strip_all_tags( $t );
 		}
 	}
-	return sc_core_get( 'tagline', 'Sound Creations Ltd delivers professional Audio, Visual, Lighting and Acoustic solutions across Africa, backed by expert consultation, quality distribution, acoustic solutions and professional installation.' );
+	return sc_core_get( 'tagline', get_bloginfo( 'description' ) );
 }
 
 function sc_seo_image() {
@@ -128,7 +128,7 @@ function sc_seo_jsonld() {
 		'name'  => get_bloginfo( 'name' ),
 		'url'   => home_url( '/' ),
 	);
-	$desc = sc_core_get( 'tagline', 'Sound Creations Ltd delivers professional Audio, Visual, Lighting and Acoustic solutions across Africa, backed by expert consultation, quality distribution, acoustic solutions and professional installation.' );
+	$desc = sc_core_get( 'tagline', get_bloginfo( 'description' ) );
 	if ( $desc ) {
 		$org['description'] = $desc;
 	}
@@ -416,10 +416,91 @@ function sc_seo_meta_box( $post ) {
 	$t = get_post_meta( $post->ID, '_sc_seo_title', true );
 	$d = get_post_meta( $post->ID, '_sc_seo_desc', true );
 	echo '<p><label style="font-weight:600;display:block;margin-bottom:.25rem;">SEO title (optional)</label>';
-	echo '<input type="text" name="sc_seo_title" value="' . esc_attr( $t ) . '" style="width:100%;" maxlength="70"></p>';
+	echo '<input type="text" id="sc_seo_title" name="sc_seo_title" value="' . esc_attr( $t ) . '" style="width:100%;" maxlength="70"></p>';
 	echo '<p><label style="font-weight:600;display:block;margin-bottom:.25rem;">Meta description (optional)</label>';
-	echo '<textarea name="sc_seo_desc" rows="3" style="width:100%;" maxlength="200">' . esc_textarea( $d ) . '</textarea>';
+	echo '<textarea id="sc_seo_desc" name="sc_seo_desc" rows="3" style="width:100%;" maxlength="200">' . esc_textarea( $d ) . '</textarea>';
 	echo '<span class="description">Around 150-160 characters. Falls back to the summary or excerpt when blank.</span></p>';
+	$sc_seo_host = (string) wp_parse_url( home_url(), PHP_URL_HOST );
+	echo '<div class="sc-seo-preview" hidden'
+		. ' data-fallback-title="' . esc_attr( get_the_title( $post ) ) . '"'
+		. ' data-fallback-desc="' . esc_attr( sc_core_get( 'tagline', get_bloginfo( 'description' ) ) ) . '"'
+		. ' data-site="' . esc_attr( get_bloginfo( 'name' ) ) . '"'
+		. ' data-url="' . esc_url( get_permalink( $post ) ) . '"'
+		. ' data-host="' . esc_attr( $sc_seo_host ) . '"></div>';
+	echo <<<'SCSEO'
+<div class="sc-seo-fx">
+  <div class="sc-seo-counts">
+    <span>Title <b data-c-title>0</b> / 60</span>
+    <span>Description <b data-c-desc>0</b> / 160</span>
+  </div>
+  <div class="sc-seo-help">These override the automatic title and description for this page in Google and social shares. Leave blank to use the page defaults shown below.</div>
+  <div class="sc-seo-plabel">Google result preview</div>
+  <div class="sc-seo-google">
+    <div class="sc-seo-google__url" data-g-url></div>
+    <div class="sc-seo-google__title" data-g-title></div>
+    <div class="sc-seo-google__desc" data-g-desc></div>
+  </div>
+  <div class="sc-seo-plabel">Social share preview</div>
+  <div class="sc-seo-social">
+    <div class="sc-seo-social__meta">
+      <div class="sc-seo-social__host" data-s-host></div>
+      <div class="sc-seo-social__title" data-s-title></div>
+      <div class="sc-seo-social__desc" data-s-desc></div>
+    </div>
+  </div>
+</div>
+<style>
+.sc-seo-fx { margin-top: 14px; }
+.sc-seo-counts { display: flex; gap: 18px; font-size: 12px; color: #555; margin-bottom: 10px; }
+.sc-seo-counts b { color: #1a1a1a; }
+.sc-seo-counts .sc-seo-over { color: #d63638; }
+.sc-seo-help { font-size: 12px; color: #787c82; margin-bottom: 12px; max-width: 640px; }
+.sc-seo-plabel { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: #787c82; margin: 12px 0 6px; font-weight: 600; }
+.sc-seo-google { border: 1px solid #dadce0; border-radius: 8px; padding: 12px 14px; background: #fff; font-family: arial, sans-serif; max-width: 640px; }
+.sc-seo-google__url { color: #202124; font-size: 12px; line-height: 1.3; word-break: break-all; }
+.sc-seo-google__title { color: #1a0dab; font-size: 18px; line-height: 1.3; margin: 3px 0; }
+.sc-seo-google__desc { color: #4d5156; font-size: 13px; line-height: 1.45; }
+.sc-seo-social { border: 1px solid #dadce0; border-radius: 8px; overflow: hidden; background: #fff; max-width: 520px; }
+.sc-seo-social__meta { padding: 10px 12px; }
+.sc-seo-social__host { color: #606770; font-size: 11px; text-transform: uppercase; letter-spacing: .02em; }
+.sc-seo-social__title { color: #1d2129; font-size: 15px; font-weight: 600; line-height: 1.3; margin: 3px 0; }
+.sc-seo-social__desc { color: #606770; font-size: 13px; line-height: 1.4; }
+</style>
+<script>
+( function () {
+  var root = document.querySelector( '.sc-seo-preview' );
+  if ( root === null ) { return; }
+  var d = root.dataset;
+  var ti = document.getElementById( 'sc_seo_title' );
+  var de = document.getElementById( 'sc_seo_desc' );
+  function q( sel ) { return document.querySelector( sel ); }
+  function v( el ) { return ( el === null ) ? '' : String( el.value || '' ); }
+  function clip( str, n ) { return ( str.length > n ) ? ( str.slice( 0, n - 1 ) + '...' ) : str; }
+  function paint() {
+    var t = v( ti ).trim();
+    var m = v( de ).trim();
+    var et = ( t.length === 0 ) ? ( d.fallbackTitle || '' ) : t;
+    var em = ( m.length === 0 ) ? ( d.fallbackDesc || '' ) : m;
+    var ct = q( '[data-c-title]' );
+    var cm = q( '[data-c-desc]' );
+    ct.textContent = String( t.length );
+    cm.textContent = String( m.length );
+    ct.className = ( t.length > 60 ) ? 'sc-seo-over' : '';
+    cm.className = ( m.length > 160 ) ? 'sc-seo-over' : '';
+    q( '[data-g-url]' ).textContent = d.url || '';
+    q( '[data-g-title]' ).textContent = clip( et, 60 );
+    q( '[data-g-desc]' ).textContent = clip( em, 160 );
+    q( '[data-s-host]' ).textContent = ( d.host || '' ).toUpperCase();
+    q( '[data-s-title]' ).textContent = clip( et, 70 );
+    q( '[data-s-desc]' ).textContent = clip( em, 160 );
+  }
+  if ( ti ) { ti.addEventListener( 'input', paint ); }
+  if ( de ) { de.addEventListener( 'input', paint ); }
+  paint();
+} )();
+</script>
+SCSEO;
+
 }
 
 add_action(
