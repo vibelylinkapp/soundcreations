@@ -54,7 +54,7 @@ while ( have_posts() ) :
 	);
 	$sc_lead = strlen( $sc_summary ) > 0 ? $sc_summary : ( isset( $sc_leadmap[ $sc_sk ] ) ? $sc_leadmap[ $sc_sk ] : '' );
 	$sc_raw_body = trim( wp_strip_all_tags( get_the_content() ) );
-	$sc_has_body = ( '' \!== $sc_raw_body && false === stripos( $sc_raw_body, 'CONTENT TO BE CONFIRMED' ) );
+	$sc_has_body = ( '' !== $sc_raw_body && false === stripos( $sc_raw_body, 'CONTENT TO BE CONFIRMED' ) );
 	$sc_main_has = ( $sc_has_body || count( $sc_caps ) > 0 );
 	?>
 
