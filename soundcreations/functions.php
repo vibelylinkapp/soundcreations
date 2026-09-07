@@ -24,3 +24,4 @@ require_once SC_THEME_DIR . '/inc/enqueue.php';
 require_once SC_THEME_DIR . '/inc/template-tags.php';
 require_once SC_THEME_DIR . '/inc/shortcodes.php';
 require_once SC_THEME_DIR . '/inc/hardening.php';
+require_once SC_THEME_DIR . '/inc/customizer.php';
