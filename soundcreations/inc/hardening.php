@@ -120,3 +120,114 @@ add_filter(
 if ( defined( 'DISALLOW_FILE_EDIT' ) === false ) {
 	define( 'DISALLOW_FILE_EDIT', true );
 }
+
+/* 10. Disable comments and trackbacks entirely (spam prevention: the site never uses them). */
+
+// Force comments and pings closed everywhere, ignoring any per-post stored value.
+add_filter( 'comments_open', '__return_false', 20 );
+add_filter( 'pings_open', '__return_false', 20 );
+
+// Hide any pre-existing comments from the front end.
+add_filter( 'comments_array', '__return_empty_array', 20 );
+
+// Reject any comment posted directly (e.g. a bot POSTing to wp-comments-post.php).
+add_filter(
+	'preprocess_comment',
+	function ( $commentdata ) {
+		unset( $commentdata );
+		wp_die(
+			esc_html__( 'Comments are closed.', 'soundcreations' ),
+			esc_html__( 'Comments are closed', 'soundcreations' ),
+			array( 'response' => 403 )
+		);
+	},
+	0
+);
+
+// Remove comment and trackback support from every registered post type.
+add_action(
+	'init',
+	function () {
+		foreach ( get_post_types() as $sc_pt ) {
+			if ( post_type_supports( $sc_pt, 'comments' ) === true ) {
+				remove_post_type_support( $sc_pt, 'comments' );
+			}
+			if ( post_type_supports( $sc_pt, 'trackbacks' ) === true ) {
+				remove_post_type_support( $sc_pt, 'trackbacks' );
+			}
+		}
+	},
+	100
+);
+
+// Remove the comments REST endpoints (a common spam-injection route).
+add_filter(
+	'rest_endpoints',
+	function ( $endpoints ) {
+		foreach ( array_keys( $endpoints ) as $sc_route ) {
+			if ( strpos( $sc_route, '/wp/v2/comments' ) === 0 ) {
+				unset( $endpoints[ $sc_route ] );
+			}
+		}
+		return $endpoints;
+	}
+);
+
+// Block the comment feeds so spam can never resurface through them.
+add_action(
+	'template_redirect',
+	function () {
+		if ( is_comment_feed() === true ) {
+			wp_die(
+				esc_html__( 'Comments are closed.', 'soundcreations' ),
+				esc_html__( 'Comments are closed', 'soundcreations' ),
+				array( 'response' => 403 )
+			);
+		}
+	},
+	9
+);
+
+// Admin: remove the Comments menu, admin-bar node, dashboard widget and post metaboxes.
+add_action(
+	'admin_menu',
+	function () {
+		remove_menu_page( 'edit-comments.php' );
+	}
+);
+add_action(
+	'admin_bar_menu',
+	function ( $sc_bar ) {
+		$sc_bar->remove_node( 'comments' );
+	},
+	999
+);
+add_action(
+	'wp_dashboard_setup',
+	function () {
+		remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+	}
+);
+add_action(
+	'add_meta_boxes',
+	function () {
+		foreach ( get_post_types() as $sc_pt ) {
+			remove_meta_box( 'commentsdiv', $sc_pt, 'normal' );
+			remove_meta_box( 'commentstatusdiv', $sc_pt, 'normal' );
+			remove_meta_box( 'trackbacksdiv', $sc_pt, 'normal' );
+		}
+	},
+	100
+);
+
+// Send anyone who reaches the admin Comments screen back to the dashboard.
+add_action(
+	'admin_init',
+	function () {
+		global $pagenow;
+		if ( 'edit-comments.php' === $pagenow ) {
+			wp_safe_redirect( admin_url() );
+			exit;
+		}
+	}
+);
