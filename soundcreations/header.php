@@ -32,7 +32,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="sc-brand">
 			<?php
 			if ( has_custom_logo() ) {
-				the_custom_logo();
+				$sc_logo = get_custom_logo();
+				$sc_logo = str_replace( 'class="custom-logo"', 'class="custom-logo sc-logo__img sc-logo__img--dark"', $sc_logo );
+				$sc_light = '<img class="custom-logo sc-logo__img sc-logo__img--light" src="' . esc_url( SC_THEME_URI . '/assets/img/logo-color.webp' ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" width="484" height="180" />';
+				$sc_logo = str_replace( '</a>', $sc_light . '</a>', $sc_logo );
+				echo $sc_logo; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- first-party logo markup.
 			} else {
 				echo '<a href="' . esc_url( home_url( '/' ) ) . '" class="sc-logo" rel="home">'
 				. '<img class="sc-logo__img sc-logo__img--dark" src="' . esc_url( SC_THEME_URI . '/assets/img/logo-white.png' ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" width="484" height="180">'

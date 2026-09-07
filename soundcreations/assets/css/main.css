@@ -1233,10 +1233,9 @@ img { max-width: 100%; height: auto; display: block; }
 .sc-footer__legal { display: flex; flex-wrap: wrap; gap: 1.5rem; }
 .sc-footer__legal a { color: var(--sc-muted); font-size: .84rem; }
 .sc-footer__legal a:hover { color: var(--sc-text); }
-.sc-logo img.sc-logo__img { display: block; }
-.sc-logo img.sc-logo__img--light { display: none; }
-[data-theme="light"] .sc-logo img.sc-logo__img--dark { display: none; }
-[data-theme="light"] .sc-logo img.sc-logo__img--light { display: block; }
+.sc-logo__img--light { display: none \!important; }
+[data-theme="light"] .sc-logo__img--dark { display: none \!important; }
+[data-theme="light"] .sc-logo__img--light { display: block \!important; }
 @media (max-width: 900px) { .sc-footer__grid { grid-template-columns: 1fr 1fr; gap: 2.1rem; } }
 @media (max-width: 560px) { .sc-footer__grid { grid-template-columns: 1fr; } .sc-footer__bottom { justify-content: flex-start; } }
 
