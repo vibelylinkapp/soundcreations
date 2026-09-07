@@ -76,11 +76,19 @@ $sc_email   = sc_setting( 'email' );
 				<h2><?php esc_html_e( 'Contact', 'soundcreations' ); ?></h2>
 				<address class="sc-foot-addr">
 					<?php
+					$sc_map_url = sc_setting( 'map_url', 'https://share.google/K15Qu2ngP7wlNnd0Y' );
+					$sc_has_map = strlen( (string) $sc_map_url ) > 0;
+					if ( $sc_has_map ) {
+						echo '<a class="sc-foot-addr__link" href="' . esc_url( $sc_map_url ) . '" target="_blank" rel="noopener noreferrer">';
+					}
 					foreach ( $sc_addr as $sc_row ) {
 						if ( '' === $sc_row[0] ) {
 							continue;
 						}
 						echo '<span>' . esc_html( $sc_row[0] ) . '</span>';
+					}
+					if ( $sc_has_map ) {
+						echo '</a>';
 					}
 					?>
 				</address>
