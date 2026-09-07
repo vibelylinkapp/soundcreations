@@ -1,6 +1,7 @@
 :root {
-  --sc-red: #E11D2A;      /* [VERIFY] extract exact value from logo source */
-  --sc-indigo: #5A4FCF;   /* [VERIFY] extract exact value from logo source */
+  --sc-red: #BA0B0B;      /* brand red */
+  --sc-purple: #604488;   /* brand purple */
+  --sc-indigo: #604488;   /* legacy alias -> brand purple */
   --sc-radius: 10px;
   --sc-radius-lg: 18px;
   --sc-container: 1180px;
@@ -18,7 +19,7 @@
   --sc-border: #26262F;
   --sc-text: #F5F5F7;
   --sc-muted: #A0A0AC;
-  --sc-eyebrow: #FF5D68;
+  --sc-eyebrow: #A98BD6;   /* brand purple, lightened for dark bg */
   --sc-header-bg: rgba(11,11,15,.72);
   --sc-shadow: 0 20px 60px rgba(0,0,0,.45);
 }
@@ -30,7 +31,7 @@
   --sc-border: #E4E4EA;
   --sc-text: #14141A;
   --sc-muted: #5A5A66;
-  --sc-eyebrow: #C21420;
+  --sc-eyebrow: #604488;   /* brand purple */
   --sc-header-bg: rgba(255,255,255,.8);
   --sc-shadow: 0 20px 60px rgba(20,20,40,.12);
 }

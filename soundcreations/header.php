@@ -34,7 +34,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			if ( has_custom_logo() ) {
 				the_custom_logo();
 			} else {
-				echo '<a href="' . esc_url( home_url( '/' ) ) . '" class="sc-logo" rel="home"><img src="' . esc_url( SC_THEME_URI . '/assets/img/logo-white.png' ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" width="484" height="180"></a>';
+				echo '<a href="' . esc_url( home_url( '/' ) ) . '" class="sc-logo" rel="home">'
+				. '<img class="sc-logo__img sc-logo__img--dark" src="' . esc_url( SC_THEME_URI . '/assets/img/logo-white.png' ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" width="484" height="180">'
+				. '<img class="sc-logo__img sc-logo__img--light" src="' . esc_url( SC_THEME_URI . '/assets/img/logo-color.webp' ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" width="484" height="180">'
+				. '</a>';
 			}
 			?>
 		</div>
