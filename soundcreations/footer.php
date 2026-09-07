@@ -33,7 +33,8 @@ $sc_email   = sc_setting( 'email' );
 					. '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- first-party logo markup.
 					?>
 				</div>
-				<p><?php echo esc_html( sc_setting( 'footer_about' ) ); ?></p>
+				<p class="sc-foot-tagline"><?php echo esc_html( sc_setting( 'slogan', 'If it sounds good, it’s Sound Creations.' ) ); ?></p>
+					<p><?php echo esc_html( sc_setting( 'footer_about' ) ); ?></p>
 				<div class="sc-foot-soc"><?php sc_all_social(); ?></div>
 			</div>
 

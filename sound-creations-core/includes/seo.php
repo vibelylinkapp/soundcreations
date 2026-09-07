@@ -44,7 +44,7 @@ function sc_seo_description() {
 			return wp_strip_all_tags( $t );
 		}
 	}
-	return sc_core_get( 'tagline', get_bloginfo( 'description' ) );
+	return sc_core_get( 'tagline', 'Sound Creations Ltd delivers professional Audio, Visual, Lighting and Acoustic solutions across Africa, backed by expert consultation, quality distribution, acoustic solutions and professional installation.' );
 }
 
 function sc_seo_image() {
@@ -128,7 +128,7 @@ function sc_seo_jsonld() {
 		'name'  => get_bloginfo( 'name' ),
 		'url'   => home_url( '/' ),
 	);
-	$desc = sc_core_get( 'tagline', get_bloginfo( 'description' ) );
+	$desc = sc_core_get( 'tagline', 'Sound Creations Ltd delivers professional Audio, Visual, Lighting and Acoustic solutions across Africa, backed by expert consultation, quality distribution, acoustic solutions and professional installation.' );
 	if ( $desc ) {
 		$org['description'] = $desc;
 	}

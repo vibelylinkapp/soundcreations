@@ -1728,3 +1728,7 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 /* Footer address rendered as a Google Maps link */
 .sc-foot-addr__link { display: block; color: inherit; text-decoration: none; transition: color .2s; }
 .sc-foot-addr__link:hover { color: var(--sc-red); }
+
+/* Footer brand lockup tagline */
+.sc-foot-about p.sc-foot-tagline { color: #B99BE0; font-size: 1.02rem; line-height: 1.4; font-style: italic; font-weight: 600; letter-spacing: .005em; max-width: 34ch; margin: .1rem 0 .9rem; }
+[data-theme="light"] .sc-foot-about p.sc-foot-tagline { color: #6C3FAE; }

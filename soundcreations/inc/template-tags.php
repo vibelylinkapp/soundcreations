@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function sc_default_settings() {
 	return array(
 		'company_name' => 'Sound Creations Ltd',
-		'slogan'       => 'If it sounds good, it’s Sound Creations',
+		'slogan'       => 'If it sounds good, it’s Sound Creations.',
 		'profiles_eyebrow'      => 'Company Profiles',
 		'profiles_title'        => 'Download our profiles',
 		'profiles_intro'        => 'Get the full picture of who we are and what we deliver. Download our company and acoustic profiles to share with your team.',
@@ -73,7 +73,7 @@ function sc_default_settings() {
 		'projects_cta_title'   => 'Have a project in mind?',
 		'projects_cta_text'    => 'Our team of experts is ready to help you design and deliver the right solution.',
 		'hero_video'   => 'https://soundcreationsltd.com/newwebsite/wp-content/uploads/2026/08/dbtechnologies_stories_homepage-1280.mp4',
-		'footer_about'       => 'World-class professional audio, visual, lighting and acoustic solutions — engineered, delivered and supported across Africa and the Middle East.',
+		'footer_about'       => 'Sound Creations Ltd delivers professional Audio, Visual, Lighting and Acoustic solutions across Africa, backed by expert consultation, quality distribution, acoustic solutions and professional installation.',
 		'footer_explore'     => "Home | /\nSolutions | /solutions/\nBrands & Products | /brands/\nProjects | /projects/\nAbout | /about/\nContact | /contact/",
 		'footer_solutions'   => "Professional Audio | /solutions/professional-audio/\nAcoustics | /solutions/acoustics/\nConferencing | /solutions/conferencing/\nSystem Integration | /solutions/system-integration/\nFANE Loudspeakers | /fane/",
 		'footer_address'     => "Mpaka Plaza, Mpaka Road\nWestlands Nairobi",
