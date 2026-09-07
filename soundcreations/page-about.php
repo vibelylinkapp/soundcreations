@@ -44,7 +44,7 @@ $sc_exp_icons = array(
 		<div class="sc-journey__text">
 			<span class="sc-journey__badge"><?php echo esc_html( sc_setting( 'about_journey_badge', 'Since 2004' ) ); ?></span>
 			<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'about_hero_eyebrow', 'About Sound Creations' ) ); ?></p>
-			<h1 class="sc-about-hero__title"><?php echo esc_html( sc_setting( 'about_hero_title', 'Engineering exceptional sound across Africa & the Middle East.' ) ); ?></h1>
+			<h1 class="sc-about-hero__title"><?php echo esc_html( sc_setting( 'about_hero_title', 'If it sounds good, it’s Sound Creations' ) ); ?></h1>
 			<p class="sc-journey__lead"><?php echo esc_html( sc_setting( 'about_journey_p1', 'Founded in 2004, Sound Creations Ltd has grown into a leading provider of professional audio, visual, lighting and acoustic solutions across East Africa and beyond. What began as a specialist audio company is today a full-service integrator — designing, supplying, installing and supporting complete systems for the region’s most demanding spaces.' ) ); ?></p>
 			<p><?php echo esc_html( sc_setting( 'about_journey_p2', 'We pair the world’s leading technology brands with deep local expertise and an in-house team of certified engineers. From houses of worship and corporate boardrooms to campuses, stadiums and broadcast studios, we deliver solutions that are engineered to perform and built to last — backed by long-term support in Kenya, Rwanda, DR Congo and the UAE.' ) ); ?></p>
 		</div>
