@@ -1701,3 +1701,11 @@ h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.22; letter-spacing: -.
 .sc-shot img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
 .sc-shot figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.6rem 1.1rem .95rem; background: linear-gradient(to top, rgba(6,8,12,.86), rgba(6,8,12,0)); }
 .sc-shot figcaption span { color: #fff; font-family: var(--sc-font-display); font-weight: 600; font-size: .95rem; }
+
+/* Keep the sticky header clear of the WordPress admin bar when logged in
+   (logged-out visitors are unaffected - the .admin-bar class is only present
+   for signed-in users). The admin bar is 32px, 46px at <=782px, and becomes
+   non-fixed (scrolls away) at <=600px so the header returns to top:0 there. */
+.admin-bar .sc-header { top: 32px; }
+@media screen and (max-width: 782px) { .admin-bar .sc-header { top: 46px; } }
+@media screen and (max-width: 600px) { .admin-bar .sc-header { top: 0; } }
