@@ -34,7 +34,7 @@ $sc_email   = sc_setting( 'email' );
 					?>
 				</div>
 				<p class="sc-foot-tagline"><?php echo esc_html( sc_setting( 'slogan', 'If it sounds good, it’s Sound Creations.' ) ); ?></p>
-					<p><?php echo esc_html( sc_setting( 'footer_about' ) ); ?></p>
+					<p><?php echo sc_rich_e( sc_setting( 'footer_about' ) ); ?></p>
 				<div class="sc-foot-soc"><?php sc_all_social(); ?></div>
 			</div>
 

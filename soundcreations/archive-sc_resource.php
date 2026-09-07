@@ -67,7 +67,7 @@ if ( $sc_q->have_posts() ) {
 		<nav class="sc-crumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> <span aria-hidden="true">&rsaquo;</span> <span class="sc-crumb__cur"><?php esc_html_e( 'Resources', 'soundcreations' ); ?></span></nav>
 		<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'resources_eyebrow', 'Resources' ) ); ?></p>
 		<h1 class="sc-support-hero__title"><?php echo esc_html( sc_setting( 'resources_title', 'Videos & resources.' ) ); ?></h1>
-		<p class="sc-lead sc-support-hero__lead"><?php echo esc_html( sc_setting( 'resources_lead', 'Watch demos, installations and product highlights, plus manuals and datasheets for the systems and brands we supply and support.' ) ); ?></p>
+		<p class="sc-lead sc-support-hero__lead"><?php echo sc_rich_e( sc_setting( 'resources_lead', 'Watch demos, installations and product highlights, plus manuals and datasheets for the systems and brands we supply and support.' ) ); ?></p>
 	</div>
 </section>
 
@@ -132,7 +132,7 @@ if ( $sc_q->have_posts() ) {
 		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( $sc_cta_img ); ?>');">
 			<div class="sc-cta-band__inner">
 				<h2><?php echo esc_html( sc_setting( 'resources_cta_title', 'Looking for something specific?' ) ); ?></h2>
-				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'resources_cta_text', 'Our technical team can point you to the right video, manual or datasheet for your system.' ) ); ?></p>
+				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo sc_rich_e( sc_setting( 'resources_cta_text', 'Our technical team can point you to the right video, manual or datasheet for your system.' ) ); ?></p>
 				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( $sc_consult ); ?>"><?php esc_html_e( 'Contact Our Team', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 			</div>
 		</div>

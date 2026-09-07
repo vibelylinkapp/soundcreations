@@ -72,6 +72,7 @@ function sc_default_settings() {
 		'proj_stats'           => "300+ | Projects Completed | Across Africa & Middle East\n50+ | Expert Professionals | Delivering Excellence\n4 | Regional Offices | Local Presence, Global Reach\n20+ | Years of Experience | In Audio, Visual & Acoustics",
 		'projects_cta_title'   => 'Have a project in mind?',
 		'projects_cta_text'    => 'Our team of experts is ready to help you design and deliver the right solution.',
+		'fane_info'            => '<h3>Why FANE</h3><p>FANE has engineered professional loudspeaker components in the UK since 1958, trusted by manufacturers and sound professionals worldwide. Sound Creations is the authorised FANE partner for the region.</p><p><strong>What sets FANE apart</strong></p><ul><li>Precision-engineered drivers built for demanding professional use</li><li>Consistent performance, reliability and long service life</li><li>A complete range for touring, install, hospitality and custom builds</li></ul><p>Talk to our team about specifying FANE components for your project, or about stocking and reselling FANE as a distribution partner.</p>',
 		'hero_video'   => 'https://soundcreationsltd.com/newwebsite/wp-content/uploads/2026/08/dbtechnologies_stories_homepage-1280.mp4',
 		'footer_about'       => 'Sound Creations Ltd delivers professional Audio, Visual, Lighting and Acoustic solutions across Africa, backed by expert consultation, quality distribution, acoustic solutions and professional installation.',
 		'footer_explore'     => "Home | /\nSolutions | /solutions/\nBrands & Products | /brands/\nProjects | /projects/\nAbout | /about/\nContact | /contact/",
@@ -95,6 +96,35 @@ function sc_setting( $key, $default = '' ) {
 		return $defaults[ $key ];
 	}
 	return $default;
+}
+
+/**
+ * Output a rich-text setting inline-safely: run stored HTML through wp_kses_post
+ * and unwrap a single enclosing paragraph so inline formatting (bold, italics,
+ * links) renders correctly inside an existing <p> container.
+ */
+function sc_rich_e( $html ) {
+	$html = wp_kses_post( (string) $html );
+	$trimmed = trim( $html );
+	if ( '' === $trimmed ) {
+		return '';
+	}
+	$lower = strtolower( $trimmed );
+	if ( strpos( $lower, '<p' ) === 0 && substr_count( $lower, '<p' ) === 1 && substr( $lower, -4 ) === '</p>' ) {
+		$open_end = strpos( $trimmed, '>' );
+		if ( $open_end > 0 ) {
+			return trim( substr( $trimmed, $open_end + 1, strlen( $trimmed ) - $open_end - 5 ) );
+		}
+	}
+	return $html;
+}
+
+/**
+ * Output a rich-text setting as a full block (paragraphs, lists, headings).
+ * Use inside a block container such as a .sc-prose <div>.
+ */
+function sc_rich_block( $key, $default = '' ) {
+	return wp_kses_post( (string) sc_setting( $key, $default ) );
 }
 
 /**

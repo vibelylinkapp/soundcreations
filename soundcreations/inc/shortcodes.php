@@ -163,7 +163,7 @@ function sc_render_profiles( $atts = array() ) {
 		<div class="sc-profiles__head">
 			<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'profiles_eyebrow' ) ); ?></p>
 			<h2><?php echo esc_html( sc_setting( 'profiles_title' ) ); ?></h2>
-			<p class="sc-lead"><?php echo esc_html( sc_setting( 'profiles_intro' ) ); ?></p>
+			<p class="sc-lead"><?php echo sc_rich_e( sc_setting( 'profiles_intro' ) ); ?></p>
 		</div>
 		<div class="sc-profiles__grid">
 			<?php foreach ( $cards as $card ) : ?>
@@ -171,7 +171,7 @@ function sc_render_profiles( $atts = array() ) {
 					<span class="sc-profile-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo isset( $icons[ $card['icon'] ] ) ? $icons[ $card['icon'] ] : ''; ?></svg></span>
 					<div class="sc-profile-card__body">
 						<h3><?php echo esc_html( $card['title'] ); ?></h3>
-						<p><?php echo esc_html( $card['desc'] ); ?></p>
+						<p><?php echo sc_rich_e( $card['desc'] ); ?></p>
 					</div>
 					<?php if ( '' === $card['url'] ) : ?>
 						<span class="sc-profile-card__soon"><?php esc_html_e( 'PDF available soon', 'soundcreations' ); ?></span>

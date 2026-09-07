@@ -36,7 +36,7 @@ function sc_core_settings_fields() {
 		'hero_video'           => array( 'Hero background video URL (MP4)', 'image' ),
 
 		'__sec_footer'         => array( 'Footer', 'heading' ),
-		'footer_about'         => array( 'About column: text', 'textarea' ),
+		'footer_about'         => array( 'About column: text', 'wysiwyg' ),
 		'footer_explore'       => array( 'Explore column links (one per line: Label | URL or /path)', 'textarea' ),
 		'footer_solutions'     => array( 'Solutions column links (one per line: Label | URL or /path)', 'textarea' ),
 		'footer_address'       => array( 'Contact: address (one line per row)', 'textarea' ),
@@ -46,7 +46,7 @@ function sc_core_settings_fields() {
 		'__sec_home'           => array( 'Homepage content', 'heading' ),
 		'home_hero_eyebrow'    => array( 'Hero: eyebrow line', 'text' ),
 		'home_hero_title'      => array( 'Hero: headline', 'text' ),
-		'home_hero_lead'       => array( 'Hero: intro paragraph', 'textarea' ),
+		'home_hero_lead'       => array( 'Hero: intro paragraph', 'wysiwyg' ),
 		'home_whatwedo_title'  => array( 'What we do: heading', 'text' ),
 		'home_whatwedo_lead'   => array( 'What we do: intro', 'textarea' ),
 		'home_solutions_title' => array( 'Solutions: heading', 'text' ),
@@ -61,7 +61,7 @@ function sc_core_settings_fields() {
 		'home_stat4_num'       => array( 'Proof stat 4: number', 'text' ),
 		'home_stat4_label'     => array( 'Proof stat 4: label', 'text' ),
 		'home_cta_title'       => array( 'CTA: heading', 'text' ),
-		'home_cta_text'        => array( 'CTA: text', 'textarea' ),
+		'home_cta_text'        => array( 'CTA: text', 'wysiwyg' ),
 
 			'home_hero_cta1_label' => array( 'Hero: primary button label', 'text' ),
 			'home_hero_cta1_url'   => array( 'Hero: primary button link (path or URL)', 'text' ),
@@ -97,14 +97,14 @@ function sc_core_settings_fields() {
 		'about_stat4_sub'      => array( 'About stat 4: sub', 'text' ),
 		'about_journey_eyebrow'=> array( 'Journey: eyebrow', 'text' ),
 		'about_journey_title'  => array( 'Journey: heading', 'text' ),
-		'about_journey_p1'     => array( 'Journey: paragraph 1', 'textarea' ),
-		'about_journey_p2'     => array( 'Journey: paragraph 2', 'textarea' ),
+		'about_journey_p1'     => array( 'Journey: paragraph 1', 'wysiwyg' ),
+		'about_journey_p2'     => array( 'Journey: paragraph 2', 'wysiwyg' ),
 		'about_story_label'    => array( 'Story card: label', 'text' ),
 			'about_hero_image'     => array( 'About hero: photo (upload to Media, paste URL)', 'image' ),
 		'about_story_video'    => array( 'Story card: YouTube video URL (paste full link)', 'image' ),
 		'about_exp_eyebrow'    => array( 'Expertise: eyebrow', 'text' ),
 		'about_exp_title'      => array( 'Expertise: heading', 'text' ),
-		'about_exp_intro'      => array( 'Expertise: intro', 'textarea' ),
+		'about_exp_intro'      => array( 'Expertise: intro', 'wysiwyg' ),
 		'about_exp_items'      => array( 'Expertise cards (one per line: Title | Description)', 'textarea' ),
 		'about_operate_eyebrow'=> array( 'Where we operate: eyebrow', 'text' ),
 		'about_operate_title'  => array( 'Where we operate: heading', 'text' ),
@@ -117,15 +117,15 @@ function sc_core_settings_fields() {
 			'__sec_downloads'      => array( 'Company profiles (downloads)', 'heading' ),
 			'profiles_eyebrow'     => array( 'Profiles: eyebrow', 'text' ),
 			'profiles_title'       => array( 'Profiles: heading', 'text' ),
-			'profiles_intro'       => array( 'Profiles: intro', 'textarea' ),
+			'profiles_intro'       => array( 'Profiles: intro', 'wysiwyg' ),
 			'company_profile_url'  => array( 'Company Profile: PDF URL (upload to Media, paste link)', 'image' ),
-			'company_profile_desc' => array( 'Company Profile: description', 'textarea' ),
+			'company_profile_desc' => array( 'Company Profile: description', 'wysiwyg' ),
 			'acoustic_profile_url' => array( 'Acoustic Profile: PDF URL (upload to Media, paste link)', 'image' ),
-			'acoustic_profile_desc'=> array( 'Acoustic Profile: description', 'textarea' ),
+			'acoustic_profile_desc'=> array( 'Acoustic Profile: description', 'wysiwyg' ),
 
 			'__sec_solutions'      => array( 'Solutions page content', 'heading' ),
 			'sol_hero_title'       => array( 'Solutions hero: headline', 'text' ),
-			'sol_hero_lead'        => array( 'Solutions hero: intro', 'textarea' ),
+			'sol_hero_lead'        => array( 'Solutions hero: intro', 'wysiwyg' ),
 			'sol_solutions_title'  => array( 'Solutions: section heading', 'text' ),
 			'sol_process_title'    => array( 'Process: heading', 'text' ),
 			'sol_sectors_title'    => array( 'Who we work with: heading', 'text' ),
@@ -137,38 +137,39 @@ function sc_core_settings_fields() {
 			'sol_about_title'      => array( 'About Sound Creations: heading', 'text' ),
 			'sol_about_items'      => array( 'About Sound Creations cards (one per line: Title | Description)', 'textarea' ),
 			'sol_cta_title'        => array( 'Solutions CTA: heading', 'text' ),
-			'sol_cta_text'         => array( 'Solutions CTA: text', 'textarea' ),
+			'sol_cta_text'         => array( 'Solutions CTA: text', 'wysiwyg' ),
 
 			'__sec_contact'        => array( 'Contact / About page content', 'heading' ),
 			'contact_eyebrow'      => array( 'Contact hero: eyebrow', 'text' ),
 			'contact_title'        => array( 'Contact hero: headline', 'text' ),
-			'contact_lead'         => array( 'Contact hero: intro', 'textarea' ),
+			'contact_lead'         => array( 'Contact hero: intro', 'wysiwyg' ),
 			'contact_offices_title'=> array( 'Offices: heading', 'text' ),
 			'contact_cta_title'    => array( 'Contact CTA: heading', 'text' ),
 			'contact_cta_text'     => array( 'Contact CTA: text', 'textarea' ),
 			'__sec_projectspage'   => array( 'Projects page', 'heading' ),
 			'projects_eyebrow'     => array( 'Projects hero: eyebrow', 'text' ),
 			'projects_title'       => array( 'Projects hero: headline', 'text' ),
-			'projects_lead'        => array( 'Projects hero: intro', 'textarea' ),
+			'projects_lead'        => array( 'Projects hero: intro', 'wysiwyg' ),
 			'proj_stats'           => array( 'Projects stats (one per line: Number | Label | Sub-note)', 'textarea' ),
 			'projects_cta_title'   => array( 'Projects CTA: heading', 'text' ),
-			'projects_cta_text'    => array( 'Projects CTA: text', 'textarea' ),
+			'projects_cta_text'    => array( 'Projects CTA: text', 'wysiwyg' ),
 
 			'__sec_fane_content'   => array( 'FANE page - content', 'heading' ),
 			'fane_eyebrow'         => array( 'FANE hero: eyebrow line', 'text' ),
 			'fane_title'           => array( 'FANE hero: headline', 'text' ),
-			'fane_lead'            => array( 'FANE hero: intro paragraph', 'textarea' ),
+			'fane_lead'            => array( 'FANE hero: intro paragraph', 'wysiwyg' ),
 			'fane_diff_title'      => array( 'FANE "difference" section: heading', 'text' ),
-			'fane_diff_body'       => array( 'FANE "difference" section: text', 'textarea' ),
+			'fane_diff_body'       => array( 'FANE "difference" section: text', 'wysiwyg' ),
 			'fane_heritage_title'  => array( 'FANE heritage section: heading', 'text' ),
 			'fane_products_title'  => array( 'FANE product-range section: heading', 'text' ),
 			'fane_products_url'    => array( 'FANE product-range button: link (path or URL)', 'text' ),
 			'fane_apps_url'        => array( 'FANE applications button: link (path or URL)', 'text' ),
 			'fane_cta_title'       => array( 'FANE bottom banner: heading', 'text' ),
-			'fane_cta_text'        => array( 'FANE bottom banner: text', 'textarea' ),
+			'fane_cta_text'        => array( 'FANE bottom banner: text', 'wysiwyg' ),
 			'fane_catalogue_url'   => array( 'FANE catalogue PDF - the Download Catalogue button shows only when this is set (Select file to upload, or paste a link)', 'image' ),
 
-			'__sec_fane'           => array( 'FANE page - social links', 'heading' ),
+			'fane_info'            => array( 'FANE information block: rich content shown on the FANE page below the hero. Use headings, bold, lists and links.', 'wysiwyg' ),
+				'__sec_fane'           => array( 'FANE page - social links', 'heading' ),
 			'fane_social_title'    => array( 'FANE social bar: heading', 'text' ),
 			'fane_social_text'     => array( 'FANE social bar: sub-text', 'textarea' ),
 			'fane_facebook'        => array( 'FANE Facebook URL (blank = company Facebook)', 'text' ),
@@ -182,11 +183,11 @@ function sc_core_settings_fields() {
 			'__sec_resources'         => array( 'Resources / Videos page', 'heading' ),
 			'resources_eyebrow'       => array( 'Resources hero: eyebrow', 'text' ),
 			'resources_title'         => array( 'Resources hero: headline', 'text' ),
-			'resources_lead'          => array( 'Resources hero: intro', 'textarea' ),
+			'resources_lead'          => array( 'Resources hero: intro', 'wysiwyg' ),
 			'resources_videos_title'  => array( 'Videos section: heading', 'text' ),
 			'resources_grid_title'    => array( 'Downloads section: heading', 'text' ),
 			'resources_cta_title'     => array( 'Resources CTA: heading', 'text' ),
-			'resources_cta_text'      => array( 'Resources CTA: text', 'textarea' ),
+			'resources_cta_text'      => array( 'Resources CTA: text', 'wysiwyg' ),
 	);
 }
 
@@ -228,7 +229,9 @@ function sc_core_sanitize_settings( $input ) {
 			$clean[ $key ] = esc_url_raw( $val );
 		} elseif ( 'email' === $key ) {
 			$clean[ $key ] = sanitize_email( $val );
-		} elseif ( 'textarea' === $type ) {
+		} elseif ( 'wysiwyg' === $type ) {
+				$clean[ $key ] = wp_kses_post( $val );
+			} elseif ( 'textarea' === $type ) {
 			$clean[ $key ] = sanitize_textarea_field( $val );
 		} else {
 			$clean[ $key ] = sanitize_text_field( $val );
@@ -268,7 +271,24 @@ function sc_core_render_settings_page() {
 						esc_textarea( $value ),
 						esc_attr( $placeholder )
 					);
-				} elseif ( 'image' === $type ) {
+				} elseif ( 'wysiwyg' === $type ) {
+						echo '<tr><th scope="row"><label for="sc_' . esc_attr( $key ) . '">' . esc_html( $label ) . '</label></th><td>';
+						if ( strlen( (string) $value ) === 0 && strlen( (string) $placeholder ) > 0 ) {
+							echo '<p class="description" style="margin:0 0 6px;color:#646970;">Shown on the live page if left blank: ' . esc_html( wp_strip_all_tags( (string) $placeholder ) ) . '</p>';
+						}
+						wp_editor(
+							(string) $value,
+							'sc_' . $key,
+							array(
+								'textarea_name' => 'soundcreations_settings[' . $key . ']',
+								'media_buttons' => false,
+								'textarea_rows' => 6,
+								'teeny'         => true,
+								'quicktags'     => true,
+							)
+						);
+						echo '</td></tr>';
+					} elseif ( 'image' === $type ) {
 					$sc_is_img = ( substr( $key, -4 ) === '_img' ) || in_array( $key, array( 'home_hero_poster', 'home_cta_image', 'about_hero_image' ), true );
 					$sc_mtype  = $sc_is_img ? 'image' : '';
 					$sc_btn    = $sc_is_img ? 'Select image' : 'Select file';

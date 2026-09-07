@@ -65,7 +65,7 @@ $sc_contacts_map = array(
 	<div class="sc-container sc-contactpage-hero__inner">
 		<span class="sc-eyebrow"><?php echo esc_html( sc_setting( 'contact_eyebrow', 'Get in touch' ) ); ?></span>
 		<h1 class="sc-contactpage-hero__title"><?php echo esc_html( sc_setting( 'contact_title', 'Contact Us' ) ); ?></h1>
-		<p class="sc-lead sc-contactpage-hero__lead"><?php echo esc_html( sc_setting( 'contact_lead', 'Have a question, need a quote, or want to visit us? Reach our team through any of the channels below, or send us a message and we will get back to you quickly.' ) ); ?></p>
+		<p class="sc-lead sc-contactpage-hero__lead"><?php echo sc_rich_e( sc_setting( 'contact_lead', 'Have a question, need a quote, or want to visit us? Reach our team through any of the channels below, or send us a message and we will get back to you quickly.' ) ); ?></p>
 	</div>
 </section>
 

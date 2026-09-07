@@ -86,7 +86,7 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 			<div class="sc-fane-mark"><span class="sc-fane-mark__bar" aria-hidden="true"></span>Fane Africa</div>
 			<p class="sc-eyebrow sc-fane-hero__eyebrow"><?php echo esc_html( sc_setting( 'fane_eyebrow', 'Engineered in the UK. Trusted worldwide.' ) ); ?></p>
 			<h1 class="sc-fane-hero__title"><?php echo esc_html( sc_setting( 'fane_title', 'Engineering sound since 1954.' ) ); ?></h1>
-			<p class="sc-lead sc-fane-hero__lead"><?php echo esc_html( sc_setting( 'fane_lead', 'Precision-engineered loudspeaker components built for demanding professional applications, trusted by sound professionals around the world.' ) ); ?></p>
+			<p class="sc-lead sc-fane-hero__lead"><?php echo sc_rich_e( sc_setting( 'fane_lead', 'Precision-engineered loudspeaker components built for demanding professional applications, trusted by sound professionals around the world.' ) ); ?></p>
 			<div class="sc-fane-hero__cta">
 				<a class="sc-btn sc-btn--primary" href="#fane-products"><?php esc_html_e( 'Explore FANE Products', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 			</div>
@@ -107,12 +107,20 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 	</div>
 </section>
 
+<section class="sc-section" id="fane-about">
+	<div class="sc-container">
+		<div class="sc-prose sc-fane-info" style="max-width:820px;margin-inline:auto;">
+			<?php echo sc_rich_block( 'fane_info' ); ?>
+		</div>
+	</div>
+</section>
+
 <section class="sc-section" id="fane-difference">
 	<div class="sc-container sc-fane-diff">
 		<div class="sc-fane-diff__intro">
 			<p class="sc-eyebrow"><?php esc_html_e( 'The FANE difference', 'soundcreations' ); ?></p>
 			<h2><?php echo esc_html( sc_setting( 'fane_diff_title', 'Built from the inside out.' ) ); ?></h2>
-			<p class="sc-support-sub"><?php echo esc_html( sc_setting( 'fane_diff_body', 'Every FANE component is designed and engineered to work in perfect harmony - delivering the performance, reliability and consistency professionals depend on.' ) ); ?></p>
+			<p class="sc-support-sub"><?php echo sc_rich_e( sc_setting( 'fane_diff_body', 'Every FANE component is designed and engineered to work in perfect harmony - delivering the performance, reliability and consistency professionals depend on.' ) ); ?></p>
 			<a class="sc-btn sc-btn--ghost" href="#fane-products"><?php esc_html_e( 'Discover Our Technology', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 		</div>
 		<div class="sc-fane-diff__media">
@@ -196,7 +204,7 @@ $sc_arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( $sc_img . '/fane-hero.jpg' ); ?>');">
 			<div class="sc-cta-band__inner">
 				<h2><?php echo esc_html( sc_setting( 'fane_cta_title', 'Become a FANE distributor.' ) ); ?></h2>
-				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'fane_cta_text', 'We’re building the FANE dealer network across Kenya, Rwanda, DRC Congo and the UAE. Sound Creations focuses on large, project-based installations, so we partner with distributors who can stock and sell FANE components at the local level.' ) ); ?></p>
+				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo sc_rich_e( sc_setting( 'fane_cta_text', 'We’re building the FANE dealer network across Kenya, Rwanda, DRC Congo and the UAE. Sound Creations focuses on large, project-based installations, so we partner with distributors who can stock and sell FANE components at the local level.' ) ); ?></p>
 				<div class="sc-fane-cta__btns">
 					<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/become-a-dealer/' ) ); ?>"><?php esc_html_e( 'Become a Distributor', 'soundcreations' ); ?> <?php echo $sc_arrow; ?></a>
 					<?php if ( strlen( $sc_catalogue ) > 0 ) : ?>

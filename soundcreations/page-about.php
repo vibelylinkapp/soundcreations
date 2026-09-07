@@ -45,8 +45,8 @@ $sc_exp_icons = array(
 			<span class="sc-journey__badge"><?php echo esc_html( sc_setting( 'about_journey_badge', 'Since 2004' ) ); ?></span>
 			<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'about_hero_eyebrow', 'About Sound Creations' ) ); ?></p>
 			<h1 class="sc-about-hero__title"><?php echo esc_html( sc_setting( 'about_hero_title', 'If it sounds good, it’s Sound Creations' ) ); ?></h1>
-			<p class="sc-journey__lead"><?php echo esc_html( sc_setting( 'about_journey_p1', 'Founded in 2004, Sound Creations Ltd has grown into a leading provider of professional audio, visual, lighting and acoustic solutions across East Africa and beyond. What began as a specialist audio company is today a full-service integrator — designing, supplying, installing and supporting complete systems for the region’s most demanding spaces.' ) ); ?></p>
-			<p><?php echo esc_html( sc_setting( 'about_journey_p2', 'We pair the world’s leading technology brands with deep local expertise and an in-house team of certified engineers. From houses of worship and corporate boardrooms to campuses, stadiums and broadcast studios, we deliver solutions that are engineered to perform and built to last — backed by long-term support in Kenya, Rwanda, DR Congo and the UAE.' ) ); ?></p>
+			<p class="sc-journey__lead"><?php echo sc_rich_e( sc_setting( 'about_journey_p1', 'Founded in 2004, Sound Creations Ltd has grown into a leading provider of professional audio, visual, lighting and acoustic solutions across East Africa and beyond. What began as a specialist audio company is today a full-service integrator — designing, supplying, installing and supporting complete systems for the region’s most demanding spaces.' ) ); ?></p>
+			<p><?php echo sc_rich_e( sc_setting( 'about_journey_p2', 'We pair the world’s leading technology brands with deep local expertise and an in-house team of certified engineers. From houses of worship and corporate boardrooms to campuses, stadiums and broadcast studios, we deliver solutions that are engineered to perform and built to last — backed by long-term support in Kenya, Rwanda, DR Congo and the UAE.' ) ); ?></p>
 		</div>
 		<div class="sc-about-hero__media" style="align-self:stretch;min-height:360px;background-image:url('<?php echo esc_url( $sc_about_photo ); ?>');" role="img" aria-label="<?php esc_attr_e( 'Sound Creations at work', 'soundcreations' ); ?>"></div>
 	</div>
@@ -60,7 +60,7 @@ $sc_exp_icons = array(
 					<p class="sc-eyebrow"><?php echo esc_html( sc_setting( 'about_exp_eyebrow', 'What We Do' ) ); ?></p>
 					<h2><?php echo esc_html( sc_setting( 'about_exp_title', 'Our Expertise' ) ); ?></h2>
 				</div>
-				<p class="sc-expertise-intro"><?php echo esc_html( sc_setting( 'about_exp_intro', 'We provide complete solutions across every stage of your project — from idea to installation and beyond.' ) ); ?></p>
+				<p class="sc-expertise-intro"><?php echo sc_rich_e( sc_setting( 'about_exp_intro', 'We provide complete solutions across every stage of your project — from idea to installation and beyond.' ) ); ?></p>
 			</div>
 			<div class="sc-exp-grid">
 				<?php foreach ( $sc_exp_items as $sc_i => $sc_card ) : ?>

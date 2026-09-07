@@ -29,7 +29,7 @@ $sc_pills = array(
 	<div class="sc-container sc-hero__inner">
 		<?php echo sc_breadcrumb( array( array( 'Home', home_url( '/' ) ), array( 'Solutions', '' ) ) ); ?>
 		<h1 class="sc-hero__title"><?php echo esc_html( sc_setting( 'sol_hero_title', 'Engineered solutions. Exceptional experiences.' ) ); ?></h1>
-		<p class="sc-lead"><?php echo esc_html( sc_setting( 'sol_hero_lead', 'We design, integrate and support professional audio, visual, lighting and acoustic solutions for every space, application and performance.' ) ); ?></p>
+		<p class="sc-lead"><?php echo sc_rich_e( sc_setting( 'sol_hero_lead', 'We design, integrate and support professional audio, visual, lighting and acoustic solutions for every space, application and performance.' ) ); ?></p>
 		<div class="sc-hero-pills">
 			<?php foreach ( $sc_pills as $p ) : ?>
 				<div class="sc-hero-pill">
@@ -145,7 +145,7 @@ $sc_pills = array(
 		<div class="sc-cta-band sc-cta-band--photo" style="background-image:url('<?php echo esc_url( $sc_cta_photo ); ?>');">
 			<div class="sc-cta-band__inner">
 				<h2><?php echo esc_html( sc_setting( 'sol_cta_title', 'Have a project in mind?' ) ); ?></h2>
-				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo esc_html( sc_setting( 'sol_cta_text', 'Let’s design and deliver the right solution for your space and application.' ) ); ?></p>
+				<p class="sc-lead" style="margin:0 0 1.5rem;"><?php echo sc_rich_e( sc_setting( 'sol_cta_text', 'Let’s design and deliver the right solution for your space and application.' ) ); ?></p>
 				<a class="sc-btn sc-btn--primary" href="<?php echo esc_url( home_url( '/request-a-consultation/' ) ); ?>"><?php esc_html_e( 'Request a Consultation', 'soundcreations' ); ?></a>
 			</div>
 		</div>
